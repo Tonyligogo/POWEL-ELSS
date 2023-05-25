@@ -1,0 +1,13 @@
+.recentService{
+    box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+    -moz-box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+    flex: 1;
+    padding: 10px 8px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.recentService span{
+    color: rgb(82, 82, 82);
+}

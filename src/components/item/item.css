@@ -1,0 +1,53 @@
+.itemForm{
+    border-radius: 10px;
+    padding: 8px;
+    margin-top: 2px;   
+}
+.itemForm h2{
+    text-align: center;
+    margin: 0;
+    margin-block: 10px;
+    text-decoration: underline;
+}
+.item{
+    border-radius: 4px;
+    padding: 8px;
+    margin-block-end: 20px;
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+}
+.itemDetails{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.itemDetails > div{
+    margin-block: 10px;
+}
+label{
+    display: inline-block;
+    width: 120px;
+}
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-block: 20px 0 !important;
+}
+.buttons button{
+    font-size: 16px;
+}
+.itemsTable{
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+}
+.cartHeading{
+    font-weight: bold;
+    font-size: large;
+}
+.itemDetails > div label.outputField{
+    margin: 0;
+}

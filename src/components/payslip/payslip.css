@@ -1,0 +1,95 @@
+.payslipContainer{
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+}
+.payslipHeading{
+    margin: 0;
+    text-align: center;
+    text-decoration: underline;
+}
+.topPayslip{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+.topPayslip label{
+    margin-right: 10px;
+}
+.paySlipButtons{
+    display: flex;
+    gap: 2rem;
+    margin-block: 18px;
+    justify-content: center;
+}
+.paySlipButtons button{
+    background: transparent;
+    border: none;
+    background-color: #d74221;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.employeeDetailsContainer{
+    border: 1px solid gray;
+    padding-inline: 10px;
+    border-radius: 8px;
+    margin-inline: 10px;
+}
+.employeeDetails{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(2, 40px);
+    align-items: center;
+    margin-top: 10px;
+}
+.employeeDetails > div label{
+    width: 130px;
+    display: inline-block;
+}
+.allowanceHeading{
+    text-align: center;
+    text-decoration: underline;
+    font-weight: 600;
+}
+.allowanceDetails{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 40px);
+    align-items: center;
+}
+.allowanceDetails > div label{
+    width: 130px;
+    display: inline-block;
+}
+.deductionHeading{
+    text-align: center;
+    text-decoration: underline;
+    font-weight: 600;
+}
+.deductionDetails{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 40px);
+    align-items: center;
+}
+.deductionDetails > div label{
+    width: 130px;
+    display: inline-block;
+}
+.netSalary{
+    text-align: center;
+    margin-block: 12px;
+    font-weight: bold;
+}
+
+.outputField{
+    width: 149px;
+    border: 1px solid gray;
+    height: 20px;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    margin-left: 8px;
+}

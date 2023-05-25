@@ -1,0 +1,27 @@
+.tableContainer{
+  overflow-y: auto;
+  height: 200px;
+  border-bottom: 1px solid gray;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+thead{
+  position: sticky;
+  top: 0;
+  background-color: white;
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+}
+tbody tr{
+  border-top: 1px solid gray;
+}
+th,
+td {
+  padding: 9px 4px;
+}
+th {
+  text-align: left;
+}

@@ -1,0 +1,92 @@
+.widget{
+    box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+    -moz-box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+    flex: 1;
+    height: 120px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 12px;
+    background-color: white;
+}
+.widget .left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.widget p{
+    margin: 0;
+    padding: 0;
+}
+.widget .left p.top{
+    display: flex;
+    gap: 4px;
+    place-items: center;
+}
+.widget .left span.leftIcon{
+    background-color: rgb(255, 240, 211);
+    display: grid;
+    place-items: center;
+    width: 30px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+.widget .left a{
+    color: rgb(153, 153, 153);
+    text-decoration: none;
+    transition: all 800ms ease;
+}
+.widget .left a:hover{
+    text-decoration: underline;
+}
+.widget .right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.widget .right p{
+    display: flex;
+    align-items: center;
+
+}
+.widget .right .percentage{
+    color: green;
+}
+.widget .right p span.upArrow{
+    font-size: 24px;
+}
+
+.widget .right span.rightIcon{
+    color:rgb(255, 193, 68) ;
+    font-size: 24px;
+
+}
+.negative{
+    color: red;
+}
+.widget .left span.salesIconBg{
+    background-color: rgb(200, 255, 200);
+}
+.widget .left span.expensesIconBg{
+    background-color: rgb(255, 177, 177);
+}
+.widget .left span.servicesIconBg{
+    background-color: rgb(255, 240, 211)
+}
+.widget .left span.addUserIconBg{
+    background-color: rgb(215, 215, 250);
+}
+.widget .right span.salesIconColor{
+    color: rgb(9, 175, 9);
+}
+.widget .right span.expensesIconColor{
+    color: rgb(253, 138, 138);
+}
+.widget .right span.servicesIconColor{
+    color: rgb(255, 202, 96)
+}
+.widget .right span.addUserIconColor{
+    color: rgb(121, 121, 247);
+}

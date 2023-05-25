@@ -1,0 +1,41 @@
+.expenseContainer .expenseTitle{
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    padding: 2px 10px;
+    margin: 20px 20px 10px 20px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #d74221;
+}
+.expenseForm{
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    padding: 20px 10px;
+    margin-inline: 20px;
+    font-weight: 600;
+}
+.expenseForm form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.expenseForm form .formInput input{
+    border: none;
+    border-bottom: 1px solid gray;
+    width: 220px;
+    font-size: 14px;
+}
+.expenseForm form .formInput label{
+    width: 160px;
+}
+.expenseForm form .formInput .outputField{
+    width: 220px;
+    border: none;
+    border-bottom: 1px solid gray;
+    margin: 0;
+}
+.expenseForm form button{
+    width: max-content;
+}

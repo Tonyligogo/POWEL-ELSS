@@ -1,0 +1,95 @@
+.aside{
+    min-height: 100vh;
+    flex: 1;
+}
+aside{
+    padding-inline: 12px 8px;
+    position: relative;
+    min-height: 100vh;
+    box-shadow: 5px 0px 10px 0px rgba(201,201,201,0.47);
+-webkit-box-shadow: 5px 0px 10px 0px rgba(201,201,201,0.47);
+-moz-box-shadow: 5px 0px 10px 0px rgba(201,201,201,0.47);
+}
+aside p{
+    margin: 0;
+    padding-left: 14px;
+}
+aside h2.name{
+    color: #d74221;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+    margin-block: 0px 20px;
+}
+aside span.heading{
+    color: rgb(146, 146, 146);
+    display: block;
+}
+.homeButton{
+    margin: 10px 0;
+    display: flex;
+    place-items: center;
+    padding-left: 14px;
+}
+.nav{
+    display: flex;
+    place-items: center;
+    padding-left: 14px;
+    margin: 14px 0;
+    transition: all 300ms ease;
+}
+.nav:hover{
+    color: #d74221;
+    margin-left: 8px;
+}
+.nav.active:hover{
+    color: white;
+}
+.linksWrapper p{
+    display: flex;
+    place-items: center;
+    margin-block: 14px;
+    transition: all 300ms ease;
+}
+.linksWrapper p:hover{
+    color: #d74221;
+    cursor: pointer;
+    margin-left: 8px;
+}
+.linksWrapper ul{
+    display: none;
+}
+.linksWrapper ul.dropDownActive{
+    display: block;
+    margin: 0;
+    padding: 0;
+    margin-left: 20px;
+}
+.linksWrapper ul li{
+    list-style: none;
+}
+.linksWrapper ul li a{
+    margin-left: 10px;
+}
+aside a{
+    text-decoration: none;
+    color: black;
+}
+aside button{
+    position: absolute;
+    bottom: 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    background-color: #d74221;
+    padding: 7px 14px;
+    border-radius: 4px;
+    font-size: 14px;
+    width: calc(100% - 24px);
+}
+aside a.active{
+    background-color: #d74221;
+    color: white;
+    border-radius: 4px;
+    padding-block: 5px;
+}
