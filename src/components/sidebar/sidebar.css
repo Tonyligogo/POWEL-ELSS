@@ -7,8 +7,8 @@ aside{
     position: relative;
     min-height: 100vh;
     box-shadow: 5px 0px 10px 0px rgba(201,201,201,0.47);
--webkit-box-shadow: 5px 0px 10px 0px rgba(201,201,201,0.47);
--moz-box-shadow: 5px 0px 10px 0px rgba(201,201,201,0.47);
+    -webkit-box-shadow: 5px 0px 10px 0px rgba(201,201,201,0.47);
+    -moz-box-shadow: 5px 0px 10px 0px rgba(201,201,201,0.47);
 }
 aside p{
     margin: 0;
@@ -35,12 +35,16 @@ aside span.heading{
     display: flex;
     place-items: center;
     padding-left: 14px;
-    margin: 14px 0;
+    margin: 18px 0;
     transition: all 300ms ease;
+    gap: 8px;
 }
 .nav:hover{
     color: #d74221;
     margin-left: 8px;
+}
+.icon{
+    margin-right: 8px;
 }
 .nav.active:hover{
     color: white;

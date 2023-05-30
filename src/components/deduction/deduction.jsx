@@ -6,8 +6,10 @@ function deduction() {
     <div className="deduction home">
         <Sidebar/>
         <div className="deductionContainer homeContainer">
+            <div className="deductionFormTitle">
+                <h2>Deduction Form</h2>
+            </div>
             <div className="deductionWrapper">
-            <h2>Deduction Form</h2>
             <form className="deductionForm">
                 <div>
                     <label htmlFor="idNumber">ID No</label>

@@ -1,14 +1,18 @@
 .homeContainer .deductionWrapper{
-    margin-top: 20px;
-    border-radius: 10px;
     box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    margin-inline: 20px;
 }
-.deductionWrapper h2{
-    padding-top: 20px;
-    text-align: center;
-    text-decoration: underline;
+.deductionFormTitle{
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    padding: 10px;
+    margin: 0 20px;
+    font-size: large;
+    font-weight: 600;
+    color: gray;
 }
 .deductionForm{
     padding: 40px 80px 20px 80px;

@@ -6,13 +6,12 @@
 
 .homeContainer{
     flex: 5;
-    margin-top: 20px;
     overflow-y: auto;
-    height: calc(100vh - 40px);
+    height: calc(100vh - 10px);
     padding-inline: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 .widgets{
     display: flex;

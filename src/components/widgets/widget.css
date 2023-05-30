@@ -9,6 +9,11 @@
     justify-content: space-between;
     padding-inline: 12px;
     background-color: white;
+    transition: all 300ms ease;
+}
+.widget:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }
 .widget .left{
     display: flex;
@@ -35,10 +40,11 @@
 .widget .left a{
     color: rgb(153, 153, 153);
     text-decoration: none;
-    transition: all 800ms ease;
+    transition: all 300ms ease;
 }
 .widget .left a:hover{
     text-decoration: underline;
+    color: #d74221;
 }
 .widget .right{
     display: flex;

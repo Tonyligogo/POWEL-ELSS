@@ -10,6 +10,7 @@ import ServiceForm from "./components/serviceForm/Service";
 import Sidebar from './components/sidebar/sidebar';
 import NewUser from './components/newUser/newUser';
 import ExpenseForm from "./components/expenses/Expenses";
+import StaffRecords from './components/staffRecords/StaffRecords';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
             <Route path='ServiceForm' element={ <ServiceForm/> }/>
             <Route path='Sidebar' element={ <Sidebar/> }/>
             <Route path='NewUser' element={ <NewUser/> }/>
+            <Route path='StaffRecords' element={ <StaffRecords/> }/>
             <Route path='ExpenseForm' element={ <ExpenseForm/> }/>
           </Route>
         </Routes>

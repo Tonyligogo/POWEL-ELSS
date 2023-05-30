@@ -51,3 +51,7 @@ label{
 .itemDetails > div label.outputField{
     margin: 0;
 }
+.actionButtons{
+    display: flex;
+    gap: 4px;
+}

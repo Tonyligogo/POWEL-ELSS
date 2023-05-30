@@ -1,22 +1,27 @@
 import React, {useState} from 'react'
 import './item.css';
-import Sidebar from "../sidebar/sidebar"
+import Sidebar from "../sidebar/sidebar";
+import {Modal} from "../item/Modal"
 
 function Item() {
 
-    const [tableData, setTableData] = useState([])
-
+    const [tableRow, setTableRow] = useState([])
+    const [rowToEdit, setRowToEdit] = useState(null);
     const [formData, setFormData] = useState({
-        id:1,
         clientName:'',
         itemName:'',
         price:'',
         quantity:'',
+        total:''
     })
+    const [modalOpen, setModalOpen] = useState(false);
+    const handleDeleteRow = (targetIndex) => {
+        setTableRow(tableRow.filter((_, index) => index !== targetIndex));
+    };
+
     function changeValue(e){
         setFormData({...formData, [e.target.name]:e.target.value})
-
-    }
+    };
     function addProduct(e){
         e.preventDefault();
         const newData = {
@@ -24,10 +29,24 @@ function Item() {
             itemName:formData.itemName,
             price:formData.price,
             quantity:formData.quantity,
-            totalCost: formData.price * formData.quantity
+            total: formData.price * formData.quantity,
         };
-        setTableData([...tableData, newData])   
+        setTableRow([...tableRow, newData])
     }
+    const handleSave = (newRow) => {
+        rowToEdit === null
+          ? setTableRow([...tableRow, newRow])
+          : setTableRow(
+              tableRow.map((currRow, index) => {
+                if (index !== rowToEdit) return currRow;
+                return newRow;
+              })
+            );
+      };
+      const handleEditRow = (index) => {
+        setRowToEdit(index);
+        setModalOpen(true);
+      };
 
   return (
     <div className="home">
@@ -40,7 +59,7 @@ function Item() {
                 <div className="itemDetails">
                     <div>
                         <label>Client Name</label>
-                        <input type="text" name='clientName'required onChange={changeValue} />
+                        <input type="text" value={formData.clientName} name='clientName'required onChange={changeValue} />
                     </div>
                     <div>
                         <label>Invoice Code</label>
@@ -48,7 +67,7 @@ function Item() {
                     </div>
                     <div>
                         <label>Item Name</label>
-                        <input type="text" name='itemName' required onChange={changeValue}/>
+                        <input type="text" value={formData.itemName} name='itemName' required onChange={changeValue}/>
                     </div>
                     <div>
                         <label>Date</label>
@@ -56,7 +75,7 @@ function Item() {
                     </div>
                     <div>
                         <label>Unit Price</label>
-                        <input type="number" name='price' required onChange={changeValue}/>
+                        <input type="number" value={formData.price} name='price' required onChange={changeValue}/>
                     </div>
                     <div>
                         <label>Time</label>
@@ -64,7 +83,7 @@ function Item() {
                     </div>
                     <div>
                         <label>Quanity</label>
-                        <input type="number" name='quantity' required onChange={changeValue}/>
+                        <input type="number" value={formData.quantity} name='quantity' required onChange={changeValue}/>
                     </div>
                     <div>
                         <label>Total Cost</label>
@@ -72,20 +91,20 @@ function Item() {
                     </div>
                     <div>
                         <label>Subtotal</label>
-                        <label className='outputField'></label>
+                        <input type="text" value={formData.price * formData.quantity} readOnly />
                     </div>
                 </div>
                 <div className="buttons">
-                    <button onClick={addProduct} >Add</button>
+                    <button onClick={addProduct}>Add</button>
                     <button>Clear</button>
                 </div>
                 </div>
                 </form>
                 <div className='itemsTable'>
             <p className='cartHeading'>Cart</p>
-            
             <div className='tableContainer'>
-                <table>
+               <form>
+               <table>
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -93,23 +112,38 @@ function Item() {
                         <th>Quantity</th>
                         <th>Unit Price</th>
                         <th>Total</th>
+                        <th></th>
                     </tr>
                     </thead>
-                    {tableData && tableData.map((data)=>{
+                    {tableRow && tableRow.map((row, index)=>{
                         return(
                             <tbody>
-                                <tr key={data.id + 1}>
-                                    <td>{}</td>
-                                    <td>{data.itemName}</td>
-                                    <td>{data.quantity}</td>
-                                    <td>{data.price}</td>
-                                    <td>{data.totalCost}</td>
-                                    <td> <button>Edit</button> <button>Delete</button> </td> 
+                                <tr key={index}>
+                                    <td>{index}</td>
+                                    <td>{row.itemName}</td>
+                                    <td>{row.quantity}</td>
+                                    <td>{row.price}</td>
+                                    <td>{row.total}</td>
+                                    <td className='actionButtons'>
+                                        <button type='button' onClick={()=>handleEditRow(index)} >Edit</button> 
+                                        <button type='button' onClick={()=>handleDeleteRow(index)}>Delete</button>
+                                    </td> 
                                 </tr>
-                             </tbody>   
+                            </tbody>   
                         )
                     })} 
                 </table>
+               </form>
+               {modalOpen && (
+                    <Modal
+                    closeModal={() => {
+                        setModalOpen(false);
+                        setRowToEdit(null);
+                    }}
+                    onSubmit={handleSave}
+                    defaultValue={rowToEdit !== null && tableRow[rowToEdit]}
+                    />
+                )}
             </div>
 
             <div className="buttons">

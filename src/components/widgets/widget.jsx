@@ -1,11 +1,8 @@
 import React from 'react'
 import './widget.css'
-import {FcSalesPerformance} from "react-icons/fc"
+import { Icon } from '@iconify/react';
 import {BsGraphUp} from "react-icons/bs"
 import {MdKeyboardArrowUp} from "react-icons/md"
-import {BsCurrencyExchange} from "react-icons/bs"
-import {FaUsers} from "react-icons/fa"
-import {FaUserPlus} from "react-icons/fa"
 import {FaChartBar} from "react-icons/fa"
 import {FaCoins} from "react-icons/fa"
 import { Link } from 'react-router-dom'
@@ -28,7 +25,7 @@ switch(type){
     case "expenses":
     data={
       top:"Expenses",
-      leftIcon: <BsCurrencyExchange/> ,
+      leftIcon: <Icon icon="streamline:money-cash-bag-dollar-bag-payment-cash-money-finance" color="rgba(0, 0, 0, 0.60)" width="20" /> ,
       iconBg: 'expensesIconBg',
       isMoney: true,
       link: "Expenses summary",
@@ -39,7 +36,7 @@ switch(type){
     case "services":
     data={
       top:"Services",
-      leftIcon: <FcSalesPerformance/> ,
+      leftIcon: <Icon icon="medical-icon:i-social-services" color="rgba(0, 0, 0, 0.60)" width="20" /> ,
       iconBg: 'servicesIconBg',
       isMoney: false,
       link: "Services summary",
@@ -47,25 +44,25 @@ switch(type){
       iconColor: 'servicesIconColor'
     };
     break;
-    case "newUser":
+    case "serviceForm":
     data={
-      top:"Add new User",
-      leftIcon: <FaUsers/> ,
+      top:"Service Form",
+      leftIcon: <Icon icon="ant-design:form-outlined" width="20" />,
       iconBg: 'addUserIconBg',
       isMoney: false,
-      link: "Add new User",
-      rightIcon: <FaUserPlus/>,
+      link: "ServiceForm",
+      rightIcon: <Icon icon="ant-design:form-outlined" width="26" />,
       iconColor: 'addUserIconColor'
     };
     break;
     case "newItem":
     data={
       top:"New Item",
-      leftIcon: <FaUsers/> ,
+      leftIcon: <Icon icon="system-uicons:document-stack" width="20" />,
       iconBg: 'addUserIconBg',
       isMoney: false,
-      link: "Add new User",
-      rightIcon: <FaUserPlus/>,
+      link: "ItemForm",
+      rightIcon: <Icon icon="system-uicons:document-stack" width="26" />,
       iconColor: 'addUserIconColor'
     };
     break;
@@ -78,7 +75,7 @@ switch(type){
         <div className="left">
             <p className='top'><span className={`leftIcon + ${data.iconBg}`}>{data.leftIcon}</span>{data.top}</p>
             <span>{data.isMoney ? amount : "No money"}</span>
-            <Link to='/'>{data.link}</Link>
+            <Link to= {`/${data.link}`} >{data.link}</Link>
         </div>
         <div className="right">
             <p className='percentage'><span className='upArrow'><MdKeyboardArrowUp/></span>20%</p>
