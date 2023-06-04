@@ -6,7 +6,7 @@ function Expenses() {
         <Sidebar/>
         <div className="expenseContainer homeContainer">
             <div className="expenseTitle">
-                <p>Expenses Form</p>
+                <h3>Expenses Form</h3>
             </div>
             <div className="expenseForm">
                 <form>

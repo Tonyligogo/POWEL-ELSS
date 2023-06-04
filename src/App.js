@@ -11,7 +11,9 @@ import Sidebar from './components/sidebar/sidebar';
 import NewUser from './components/newUser/newUser';
 import ExpenseForm from "./components/expenses/Expenses";
 import StaffRecords from './components/staffRecords/StaffRecords';
-
+import SalesSummary from './components/salessummary/SalesSummary';
+import ExpensesSummary from './components/expensessummary/ExpensesSummary';
+import ServicesSummary from "./components/servicessummary/ServicesSummary";
 
 function App() {
   const [loading, setLoading] = React.useState(true);
@@ -39,6 +41,9 @@ function App() {
             <Route path='NewUser' element={ <NewUser/> }/>
             <Route path='StaffRecords' element={ <StaffRecords/> }/>
             <Route path='ExpenseForm' element={ <ExpenseForm/> }/>
+            <Route path='SalesSummary' element={ <SalesSummary/> }/>
+            <Route path='ExpensesSummary' element={ <ExpensesSummary/> }/>
+            <Route path='ServicesSummary' element={ <ServicesSummary/> }/>
           </Route>
         </Routes>
       </BrowserRouter>

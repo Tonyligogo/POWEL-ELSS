@@ -7,7 +7,7 @@ function deduction() {
         <Sidebar/>
         <div className="deductionContainer homeContainer">
             <div className="deductionFormTitle">
-                <h2>Deduction Form</h2>
+                <h3>Deduction Form</h3>
             </div>
             <div className="deductionWrapper">
             <form className="deductionForm">
@@ -18,19 +18,20 @@ function deduction() {
                 <div>
                     <label htmlFor="month">Month</label>
                     <select id='month' name="month">
-                        <option selected value='1'>January</option>
-                        <option value='2'>February</option>
-                        <option value='3'>March</option>
-                        <option value='4'>April</option>
-                        <option value='5'>May</option>
-                        <option value='6'>June</option>
-                        <option value='7'>July</option>
-                        <option value='8'>August</option>
-                        <option value='9'>September</option>
-                        <option value='10'>October</option>
-                        <option value='11'>November</option>
-                        <option value='12'>December</option>
-                    </select> 
+                            <option value=''>--Select Month--</option>
+                            <option value='January'>Janaury</option>
+                            <option value='February'>February</option>
+                            <option value='March'>March</option>
+                            <option value='April'>April</option>
+                            <option value='May'>May</option>
+                            <option value='June'>June</option>
+                            <option value='July'>July</option>
+                            <option value='August'>August</option>
+                            <option value='September'>September</option>
+                            <option value='October'>October</option>
+                            <option value='November'>November</option>
+                            <option value='December'>December</option>
+                        </select> 
                 </div>
                 <div>
                 <label htmlFor="year">Year</label>

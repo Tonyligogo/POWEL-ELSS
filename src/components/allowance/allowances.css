@@ -1,9 +1,17 @@
 .allowancesWrapper{
-    margin-top: 40px;
-    border-radius: 10px;
+    margin-inline: 20px;
     box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+}
+.allowancesFormTitle{
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    padding: 10px;
+    margin: 0 20px;
+    font-size: large;
+    color: gray;
 }
 .allowancesWrapper h2{
     text-align: center;

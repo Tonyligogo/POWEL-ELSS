@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Sidebar from '../sidebar/sidebar'
 import './newUser.css'
 import axios from 'axios'
+import { Icon } from '@iconify/react';
 
 function NewUser() {
     const [formData, setFormData] = useState({
@@ -12,24 +13,53 @@ function NewUser() {
         jobTitle:'',
         option:''
     })
+    const [userCreated, setUserCreated] = useState(false);
     function changeValue(e){
         setFormData({...formData, [e.target.name]:e.target.value})
     };
     async function addStaff(e){
         e.preventDefault();
-        const values = [formData.firstName,formData.lastName,formData.idNo,formData.phoneNumber,formData.jobTitle,formData.option];
-        const data = new FormData();
-        values.forEach((item) => {
-            data.append('values', item);
-        });
-        await axios.post('/api/newStaff', data)
+        const userData = {
+            first_name:formData.firstName,
+            last_name:formData.lastName,
+            id_no:formData.idNo,
+            phone_no:formData.phoneNumber,
+            job_title:formData.jobTitle,
+            P_no:formData.option
+        }
+        await axios.post("http://localhost:5000/api/dashboard/new-employee", userData,{
+            headers: {authorization: "jwt " + localStorage.getItem("token")}
+          })
+        .then((response)=>{
+            setUserCreated(true)
+        })
+        .catch((error)=>{
+            if(error.response){
+                console.log(error.response);
+            }else if(error.request){
+                console.log('network error')
+            }else{
+                console.log(error)
+            }
+        })  
+        setTimeout(() => {
+            setUserCreated(false);
+            setFormData({
+                firstName:'',
+                lastName:'',
+                idNo:'',
+                phoneNumber:'',
+                jobTitle:'',
+                option:''
+            })
+          }, 3000);
     }
   return (
     <div className='newUser home'>
         <Sidebar/>
         <div className="newUserContainer homeContainer">
             <div className="newUserTitle">
-                <p>Add New Staff</p>
+                <h3>Add New Staff</h3>
             </div>
             <div className="newUserDetails">
                 <form onSubmit={addStaff}>
@@ -72,6 +102,7 @@ function NewUser() {
                     </div>
                     <button type='submit'>Save</button>
                 </form>
+                { userCreated && <p className='successMessage'> <Icon icon="mdi:success-circle" color="green" /> New staff added successfully</p>}
             </div>
         </div>
 

@@ -21,6 +21,7 @@
     display: flex;
     gap: 20px;
     padding-inline-end: 10px;
+    margin-block-start: 10px;
 }
 .barChart{
     flex: 3;
@@ -41,13 +42,6 @@
     margin: 0;
     margin-bottom: 10px;
     font-weight: 600;
-}
-recentsContainer{
-    box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
-    -webkit-box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
-    -moz-box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
-    border-radius: 10px;
-    padding: 10px;
 }
 .rightContainer h3{
     margin: 0;

@@ -17,7 +17,7 @@ switch(type){
       leftIcon: <FaChartBar/> ,
       iconBg: 'salesIconBg',
       isMoney: true,
-      link: "Sales summary",
+      link: "SalesSummary",
       rightIcon: <BsGraphUp/>,
       iconColor: 'salesIconColor'
     };
@@ -28,7 +28,7 @@ switch(type){
       leftIcon: <Icon icon="streamline:money-cash-bag-dollar-bag-payment-cash-money-finance" color="rgba(0, 0, 0, 0.60)" width="20" /> ,
       iconBg: 'expensesIconBg',
       isMoney: true,
-      link: "Expenses summary",
+      link: "ExpensesSummary",
       rightIcon: <FaCoins/>,
       iconColor: 'expensesIconColor'
     };
@@ -39,7 +39,7 @@ switch(type){
       leftIcon: <Icon icon="medical-icon:i-social-services" color="rgba(0, 0, 0, 0.60)" width="20" /> ,
       iconBg: 'servicesIconBg',
       isMoney: false,
-      link: "Services summary",
+      link: "ServicesSummary",
       rightIcon: <BsGraphUp/>,
       iconColor: 'servicesIconColor'
     };
@@ -60,7 +60,7 @@ switch(type){
       top:"New Item",
       leftIcon: <Icon icon="system-uicons:document-stack" width="20" />,
       iconBg: 'addUserIconBg',
-      isMoney: false,
+      isNewItem: "New Item Sale",
       link: "ItemForm",
       rightIcon: <Icon icon="system-uicons:document-stack" width="26" />,
       iconColor: 'addUserIconColor'

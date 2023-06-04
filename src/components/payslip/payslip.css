@@ -2,11 +2,16 @@
     box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    margin-inline: 20px;
 }
-.payslipHeading{
-    margin: 0;
-    text-align: center;
-    text-decoration: underline;
+.payslipTitle{
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    padding: 10px;
+    margin: 0 20px;
+    font-size: large;
+    color: gray;
 }
 .topPayslip{
     margin-top: 20px;
@@ -19,7 +24,7 @@
 .paySlipButtons{
     display: flex;
     gap: 2rem;
-    margin-block: 18px;
+    margin-block: 20px;
     justify-content: center;
 }
 .paySlipButtons button{
@@ -30,6 +35,13 @@
     padding: 5px 12px;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 15px;
+    transition: all 300ms ease;
+}
+button:hover{
+    outline: 1px solid #d74221;
+    color: #d74221;
+    background-color: white;
 }
 .employeeDetailsContainer{
     border: 1px solid gray;
@@ -92,4 +104,13 @@
     margin: 0;
     padding: 0;
     margin-left: 8px;
+}
+.printButton{
+    margin-block: 20px;
+    font-size: 15px;
+    padding: 5px 16px;
+}
+.printButtonWrapper{
+    display: flex;
+    justify-content: center;
 }

@@ -5,7 +5,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { server } from "../server";
 
-
 function Login() {
   const navigate = useNavigate();
   const userRef = useRef();
@@ -15,13 +14,14 @@ function Login() {
 
   useEffect(()=>{
     userRef.current.focus();
-    console.log(userFocus)
   },[]);
+  console.log(userFocus);
   async function handleLogin(e){
     e.preventDefault();
     const data = {email, password};
     await axios.post(`${server}/api/auth/login`, data)
     .then((res) => {
+      localStorage.setItem("token", res.data.authorization)
       navigate("/");
     })
     .catch((err) => {
