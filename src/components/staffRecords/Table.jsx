@@ -1,13 +1,7 @@
-import axios from "axios";
 import "./table.css"
 import { Icon } from '@iconify/react';
+import { Link } from "react-router-dom";
 const Table = ({ data, query }) => {
-async function handleDelete(){
-  await axios.delete("http://localhost:5000/api/dashboard/employee-data",
-  {
-    headers: {authorization: "jwt " + localStorage.getItem("token")}
-  }) 
-}
 
     return (
       <div className="recordsTableContainer">
@@ -35,7 +29,9 @@ async function handleDelete(){
                   <td>{item.id_no}</td>
                   <td>{item.job_title}</td>
                   <td>{item.phone_no}</td>
-                  <td className="clickable"> <Icon onClick={handleDelete} icon="fluent-mdl2:delete" color="#d74221" width="24"/> </td>
+                  <td className="clickable">  
+                    <Link to={'/StaffRecords/delete/'+item._id}> <Icon icon="fluent-mdl2:delete" color="#d74221" width="24"/> </Link> 
+                  </td>
                 </tr>
             )) : null}
             </tbody>

@@ -56,19 +56,6 @@ function Item() {
                   }, 3000);
         }
     }
-    console.log(formData)
-    console.log(tableRow)
-    const invoiceData = {
-        invoice_code:newId,
-        clientName:formData.clientName,
-        itemName:formData.itemName,
-        quantity:formData.quantity,
-        price:formData.price,
-        subTotal: formData.price * formData.quantity,
-        total:total
-    };
-    console.log(invoiceData)
-    
     const handleSave = (newRow) => {
         rowToEdit === null
           ? setTableRow([...tableRow, newRow])
@@ -212,9 +199,7 @@ function Item() {
                                         <td>{row.price}</td>
                                         <td>{row.subTotal}</td>
                                         <td className='actionButtons'>
-                                            {/* <button type='button' onClick={()=>handleEditRow(index)} >Edit</button> */}
                                             <Icon onClick={()=>handleEditRow(index)} icon="akar-icons:edit" color="#d74221" width="24" /> 
-                                            {/* <button type='button' onClick={()=>handleDeleteRow(index)}>Delete</button> */}
                                             <Icon onClick={()=>handleDeleteRow(index)} icon="fluent-mdl2:delete" color="#d74221" width="24"/>
                                         </td> 
                                     </tr>

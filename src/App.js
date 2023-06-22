@@ -14,6 +14,7 @@ import StaffRecords from './components/staffRecords/StaffRecords';
 import SalesSummary from './components/salessummary/SalesSummary';
 import ExpensesSummary from './components/expensessummary/ExpensesSummary';
 import ServicesSummary from "./components/servicessummary/ServicesSummary";
+import DeleteStaff from './components/staffRecords/DeleteStaff';
 
 function App() {
   const [loading, setLoading] = React.useState(true);
@@ -40,6 +41,7 @@ function App() {
             <Route path='Sidebar' element={ <Sidebar/> }/>
             <Route path='NewUser' element={ <NewUser/> }/>
             <Route path='StaffRecords' element={ <StaffRecords/> }/>
+            <Route path='StaffRecords/delete/:id' element={<DeleteStaff/> }/>
             <Route path='ExpenseForm' element={ <ExpenseForm/> }/>
             <Route path='SalesSummary' element={ <SalesSummary/> }/>
             <Route path='ExpensesSummary' element={ <ExpensesSummary/> }/>

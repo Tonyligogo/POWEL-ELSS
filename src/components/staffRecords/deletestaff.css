@@ -1,0 +1,29 @@
+.delete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(68, 68, 68, 0.4);
+}
+.deleteContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    padding: 20px;
+    border-radius: 4px;
+    background-color: white;
+}
+.deleteContainer p{
+    font-size: 24px;
+}
+.deleteContainer .btns{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.deleteContainer .btns button{
+    padding: 6px 14px;
+    font-size: 18px;
+}
