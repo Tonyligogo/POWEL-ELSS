@@ -8,7 +8,7 @@
     padding: 10px;
     margin: 0 20px;
     font-size: large;
-    color: gray;
+    color: #d74221;
 }
 .item{
     border-radius: 4px;
@@ -39,11 +39,7 @@ label{
     font-size: 16px;
 }
 .itemsTable{
-    padding: 8px;
     border-radius: 4px;
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
 }
 .cartHeading{
     font-weight: bold;
@@ -54,5 +50,24 @@ label{
 }
 .actionButtons{
     display: flex;
+    gap: 8px;
+    cursor: pointer;
+}
+.errorMessage{
+    display: inline-flex;
+    align-items: center;
+    color: red;
+    background: rgb(255, 187, 187);
+    padding: 4px 10px;
+    border-radius: 8px;
     gap: 4px;
+}
+input{
+    border: none;
+    border: 1px solid gray;
+    border-radius: 4px;
+    height: 20px;
+}
+textarea:focus, input:focus{
+    outline:1px solid #d74221;
 }

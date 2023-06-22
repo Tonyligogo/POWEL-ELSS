@@ -1,9 +1,9 @@
 :root{
     --primary-color: #d74221;
-}
+} 
 .container{
     background-color: white;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     position: relative;
     /* overflow: hidden; */
@@ -82,4 +82,7 @@
 }
 .footer p sup{
     font-size: 12px;
+}
+.error{
+    color: red;
 }

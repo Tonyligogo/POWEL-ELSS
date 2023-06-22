@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import './item.css';
 import Sidebar from "../sidebar/sidebar";
 import {Modal} from "../item/Modal"
-import axios from 'axios';
+// import axios from 'axios';
 import { Icon } from '@iconify/react';
 import {nanoid} from "nanoid"
 
@@ -15,29 +15,60 @@ function Item() {
         itemName:'',
         price:'',
         quantity:'',
-        total:''
+        subTotal:'',
+        total:'',
     })
+    const [total, setTotal] = useState(0);
     const [modalOpen, setModalOpen] = useState(false);
     const handleDeleteRow = (targetIndex) => {
         setTableRow(tableRow.filter((_, index) => index !== targetIndex));
     };
     const currentDate = new Date().toLocaleDateString();
     const currentTime = new Date().toLocaleTimeString();
-    let newId = nanoid()
+    let newId = nanoid(10).toString();
     function changeValue(e){
         setFormData({...formData, [e.target.name]:e.target.value})
+        if(formData.itemName || formData.clientName){
+
+        }
     };
+    const [allInputsFilled, setAllInputsFilled] = useState(true);
     function addProduct(e){
         e.preventDefault();
-        const newData = {
-            clientName:formData.clientName,
-            itemName:formData.itemName,
-            price:formData.price,
-            quantity:formData.quantity,
-            total: formData.price * formData.quantity,
-        };
-        setTableRow([...tableRow, newData])
+        if( formData.itemName && formData.quantity && formData.price && formData.clientName )
+        {
+            // setAllInputsFilled(true);
+            const newData = {
+                invoice_code:newId,
+                clientName:formData.clientName,
+                itemName:formData.itemName,
+                quantity:formData.quantity,
+                price:formData.price,
+                subTotal: formData.price * formData.quantity,
+                total:total
+            };
+            setTableRow([...tableRow, newData])
+            setTotal(prevTotal => prevTotal + Number(newData.subTotal))
+        }else{
+            setAllInputsFilled(false);
+            setTimeout(() => {
+                setAllInputsFilled(true);
+                  }, 3000);
+        }
     }
+    console.log(formData)
+    console.log(tableRow)
+    const invoiceData = {
+        invoice_code:newId,
+        clientName:formData.clientName,
+        itemName:formData.itemName,
+        quantity:formData.quantity,
+        price:formData.price,
+        subTotal: formData.price * formData.quantity,
+        total:total
+    };
+    console.log(invoiceData)
+    
     const handleSave = (newRow) => {
         rowToEdit === null
           ? setTableRow([...tableRow, newRow])
@@ -52,41 +83,52 @@ function Item() {
         setRowToEdit(index);
         setModalOpen(true);
       };
+      function clearForm(e){
+        e.preventDefault();
+        setFormData({
+            clientName:'',
+            itemName:'',
+            price:'',
+            quantity:'',
+            subTotal:'',
+            total:'',
+        })
+      }
       const [userCreated, setUserCreated] = useState(false);
       async function handleSaveItem(e){
         e.preventDefault();
-        const item = {
-            invoice_code:newId,
-            item:formData.itemName,
-            quantity:formData.quantity,
-            unit_price:formData.price,
-            sub_total:formData.price * formData.quantity,
-        }
-        await axios.post("http://localhost:5000/api/dashboard/new-sale", item,{
-            headers: {authorization: "jwt " + localStorage.getItem("token")}
-          })
-        .then((response)=>{
-            setUserCreated(true)
-        })
-        .catch((error)=>{
-            if(error.response){
-                console.log(error.response);
-            }else if(error.request){
-                console.log('network error')
-            }else{
-                console.log(error)
-            }
-        })  
-        setTimeout(() => {
-            setUserCreated(false);
-            setFormData({
-                clientName:'',
-                itemName:'',
-                price:'',
-                quantity:'',
-                total:''
-            })
-          }, 3000);
+        // const item = {
+        //     invoice_code:newId,
+        //     item:formData.itemName,
+        //     quantity:formData.quantity,
+        //     unit_price:formData.price,
+        //     sub_total:formData.price * formData.quantity,
+        // }
+        // await axios.post("http://localhost:5000/api/dashboard/new-sale", item,{
+        //     headers: {authorization: "jwt " + localStorage.getItem("token")}
+        //   })
+        // .then((response)=>{
+        //     setUserCreated(true)
+        // })
+        // .catch((error)=>{
+        //     if(error.response){
+        //         console.log(error.response);
+        //     }else if(error.request){
+        //         console.log('network error')
+        //     }else{
+        //         console.log(error)
+        //     }
+        // })  
+        // setTimeout(() => {
+        //     setUserCreated(false);
+        //     setFormData({
+        //         clientName:'',
+        //         itemName:'',
+        //         price:'',
+        //         quantity:'',
+        //         total:''
+        //     })
+        //   }, 3000);
     }
 
   return (
@@ -102,7 +144,7 @@ function Item() {
                 <div className="itemDetails">
                     <div>
                         <label>Client Name</label>
-                        <input type="text" value={formData.clientName} name='clientName'required onChange={changeValue} />
+                        <input type="text" value={formData.clientName} name='clientName' required onChange={changeValue} />
                     </div>
                     <div>
                         <label>Invoice Code</label>
@@ -114,7 +156,7 @@ function Item() {
                     </div>
                     <div>
                         <label>Date</label>
-                        <label className='outputField'>{currentDate}</label>
+                        <label className='outputField' >{currentDate}</label>
                     </div>
                     <div>
                         <label>Unit Price</label>
@@ -130,7 +172,7 @@ function Item() {
                     </div>
                     <div>
                         <label>Total Cost</label>
-                        <label className='outputField'></label>
+                        <input type='text' name='total' value={total} readOnly />
                     </div>
                     <div>
                         <label>Subtotal</label>
@@ -139,15 +181,14 @@ function Item() {
                 </div>
                 <div className="buttons">
                     <button onClick={addProduct}>Add</button>
-                    <button>Clear</button>
+                    <button onClick={clearForm}>Clear</button>
                 </div>
-                </div>
-                </form>
-                <div className='itemsTable'>
+                { !allInputsFilled && <p className='errorMessage'> <Icon icon="clarity:error-solid" color="red" width="24" /> Please fill all the required fields</p>}
+                {tableRow.length > 0 && <div className='itemsTable'>
                     <p className='cartHeading'>
                         Cart
                     </p>
-                    { userCreated && <p className='successMessage'> <Icon icon="mdi:success-circle" color="green" /> New staff added successfully</p>}
+                    { userCreated && <p className='successMessage'> <Icon icon="mdi:success-circle" color="green" /> Sales information submitted successfully</p>}
                     <div className='tableContainer'>
                 <form>
                 <table>
@@ -169,10 +210,12 @@ function Item() {
                                         <td>{row.itemName}</td>
                                         <td>{row.quantity}</td>
                                         <td>{row.price}</td>
-                                        <td>{row.total}</td>
+                                        <td>{row.subTotal}</td>
                                         <td className='actionButtons'>
-                                            <button type='button' onClick={()=>handleEditRow(index)} >Edit</button> 
-                                            <button type='button' onClick={()=>handleDeleteRow(index)}>Delete</button>
+                                            {/* <button type='button' onClick={()=>handleEditRow(index)} >Edit</button> */}
+                                            <Icon onClick={()=>handleEditRow(index)} icon="akar-icons:edit" color="#d74221" width="24" /> 
+                                            {/* <button type='button' onClick={()=>handleDeleteRow(index)}>Delete</button> */}
+                                            <Icon onClick={()=>handleDeleteRow(index)} icon="fluent-mdl2:delete" color="#d74221" width="24"/>
                                         </td> 
                                     </tr>
                                 </tbody>   
@@ -195,7 +238,10 @@ function Item() {
                         <button onClick={handleSaveItem}>Submit</button>
                         <button>Delete</button>
                     </div>
+                </div>}
                 </div>
+                </form>
+                
             </div>
         </div>
     </div>

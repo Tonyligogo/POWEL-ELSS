@@ -21,18 +21,14 @@
     gap: 20px;
 }
 .expenseForm form .formInput input{
-    border: none;
-    border-bottom: 1px solid gray;
-    width: 220px;
     font-size: 14px;
 }
 .expenseForm form .formInput label{
     width: 160px;
 }
 .expenseForm form .formInput .outputField{
-    width: 220px;
-    border: none;
-    border-bottom: 1px solid gray;
+    width: 184px;
+    height: 22px;
     margin: 0;
 }
 .expenseForm form button{

@@ -85,7 +85,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
             type="number"
               name="total"
               onChange={handleChange}
-              value={formState.total}
+              value={formState.subTotal}
             />
           </div>
           {errors && <div className="error">{`Please include: ${errors}`}</div>}

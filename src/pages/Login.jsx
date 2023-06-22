@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import './login.css';
 import myImage from '../images/powelElssLogo.jpg';
 import axios from "axios";
@@ -8,17 +8,22 @@ import { server } from "../server";
 function Login() {
   const navigate = useNavigate();
   const userRef = useRef();
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [userFocus, setUserFocus] = React.useState(false);
+  const [formValues, setFormValues] = useState({email:'',password:''});
+  const [userFocus, setUserFocus] = useState(false);
 
   useEffect(()=>{
     userRef.current.focus();
   },[]);
   console.log(userFocus);
+
+  function handleChange(e){
+    setFormValues({...formValues, [e.target.name]:e.target.value})
+  }
+  
   async function handleLogin(e){
     e.preventDefault();
-    const data = {email, password};
+    const data = {email:formValues.email, password:formValues.password};
+    console.log(data)
     await axios.post(`${server}/api/auth/login`, data)
     .then((res) => {
       localStorage.setItem("token", res.data.authorization)
@@ -39,21 +44,23 @@ function Login() {
                 <form onSubmit={handleLogin}>
                   <input 
                     type="email" 
-                    value={email} 
+                    value={formValues.email} 
                     ref={userRef} 
+                    name="email"
                     placeholder='Your email'  
                     autoComplete="off" 
                     onFocus={()=>setUserFocus(true)}
                     required 
-                    onChange={(e)=>setEmail(e.target.value)}
+                    onChange={handleChange}
                   />
                   <input 
                     type="password" 
-                    value={password} 
+                    value={formValues.password}
+                    name="password" 
                     placeholder='password' 
                     autoComplete="off"
                     required 
-                    onChange={(e)=>setPassword(e.target.value)}
+                    onChange={handleChange}
                   />
                   <button>Sign in</button>
                 </form> 

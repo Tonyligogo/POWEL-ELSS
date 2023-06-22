@@ -5,7 +5,7 @@
     padding: 10px;
     margin: 0 20px;
     font-size: large;
-    color: gray;
+    color: #d74221;
 }
 .newUserDetails{
     box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
@@ -25,8 +25,6 @@
     gap: 20px;
 }
 .newUserDetails form .formInput input{
-    border: none;
-    border-bottom: 1px solid gray;
     width: 220px;
     font-size: 14px;
 }

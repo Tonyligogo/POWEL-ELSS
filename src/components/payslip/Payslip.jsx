@@ -3,6 +3,15 @@ import "./payslip.css"
 import Sidebar from "../sidebar/sidebar"
 
 function Payslip() {
+
+    const allowanceDetails = localStorage.getItem('object')
+    const allowanceDetailsParsed = JSON.parse(allowanceDetails)
+    function generateDetails(e){
+        e.preventDefault()
+        console.log(allowanceDetailsParsed)
+        console.log(allowanceDetailsParsed.month)
+    }
+
   return (
     <div className="home">
         <Sidebar/>
@@ -40,7 +49,7 @@ function Payslip() {
                 </div>
             </div>
             <div className="paySlipButtons">
-                <button>Generate</button>
+                <button onClick={generateDetails}>Generate</button>
                 <button>Clear</button>
             </div>
             <div className="employeeDetailsContainer">
@@ -68,23 +77,23 @@ function Payslip() {
             <div className="allowanceDetails">
                 <div>
                 <label htmlFor="">Arrears</label>
-                <label className='outputField'></label>
+                <label className='outputField'>{allowanceDetailsParsed.arrears}</label>
                 </div>
                 <div>
                 <label htmlFor="">House</label>
-                <label className='outputField'></label>
+                <label className='outputField'>{allowanceDetailsParsed.house}</label>
                 </div>
                 <div>
                 <label htmlFor="">Gross Pay</label>
-                <label className='outputField'></label>
+                <label className='outputField'>{allowanceDetailsParsed.month}</label>
                 </div>
                 <div>
                 <label htmlFor="">Imprest Amount</label>
-                <label className='outputField'></label>
+                <label className='outputField'>{allowanceDetailsParsed.imprestAmount}</label>
                 </div>
                 <div>
                 <label htmlFor="">Transport</label>
-                <label className='outputField'></label>
+                <label className='outputField'>{allowanceDetailsParsed.transport}</label>
                 </div>
             </div>
                 <h3 className='deductionHeading'>Deductions</h3>

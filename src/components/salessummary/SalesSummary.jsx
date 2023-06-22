@@ -1,6 +1,5 @@
 import "./salessummary.css"
 import Sidebar from "../sidebar/sidebar"
-import Navbar from "../navbar/Navbar"
 import { Icon } from '@iconify/react';
 import {useState, useEffect} from "react"
 import axios from "axios";
@@ -23,7 +22,6 @@ function SalesSummary() {
     <div className="home">
         <Sidebar/>
           <div className="homeContainer">
-            <Navbar/>
             <div className="salesSummaryHeading">  
                 <h3>Sales Summary</h3>
             </div>

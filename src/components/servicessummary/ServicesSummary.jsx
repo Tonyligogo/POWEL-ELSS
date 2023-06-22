@@ -1,6 +1,5 @@
 import "./servicessummary.css"
 import Sidebar from "../sidebar/sidebar"
-import Navbar from "../navbar/Navbar"
 import { Icon } from '@iconify/react';
 import {useState, useEffect} from "react"
 import axios from "axios";
@@ -22,7 +21,6 @@ function ServicesSummary() {
     <div className="home">
         <Sidebar/>
           <div className="homeContainer">
-            <Navbar/>
             <div className="servicesSummaryHeading">  
                 <h3>Services Summary</h3>
             </div>

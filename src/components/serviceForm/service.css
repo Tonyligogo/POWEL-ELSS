@@ -39,6 +39,7 @@
 }
 textarea{
     resize: none;
+    border-radius: 4px;
 }
 label{
     display: inline-block;

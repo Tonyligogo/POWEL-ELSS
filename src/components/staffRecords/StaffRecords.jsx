@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./staffrecords.css";
 import Table from "./Table";
 import Sidebar from "../sidebar/sidebar";
-import Navbar from "../navbar/Navbar";
 import axios from "axios";
 import { Icon } from '@iconify/react';
 
@@ -12,18 +11,19 @@ export default function StaffRecords() {
     const [data, setData] = useState([]);
   
     useEffect(() => {
-      const fetchData = async () => {
-        const res = await axios.get(`http://localhost:5000?q=${query}`);
-        setData(res.data);
-      };
-      if (query.length === 0 || query.length > 2) fetchData();
-    }, [query]);
+        axios.get("http://localhost:5000/api/dashboard/employee-data",
+        {
+          headers: {authorization: "jwt " + localStorage.getItem("token")}
+        }
+        ).then(response => {
+          setData(response.data.employees);
+        })
+    },[]);
   
     return (
         <div className="home">
         <Sidebar/>
           <div className="homeContainer">
-            <Navbar/>
             <div className="staffRecordsHeading">  
                 <h3>Staff Records</h3>
             </div>
@@ -36,7 +36,7 @@ export default function StaffRecords() {
                     onChange={(e) => setQuery(e.target.value.toLowerCase())}
                 />
                 </div>
-                <Table data={data} />
+                <Table data={data} query={query}/>
             </div>
           </div>
       </div>

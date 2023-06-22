@@ -3,8 +3,11 @@ import Sidebar from '../sidebar/sidebar'
 import './newUser.css'
 import axios from 'axios'
 import { Icon } from '@iconify/react';
+import { useNavigate } from 'react-router-dom';
+
 
 function NewUser() {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         firstName:'',
         lastName:'',
@@ -52,6 +55,7 @@ function NewUser() {
                 jobTitle:'',
                 option:''
             })
+            navigate("/StaffRecords")
           }, 3000);
     }
   return (

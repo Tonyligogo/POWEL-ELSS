@@ -2,3 +2,10 @@
     overflow-y: auto;
     height: calc(100vh - 35vh);
 }
+.staffRecordsTable tr th,
+.staffRecordsTable tr td{
+    text-align: start;
+}
+.clickable{
+    cursor: pointer;
+}

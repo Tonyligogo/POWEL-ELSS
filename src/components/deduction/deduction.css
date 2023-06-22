@@ -11,7 +11,7 @@
     padding: 10px;
     margin: 0 20px;
     font-size: large;
-    color: gray;
+    color: #d74221;
 }
 .deductionForm{
     padding: 40px 80px 20px 80px;
@@ -38,4 +38,6 @@
     border: none;
     border: 1px solid gray;
     width: 149px;
+    border-radius: 4px;
+    height: 24px;
  }

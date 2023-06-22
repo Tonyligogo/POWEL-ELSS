@@ -1,6 +1,7 @@
 .aside{
     min-height: 100vh;
     flex: 1;
+    /* background-color: #041737; */
 }
 aside{
     padding-inline: 12px 8px;

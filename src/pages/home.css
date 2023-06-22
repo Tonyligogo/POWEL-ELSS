@@ -9,6 +9,7 @@
     overflow-y: auto;
     height: calc(100vh - 10px);
     padding-inline: 20px;
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;

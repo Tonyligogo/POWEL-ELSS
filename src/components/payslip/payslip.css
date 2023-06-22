@@ -11,7 +11,7 @@
     padding: 10px;
     margin: 0 20px;
     font-size: large;
-    color: gray;
+    color: #d74221;
 }
 .topPayslip{
     margin-top: 20px;
@@ -99,10 +99,12 @@ button:hover{
 .outputField{
     width: 149px;
     border: 1px solid gray;
+    border-radius: 4px;
     height: 20px;
     display: inline-block;
     margin: 0;
     padding: 0;
+    padding-inline-start: 2px;
     margin-left: 8px;
 }
 .printButton{
