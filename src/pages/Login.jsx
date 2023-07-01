@@ -23,11 +23,10 @@ function Login() {
   async function handleLogin(e){
     e.preventDefault();
     const data = {email:formValues.email, password:formValues.password};
-    console.log(data)
     await axios.post(`${server}/api/auth/login`, data)
     .then((res) => {
       localStorage.setItem("token", res.data.authorization)
-      navigate("/");
+      navigate("/HomePage");
     })
     .catch((err) => {
       console.log(err);

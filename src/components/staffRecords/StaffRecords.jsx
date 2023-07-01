@@ -9,6 +9,7 @@ import { Icon } from '@iconify/react';
 export default function StaffRecords() {
     const [query, setQuery] = useState("");
     const [data, setData] = useState([]);
+
   
     useEffect(() => {
         axios.get("http://localhost:5000/api/dashboard/employee-data",
@@ -18,6 +19,7 @@ export default function StaffRecords() {
         ).then(response => {
           setData(response.data.employees);
         })
+        
     },[]);
   
     return (

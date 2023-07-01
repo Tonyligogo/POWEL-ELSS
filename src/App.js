@@ -17,6 +17,7 @@ import ServicesSummary from "./components/servicessummary/ServicesSummary";
 import DeleteStaff from './components/staffRecords/DeleteStaff';
 import Cart from './components/products/Cart';
 import NewItem from './components/products/NewItem';
+import ErrorPage from './components/error/Error';
 
 function App() {
   const [loading, setLoading] = React.useState(true);
@@ -29,12 +30,13 @@ function App() {
     }, 3000);
   }
   return (
+    
     !loading && (
       <BrowserRouter>
         <Routes>
           <Route path='/'>
-            <Route index element={ <HomePage/> }/>
-            <Route path='LoginPage' element={ <LoginPage/> }/>
+            <Route index element={ <LoginPage/> }/>
+            <Route path='HomePage' element={ <HomePage/> }/>
             <Route path='DeductionForm' element={ <DeductionForm/> }/>
             <Route path='AllowancesForm' element={ <AllowancesForm/> }/>
             <Route path='PaySlipForm' element={ <PaySlipForm/> }/>
@@ -50,6 +52,7 @@ function App() {
             <Route path='ServicesSummary' element={ <ServicesSummary/> }/>
             <Route path='Cart' element={ <Cart/> }/>
             <Route path='NewItem' element={ <NewItem/> }/>
+            <Route path='*' element={ <ErrorPage/> }/>
           </Route>
         </Routes>
       </BrowserRouter>

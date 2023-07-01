@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(68, 68, 68, 0.4);
 }
 .deleteContainer{
     display: flex;

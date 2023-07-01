@@ -2,7 +2,6 @@ import "./table.css"
 import { Icon } from '@iconify/react';
 import { Link } from "react-router-dom";
 const Table = ({ data, query }) => {
-
     return (
       <div className="recordsTableContainer">
         <table className="staffRecordsTable">

@@ -5,7 +5,7 @@ import axios from 'axios'
 function Cart() {
     async function addToCart(e){
         e.preventDefault()
-        await axios.get("http://localhost:5000/api/dashboard/add-to-cart/649a9ea4704eb1eb2c2def3b",{
+        await axios.get("http://localhost:5000/api/dashboard/add-to-cart/649e8aa476705c410b85b133",{
             headers: {authorization: "jwt " + localStorage.getItem("token")}
           })
         .then((response)=>{

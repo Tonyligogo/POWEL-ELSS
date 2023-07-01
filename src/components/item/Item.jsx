@@ -178,34 +178,34 @@ function Item() {
                     { userCreated && <p className='successMessage'> <Icon icon="mdi:success-circle" color="green" /> Sales information submitted successfully</p>}
                     <div className='tableContainer'>
                 <form>
-                <table>
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Item Name</th>
-                            <th>Quantity</th>
-                            <th>Unit Price</th>
-                            <th>Total</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        {tableRow && tableRow.map((row, index)=>{
-                            return(
-                                <tbody>
-                                    <tr key={index}>
-                                        <td>{index}</td>
-                                        <td>{row.itemName}</td>
-                                        <td>{row.quantity}</td>
-                                        <td>{row.price}</td>
-                                        <td>{row.subTotal}</td>
-                                        <td className='actionButtons'>
-                                            <Icon onClick={()=>handleEditRow(index)} icon="akar-icons:edit" color="#d74221" width="24" /> 
-                                            <Icon onClick={()=>handleDeleteRow(index)} icon="fluent-mdl2:delete" color="#d74221" width="24"/>
-                                        </td> 
-                                    </tr>
-                                </tbody>   
-                            )
-                        })} 
+                    <table>
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Item Name</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            {tableRow && tableRow.map((row, index)=>{
+                                return(
+                                    <tbody>
+                                        <tr key={index}>
+                                            <td>{index}</td>
+                                            <td>{row.itemName}</td>
+                                            <td>{row.quantity}</td>
+                                            <td>{row.price}</td>
+                                            <td>{row.subTotal}</td>
+                                            <td className='actionButtons'>
+                                                <Icon onClick={()=>handleEditRow(index)} icon="akar-icons:edit" color="#d74221" width="24" /> 
+                                                <Icon onClick={()=>handleDeleteRow(index)} icon="fluent-mdl2:delete" color="#d74221" width="24"/>
+                                            </td> 
+                                        </tr>
+                                    </tbody>   
+                                )
+                            })} 
                     </table>
                 </form>
                 {modalOpen && (
