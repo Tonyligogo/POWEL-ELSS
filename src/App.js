@@ -16,8 +16,9 @@ import ExpensesSummary from './components/expensessummary/ExpensesSummary';
 import ServicesSummary from "./components/servicessummary/ServicesSummary";
 import DeleteStaff from './components/staffRecords/DeleteStaff';
 import Cart from './components/products/Cart';
-import NewItem from './components/products/NewItem';
 import ErrorPage from './components/error/Error';
+import Products from './components/products/Products';
+import NewProduct from './components/products/NewProduct';
 
 function App() {
   const [loading, setLoading] = React.useState(true);
@@ -51,7 +52,8 @@ function App() {
             <Route path='ExpensesSummary' element={ <ExpensesSummary/> }/>
             <Route path='ServicesSummary' element={ <ServicesSummary/> }/>
             <Route path='Cart' element={ <Cart/> }/>
-            <Route path='NewItem' element={ <NewItem/> }/>
+            <Route path='Products' element={ <Products/> }/>
+            <Route path='NewProduct' element={ <NewProduct/> }/>
             <Route path='*' element={ <ErrorPage/> }/>
           </Route>
         </Routes>
