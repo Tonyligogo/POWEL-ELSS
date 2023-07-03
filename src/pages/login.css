@@ -1,16 +1,19 @@
 :root{
     --primary-color: #d74221;
 } 
-.container{
+.loginContainer{
     background-color: white;
     min-height: 100vh;
-    width: 100vw;
     position: relative;
-    /* overflow: hidden; */
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-block-end: 20px;
 }
 
-.formContainer{
-    
+.formContainer{ 
     display: flex;
     justify-content: center;
 }
@@ -77,8 +80,8 @@
     margin-inline: 20px;
     color: white;
     font-size: large;
-    position: absolute;
-    bottom: 20px;
+    /* position: absolute; */
+    /* bottom: 20px; */
 }
 .footer p sup{
     font-size: 12px;

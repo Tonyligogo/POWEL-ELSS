@@ -56,7 +56,7 @@ function NewUser() {
                 option:''
             })
             navigate("/StaffRecords")
-          }, 3000);
+          }, 2000);
     }
   return (
     <div className='newUser home'>

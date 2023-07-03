@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './pages/Login';
 import HomePage from './pages/Home';
 import DeductionForm from "./components/deduction/deduction";
@@ -19,6 +19,7 @@ import Cart from './components/products/Cart';
 import ErrorPage from './components/error/Error';
 import Products from './components/products/Products';
 import NewProduct from './components/products/NewProduct';
+import Checkout from './components/products/Checkout';
 
 function App() {
   const [loading, setLoading] = React.useState(true);
@@ -30,14 +31,14 @@ function App() {
       setLoading(false);
     }, 3000);
   }
+  const isLoggedIn = window.localStorage.getItem("token");
   return (
-    
     !loading && (
       <BrowserRouter>
-        <Routes>
+        <Routes> 
+          <Route path='/LoginPage' element={ <LoginPage/> }/>
           <Route path='/'>
-            <Route index element={ <LoginPage/> }/>
-            <Route path='HomePage' element={ <HomePage/> }/>
+            <Route index element={isLoggedIn ? <HomePage/> : <Navigate to="/LoginPage"/> }/>
             <Route path='DeductionForm' element={ <DeductionForm/> }/>
             <Route path='AllowancesForm' element={ <AllowancesForm/> }/>
             <Route path='PaySlipForm' element={ <PaySlipForm/> }/>
@@ -54,6 +55,7 @@ function App() {
             <Route path='Cart' element={ <Cart/> }/>
             <Route path='Products' element={ <Products/> }/>
             <Route path='NewProduct' element={ <NewProduct/> }/>
+            <Route path='Checkout' element={ <Checkout/> }/>
             <Route path='*' element={ <ErrorPage/> }/>
           </Route>
         </Routes>

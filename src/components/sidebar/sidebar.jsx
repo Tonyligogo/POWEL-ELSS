@@ -35,7 +35,7 @@ function handleLogOut(e){
             <h2 className='name'>powel-elss</h2>
             <div className="dashboard">
               <span className='heading'>DASHBOARD</span>
-              <NavLink to='/HomePage' className='homeButton'><Icon className='icon' icon="radix-icons:dashboard" width="20" />Home</NavLink>
+              <NavLink to='/' className='homeButton'><Icon className='icon' icon="radix-icons:dashboard" width="20" />Home</NavLink>
             </div>
             <div className="pages">
               <span className='heading'>PAGES</span>
