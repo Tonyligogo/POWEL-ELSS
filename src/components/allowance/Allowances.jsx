@@ -1,6 +1,9 @@
 import './allowances.css'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Sidebar from '../sidebar/sidebar'
+import axios from 'axios'
+
+axios.defaults.withCredentials = true
 
 function Allowances() {
 
@@ -16,20 +19,40 @@ function Allowances() {
     function changeValue(e){
         setFormData({...formData, [e.target.name]:e.target.value})
     }
-    function saveDetails (e){
-        e.preventDefault()
-        localStorage.setItem('object', JSON.stringify(formData))
-        setFormData({
-            idNo:'',
-            month: '',
-            year:'',
-            arrears:'',
-            house:'',
-            imprestAmount:'',
-            transport:''
-        })
+      
+    const data = {
+        id_no:formData.idNo,
+        month: formData.month,
+        year: formData.year,
+        arrears: formData.arrears,
+        house: formData.house,
+        imprest_amount: formData.imprestAmount,
+        transport: formData.transport
     }
-    
+    const [error, setError] = useState(false)
+    async function saveDetails(e){
+        e.preventDefault()
+        await axios.post("http://localhost:5000/api/dashboard/allowances-entry",data,{
+                headers: {authorization: "jwt " + localStorage.getItem("token")}
+              })
+              .then((response)=>{
+                  console.log(response)
+                  setFormData({
+                    idNo:'',
+                    month: '',
+                    year:'',
+                    arrears:'',
+                    house:'',
+                    imprestAmount:'',
+                    transport:''
+                })
+              })
+              .catch((error)=>{
+                if(error.response.status){
+                  setError(true)
+                }
+              })
+      }
 
   return (
     <div className="allowance home">
@@ -82,6 +105,7 @@ function Allowances() {
                     </div>
                     <button type='submit'>Save</button>
                 </form>
+                {error && <p>Some error occured</p> }
             </div>
         </div>
     </div>

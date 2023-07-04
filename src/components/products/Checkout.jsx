@@ -2,29 +2,38 @@ import { useState } from 'react'
 import Sidebar from '../sidebar/sidebar'
 import './Checkout.css'
 import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
 
 axios.defaults.withCredentials = true
 
 function Checkout() {
     const [formData, setFormData] = useState({
         name:'',
-        date:'',
         address:''
     })
+    const navigate = useNavigate()
+    const [error, setError] = useState(false)
+    const currentDate = new Date().toLocaleDateString();
     function changeValue(e){
-        console.log(formData)
         setFormData({...formData, [e.target.name]:e.target.value})
     };
+    const data = {name:formData.name, address:formData.address, date:currentDate};
     async function checkout(e){
         e.preventDefault()
-        await axios.post("http://localhost:5000/api/dashboard/checkout",{
+
+        await axios.post("http://localhost:5000/api/dashboard/checkout",data,{
                 headers: {authorization: "jwt " + localStorage.getItem("token")}
               })
-            .then((response)=>{
-                console.log(response)
-            })
+              .then((response)=>{
+                  console.log(response)
+                  navigate("/Invoice")
+              })
+              .catch((error)=>{
+                if(error.response.status){
+                  setError(true)
+                }
+              })
       }
-      const currentDate = new Date().toLocaleDateString();
   return (
     <div className='home'>
       <Sidebar/>
@@ -41,13 +50,19 @@ function Checkout() {
                 </div>
                 <div>
                     <label htmlFor="date">Date</label>
-                    <label className='outputField' >{currentDate}</label>
+                    <label className='outputField dateField' >{currentDate}</label>
                 </div>
                 <div>
                     <label htmlFor="address">Address</label>
                     <input type="text" id='address' name='address' required value={formData.address} onChange={changeValue} />
                 </div>
             </form>
+            {error && 
+              <div>
+                <p>Failed! There is nothing in the cart</p>
+                <Link to="/Products"> <button>Go to Products</button> </Link>
+              </div>
+             }
           </div>
           <button onClick={checkout}>Save</button>
         </div>

@@ -20,6 +20,7 @@ import ErrorPage from './components/error/Error';
 import Products from './components/products/Products';
 import NewProduct from './components/products/NewProduct';
 import Checkout from './components/products/Checkout';
+import Invoice from './components/products/Invoice';
 
 function App() {
   const [loading, setLoading] = React.useState(true);
@@ -56,6 +57,7 @@ function App() {
             <Route path='Products' element={ <Products/> }/>
             <Route path='NewProduct' element={ <NewProduct/> }/>
             <Route path='Checkout' element={ <Checkout/> }/>
+            <Route path='Invoice' element={ <Invoice/> }/>
             <Route path='*' element={ <ErrorPage/> }/>
           </Route>
         </Routes>

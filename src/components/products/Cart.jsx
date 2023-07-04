@@ -7,6 +7,7 @@ axios.defaults.withCredentials = true
 
 function Cart() {
    const [data, setData] = useState([])
+   const [error, setError] = useState(false)
    useEffect(() => {
       fetchCart()
 },[]);
@@ -18,6 +19,10 @@ function Cart() {
           })
         .then((response)=>{
             setData(response.data.products)
+        }).catch((error)=>{
+          if(error.response.status){
+            setError(true)
+          }
         })
   }
   function refresh(e){
@@ -50,6 +55,12 @@ function Cart() {
                   <p className='price'>Price: <span>{item.price}</span></p>
                 </div>
               ))
+            }
+            {error && 
+              <div>
+                <p>No cart</p>
+                <Link to="/Products"> <button>Go to Products</button> </Link>
+              </div> 
             }
           </div>
         </div>
