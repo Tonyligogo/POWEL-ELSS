@@ -27,7 +27,7 @@ function Invoice() {
     <Sidebar/>
     <div className="homeContainer">
       <div className="productListHeading">  
-        <h3>Invoice</h3>
+        <h3>Sale</h3>
       </div>
       <div className="productList">
         <div className='productsWrapper'>
@@ -37,8 +37,7 @@ function Invoice() {
                     <thead>
                     <tr>
                         <th>Client Name</th>
-                        <th>Product Name</th>
-                        <th>Quantity</th>
+                        <th>Number of Items</th>
                         <th>Total Price</th>
                         <th>Date</th>
                     </tr>
@@ -48,7 +47,6 @@ function Invoice() {
                         {data.map((invoice)=>(
                             <tr key={invoice._id}>
                                 <td>{invoice.name}</td>
-                                <td>{invoice.cart.items.name}</td>
                                 <td>{invoice.cart.totalQty}</td>
                                 <td>{invoice.cart.totalPrice}</td>
                                 <td>{invoice.date}</td>

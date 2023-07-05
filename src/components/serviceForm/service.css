@@ -72,3 +72,7 @@ label{
 .serviceDetails .outputField{
     margin-left: 0 !important;
 }
+.scopeDesc{
+    outline: none;
+    border: 1px solid gray;
+}

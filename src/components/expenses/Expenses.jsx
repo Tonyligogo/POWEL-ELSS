@@ -23,8 +23,6 @@ function Expenses() {
         total_cost: formData.cost,
         recorded_by: formData.recordedBy,
         date: currentDate,
-        advances:1000,
-        taxes:1000
     }
     const [error, setError] = useState(false)
     async function saveDetails(e){
