@@ -6,44 +6,25 @@
     margin-inline: 20px;
     font-weight: 600;
 }
-.productListHeading{
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+.allProductsHeading{
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.5);
     padding: 10px;
-    margin: 0 20px;
+    /* margin: 0 10px; */
     font-size: large;
     color: #d74221;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.product{
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 15px 12px;
-    background-color: white;
-}
-.productsWrapper{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    padding-inline: 16px;
-}
-.product p{
-    margin: 0;
-    font-size: large;
-    color: #404145;
-}
-.product span{
-    color: #95979d;
-}
 .product button{
     width: max-content;
 }
-    
+.searchBarStaff input{
+    border: none;
+}
+.recordsTableContainer{
+    scrollbar-color: lightgray transparent;
+    scrollbar-width: thin;
+}

@@ -55,17 +55,6 @@ switch(type){
       iconColor: 'addUserIconColor'
     };
     break;
-    case "newItem":
-    data={
-      top:"New Item",
-      leftIcon: <Icon icon="system-uicons:document-stack" width="20" />,
-      iconBg: 'addUserIconBg',
-      isNewItem: "New Item Sale",
-      link: "ItemForm",
-      rightIcon: <Icon icon="system-uicons:document-stack" width="26" />,
-      iconColor: 'addUserIconColor'
-    };
-    break;
     default:
       break;
 }

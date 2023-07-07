@@ -1,24 +1,23 @@
-import React, { useEffect, useRef, useState, useContext} from "react";
-import AuthContext from "../context/AuthProvider";
+import React, { useEffect, useRef, useState} from "react";
 import './login.css';
 import myImage from '../images/powelElssLogo.jpg';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { server } from "../server";
+import { useAuthContext} from "../context/AuthProvider";
+import { CircularProgress } from "@mui/material";
 
 function Login() {
-  const { setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
   const userRef = useRef();
   const errRef = useRef();
   const [formValues, setFormValues] = useState({email:'',password:''});
-  const [userFocus, setUserFocus] = useState(false);
+  const [, setUserFocus] = useState(false);
   const[errMsg, setErrMsg] = useState('') 
 
   useEffect(()=>{
     userRef.current.focus();
   },[]);
-  console.log(userFocus);
 
   useEffect(()=>{
     setErrMsg('');
@@ -27,17 +26,18 @@ function Login() {
   function handleChange(e){
     setFormValues({...formValues, [e.target.name]:e.target.value})
   }
-  
+  const {setToken, setLoading, loading} = useAuthContext();
   async function handleLogin(e){
     e.preventDefault();
+    setLoading(true)
     const data = {email:formValues.email, password:formValues.password};
     await axios.post(`${server}/api/auth/login`, data)
     .then((res) => {
-      localStorage.setItem("token", res.data.authorization)
-      const token = res.data.authorization
-      setAuth({formValues, token})
+      setToken(res.data.authorization)
       setFormValues({email:'',password:''})
-      navigate("/");
+      setLoading(false)
+      // navigate("/");
+      window.location.href = "/"
     })
     .catch((err) => {
       if(err.response?.status === 403){
@@ -46,9 +46,12 @@ function Login() {
       }else{
         setErrMsg('Login failed')
       }
+    }) 
+    .finally(() => {
+      setLoading(false);
     });
+
   }
-  console.log('this is logged', errMsg)
 
   return (
     <div className="loginContainer">
@@ -78,7 +81,8 @@ function Login() {
                       required 
                       onChange={handleChange}
                     />
-                    <button>Sign In</button>
+                    {loading ? <CircularProgress size="24px" className="progress"/>
+                    :<button>Sign in</button>}
                   </form> 
               </div>
           </div>

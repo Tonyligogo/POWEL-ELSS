@@ -7,9 +7,9 @@ aside{
     padding-inline: 12px 8px;
     position: relative;
     min-height: 100vh;
-    box-shadow: 5px 0px 10px 0px rgba(201,201,201,0.47);
-    -webkit-box-shadow: 5px 0px 10px 0px rgba(201,201,201,0.47);
-    -moz-box-shadow: 5px 0px 10px 0px rgba(201,201,201,0.47);
+    box-shadow: 4px 0px 8px 0px rgba(201,201,201,0.47);
+    -webkit-box-shadow: 4px 0px 8px 0px rgba(201,201,201,0.47);
+    -moz-box-shadow: 4px 0px 8px 0px rgba(201,201,201,0.47);
 }
 aside p{
     margin: 0;

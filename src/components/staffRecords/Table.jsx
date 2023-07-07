@@ -2,10 +2,11 @@ import "./table.css"
 import { Icon } from '@iconify/react';
 import { Link } from "react-router-dom";
 const Table = ({ data, query }) => {
+
     return (
       <div className="recordsTableContainer">
         <table className="staffRecordsTable">
-            <thead>
+            <thead className="staffTHead">
                 <tr>
                     <th></th>
                     <th>P_No</th>
@@ -16,7 +17,7 @@ const Table = ({ data, query }) => {
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody className="staffTBody">
                 {data.length ? data.filter((name)=>{
                   return query === '' ? name : name.first_name.toLowerCase().includes(query) || name.last_name.toLowerCase().includes(query);
                 })
@@ -40,3 +41,4 @@ const Table = ({ data, query }) => {
   };
   
   export default Table;
+

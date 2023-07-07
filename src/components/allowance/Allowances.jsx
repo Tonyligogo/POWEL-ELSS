@@ -69,7 +69,7 @@ function Allowances() {
                         <label htmlFor="month">Month</label>
                         <select id='month' name="month" value={formData.month} onChange = {changeValue}>
                             <option value=''>--Select Month--</option>
-                            <option value='January'>Janaury</option>
+                            <option value='January'>January</option>
                             <option value='February'>February</option>
                             <option value='March'>March</option>
                             <option value='April'>April</option>

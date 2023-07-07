@@ -1,7 +1,7 @@
 import axios from "axios"
 import Sidebar from "../sidebar/sidebar"
 import './Invoice.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 axios.defaults.withCredentials = true
 
@@ -9,53 +9,49 @@ axios.defaults.withCredentials = true
 function Invoice() {
     
     const [data, setData] = useState([])
-    async function fetchInvoice(){
-
-        await axios.get("http://localhost:5000/api/dashboard/all-orders",{
-                headers: {authorization: "jwt " + localStorage.getItem("token")}
-              })
-            .then((response)=>{
-                setData(response.data.orders)
-                console.log(response.data.orders[0].cart)
-            }).catch((error)=>{
-                console.log(error)
+    
+          useEffect(()=>{
+            axios.get("http://localhost:5000/api/dashboard/all-orders",{
+              headers: {authorization: "jwt " + localStorage.getItem("token")}
             })
-      }
-
+          .then((response)=>{
+              setData(response.data.orders.at(-1))
+              console.log(response.data.orders.at(-1))
+          }).catch((error)=>{
+              console.log(error)
+          })
+          },[])
+         
   return (
     <div className='home'>
     <Sidebar/>
     <div className="homeContainer">
-      <div className="productListHeading">  
+      <div className="allProductsHeading">  
         <h3>Sale</h3>
       </div>
-      <div className="productList">
-        <div className='productsWrapper'>
-            <button onClick={fetchInvoice}>Fetch</button>
-            <div className='tableContainer'>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Client Name</th>
-                        <th>Number of Items</th>
-                        <th>Total Price</th>
-                        <th>Date</th>
-                    </tr>
+        <div className='allProducts'>
+            <div className="recordsTableContainer">
+                <table className="staffRecordsTable">
+                    <thead className="staffTHead">
+                        <tr>
+                            <th>Client Name</th>
+                            <th>Number of Items</th>
+                            <th>Total Price</th>
+                            <th>Date</th>
+                        </tr>
                     </thead>
-                   {data &&
-                    <tbody>
-                        {data.map((invoice)=>(
-                            <tr key={invoice._id}>
-                                <td>{invoice.name}</td>
-                                <td>{invoice.cart.totalQty}</td>
-                                <td>{invoice.cart.totalPrice}</td>
-                                <td>{invoice.date}</td>
-                            </tr>
-                        ))}
-                    </tbody>}
+                    <tbody className="staffTBody">
+                        {data ?
+                            <tr key={data._id}>
+                            <td>{data.name}</td>
+                            <td>{data.cart?.totalQty}</td>
+                            <td>{data.cart?.totalPrice}</td>
+                            <td>{data.date}</td>
+                          </tr>
+                     : null}
+                    </tbody>
                 </table>
             </div>
-        </div>
       </div>
     </div>
   </div>

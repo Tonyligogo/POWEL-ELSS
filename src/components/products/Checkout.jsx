@@ -9,7 +9,7 @@ axios.defaults.withCredentials = true
 function Checkout() {
     const [formData, setFormData] = useState({
         name:'',
-        address:''
+        phoneNumber:''
     })
     const navigate = useNavigate()
     const [error, setError] = useState(false)
@@ -17,7 +17,7 @@ function Checkout() {
     function changeValue(e){
         setFormData({...formData, [e.target.name]:e.target.value})
     };
-    const data = {name:formData.name, address:formData.address, date:currentDate};
+    const data = {name:formData.name, phone_number:formData.phoneNumber, date:currentDate};
     async function checkout(e){
         e.preventDefault()
 
@@ -38,23 +38,23 @@ function Checkout() {
     <div className='home'>
       <Sidebar/>
       <div className="homeContainer">
-        <div className="productListHeading">  
+        <div className="checkoutHeading">  
           <h3>Checkout</h3>
         </div>
-        <div className="productList">
-          <div className='productsWrapper'>
+        <div className="checkout">
+          <div className='checkoutWrapper'>
             <form>
                 <div>
                     <label htmlFor="name">Client full name</label>
                     <input type="text" id='name' name='name' required value={formData.name} onChange={changeValue}/>
                 </div>
                 <div>
-                    <label htmlFor="date">Date</label>
-                    <label className='outputField dateField' >{currentDate}</label>
+                    <label htmlFor="address">Phone number</label>
+                    <input type="text" id='address' name='phoneNumber' required value={formData.phoneNumber} onChange={changeValue} />
                 </div>
                 <div>
-                    <label htmlFor="address">Address</label>
-                    <input type="text" id='address' name='address' required value={formData.address} onChange={changeValue} />
+                    <label htmlFor="date">Date</label>
+                    <label className='outputField dateField' >{currentDate}</label>
                 </div>
             </form>
             {error && 

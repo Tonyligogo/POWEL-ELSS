@@ -2,3 +2,20 @@
     overflow-y: auto;
     height: calc(100vh - 35vh);
 }
+.staffRecordsTable tr th,
+.staffRecordsTable tr td{
+    text-align: start;
+}
+.clickable{
+    cursor: pointer;
+}
+.staffRecordsTable{
+    border: 1px solid gray;
+    box-shadow: none;
+}
+.staffTHead{
+    background: #d74221;
+    color: white;
+    box-shadow: none;
+    border: none !important;
+}

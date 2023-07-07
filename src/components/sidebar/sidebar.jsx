@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from '../../context/AuthProvider';
 
 function Sidebar() {
   const [dropdown, setDropdown]=React.useState(false);
@@ -16,6 +17,7 @@ const [dropdown2, setDropdown2]=React.useState(false);
 function openDropdown2(){
   setDropdown2((prev)=> !prev);
 } 
+const {removeToken} = useAuthContext();
 const navigate = useNavigate();
 function handleLogOut(e){
   e.preventDefault()
@@ -24,7 +26,7 @@ function handleLogOut(e){
     headers: {authorization: "jwt " + localStorage.getItem("token")}
   })
   .then((res) =>{
-    localStorage.setItem("token", res.data.authorization)
+    removeToken()
     navigate("/LoginPage")
   })
 }
@@ -54,8 +56,6 @@ function handleLogOut(e){
                     <li><NavLink to='/PaySlipForm'className='nav'><Icon icon="mdi:document-sign" width="20" />Pay Slip</NavLink></li>
                   </ul>
               </div>
-              <NavLink to='/AllowancesForm' className='nav'><Icon icon="fluent:form-24-regular" width="22" />Allowance Form</NavLink>
-              <NavLink to='/DeductionForm'className='nav'><Icon icon="mdi:file-document-minus-outline" width="20" />Deduction Form</NavLink>
               <NavLink to='/ExpenseForm'className='nav'><Icon icon="streamline:money-cash-bag-dollar-bag-payment-cash-money-finance" width="20" />Expense Form</NavLink>
               <NavLink to='/Products' className='nav'><Icon icon="fluent:form-24-regular" width="22" />Products</NavLink>
               <NavLink to='/Cart' className='nav'><Icon icon="fluent:form-24-regular" width="22" />View cart</NavLink>

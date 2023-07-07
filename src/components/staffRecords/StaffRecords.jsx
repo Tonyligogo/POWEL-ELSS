@@ -30,7 +30,7 @@ export default function StaffRecords() {
                 <h3>Staff Records</h3>
             </div>
             <div className="staffRecords">
-                <div className="searchBar">
+                <div className="searchBarStaff">
                 <Icon icon="mdi:search" color="gray" width="20" />
                 <input
                     className="search"

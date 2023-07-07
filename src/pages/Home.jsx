@@ -31,9 +31,6 @@ function Home() {
             <BarChart/>
           </div>
           <div className="rightContainer">
-            <div className="bottomWidgets widgets">
-              <Widget type="newItem"/>
-            </div>
             <h3>Recent Purchases</h3>
             <div className="recentsContainer">
               <Recents/>

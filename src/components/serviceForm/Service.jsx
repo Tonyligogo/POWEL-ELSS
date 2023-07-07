@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid';
 
 axios.defaults.withCredentials = true
 
+
 function Service() {
     const [employees, setEmployees] = useState([])
     useEffect(() => {
@@ -44,6 +45,7 @@ function Service() {
         }
         setChecked(updatedList)
     }
+    console.log(checked)
     const data = {
         client_name:formData.name,
         work_location: formData.location,
@@ -127,7 +129,7 @@ function Service() {
                     </div>
                     <div className='scopeDescription'>
                         <label htmlFor="scopeDesc">Scope Description</label>
-                        <textarea className='scopeDesc' id='scopeDesc' cols="30" rows="3"  name="scopeDesc" value={formData.scopeDesc} onChange = {changeValue}></textarea>
+                        <textarea className='scopeDesc' id='scopeDesc' cols="60" rows="3"  name="scopeDesc" value={formData.scopeDesc} onChange = {changeValue}></textarea>
                     </div>
                     <div>
                         <label htmlFor="cost">Cost</label>
@@ -140,8 +142,8 @@ function Service() {
                             <div className="employees">
                                 {employees.map((employee)=>(
                                     <div key={employee._id}>
-                                        <input type="checkbox" value={employee} onChange={handleCheck}/>
-                                        <span>{`${employee.first_name} ${employee.last_name}`} {employee.id_no}</span>
+                                        <input type="checkbox" value={`${employee.first_name} ${employee.last_name} ${employee.id_no}`} onChange={handleCheck}/>
+                                        <span>{`${employee.first_name} ${employee.last_name} ${employee.id_no}`} </span>
                                     </div>
                                 ))}
                             </div>

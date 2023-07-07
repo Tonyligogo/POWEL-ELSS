@@ -76,3 +76,7 @@ label{
     outline: none;
     border: 1px solid gray;
 }
+form button{
+    margin-block: 20px;
+    padding: 8px 10px;
+}
