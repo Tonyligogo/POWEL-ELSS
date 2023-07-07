@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import "./payslip.css"
 import Sidebar from "../sidebar/sidebar"
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
 
 axios.defaults.withCredentials = true
 
@@ -30,16 +29,16 @@ function Payslip() {
            
             await axios.get("http://localhost:5000/api/dashboard/deduction-data/"+idNo,
             {
-                headers: {authorization: "jwt " + localStorage.getItem("token")}
+                headers: {authorization: "jwt " + sessionStorage.getItem("token")}
             }), 
             await axios.get("http://localhost:5000/api/dashboard/allowance/"+idNo,
             {
-              headers: {authorization: "jwt " + localStorage.getItem("token")}
+              headers: {authorization: "jwt " + sessionStorage.getItem("token")}
             }
             ),
             axios.get("http://localhost:5000/api/dashboard/single-employee-data/"+idNo,
             {
-            headers: {authorization: "jwt " + localStorage.getItem("token")}
+            headers: {authorization: "jwt " + sessionStorage.getItem("token")}
             }
             )
           ])

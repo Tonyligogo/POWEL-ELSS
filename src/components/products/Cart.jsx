@@ -15,7 +15,7 @@ function Cart() {
   async function fetchCart(){
 
     await axios.get("http://localhost:5000/api/dashboard/shopping-cart",{
-            headers: {authorization: "jwt " + localStorage.getItem("token")}
+            headers: {authorization: "jwt " + sessionStorage.getItem("token")}
           })
         .then((response)=>{
             setData(response.data.products)

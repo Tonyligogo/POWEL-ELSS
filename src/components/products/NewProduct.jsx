@@ -26,7 +26,7 @@ function NewProduct() {
             price:formData.price
         }
         await axios.post("http://localhost:5000/api/dashboard/new-item", userData,{
-            headers: {authorization: "jwt " + localStorage.getItem("token")}
+            headers: {authorization: "jwt " + sessionStorage.getItem("token")}
           })
         .then((response)=>{
             setUserCreated(true)

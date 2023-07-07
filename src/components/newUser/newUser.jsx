@@ -33,7 +33,7 @@ function NewUser() {
             P_no:formData.option
         }
         await axios.post("http://localhost:5000/api/dashboard/new-employee", userData,{
-            headers: {authorization: "jwt " + localStorage.getItem("token")}
+            headers: {authorization: "jwt " + sessionStorage.getItem("token")}
           })
         .then((response)=>{
             setUserCreated(true)

@@ -12,7 +12,7 @@ function Service() {
     useEffect(() => {
         axios.get("http://localhost:5000/api/dashboard/employee-data",
         {
-          headers: {authorization: "jwt " + localStorage.getItem("token")}
+          headers: {authorization: "jwt " + sessionStorage.getItem("token")}
         }
         ).then(response => {
           setEmployees(response.data.employees);

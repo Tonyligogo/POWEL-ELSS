@@ -24,12 +24,12 @@ export default function AuthProvider({ children }) {
 
   const setToken = (token) => {
     setAuthToken(token);
-    localStorage.setItem("token", token);
+    sessionStorage.setItem("token", token);
   };
 
   const removeToken = () => {
     setAuthToken(null);
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
   };
 
 

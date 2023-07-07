@@ -2,13 +2,13 @@ import React, { useEffect, useRef, useState} from "react";
 import './login.css';
 import myImage from '../images/powelElssLogo.jpg';
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { server } from "../server";
 import { useAuthContext} from "../context/AuthProvider";
 import { CircularProgress } from "@mui/material";
 
 function Login() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const userRef = useRef();
   const errRef = useRef();
   const [formValues, setFormValues] = useState({email:'',password:''});

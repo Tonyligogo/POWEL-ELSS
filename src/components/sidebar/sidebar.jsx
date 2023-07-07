@@ -22,8 +22,8 @@ const navigate = useNavigate();
 function handleLogOut(e){
   e.preventDefault()
   const data = {email:"tonyligogo@gmail.com", password:"tonyliboso"}
-  axios.post("http://localhost:5000/api/auth/logout", data,{
-    headers: {authorization: "jwt " + localStorage.getItem("token")}
+  axios.post("http://localhost:5000/api/auth/logout",data,{
+    headers: {authorization: "jwt " + sessionStorage.getItem("token")}
   })
   .then((res) =>{
     removeToken()

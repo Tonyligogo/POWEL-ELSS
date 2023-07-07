@@ -12,7 +12,7 @@ function Invoice() {
     
           useEffect(()=>{
             axios.get("http://localhost:5000/api/dashboard/all-orders",{
-              headers: {authorization: "jwt " + localStorage.getItem("token")}
+              headers: {authorization: "jwt " + sessionStorage.getItem("token")}
             })
           .then((response)=>{
               setData(response.data.orders.at(-1))
@@ -46,7 +46,7 @@ function Invoice() {
                             <td>{data.name}</td>
                             <td>{data.cart?.totalQty}</td>
                             <td>{data.cart?.totalPrice}</td>
-                            <td>{data.date}</td>
+                            <td>{data}</td>
                           </tr>
                      : null}
                     </tbody>

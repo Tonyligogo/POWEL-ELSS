@@ -13,7 +13,7 @@ function SalesSummary() {
 
     useEffect(()=>{
       axios.get("http://localhost:5000/api/dashboard/all-orders",{
-        headers: {authorization: "jwt " + localStorage.getItem("token")}
+        headers: {authorization: "jwt " + sessionStorage.getItem("token")}
       })
     .then((response)=>{
         setData(response.data.orders)

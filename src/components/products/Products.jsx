@@ -14,7 +14,7 @@ function Products() {
   const [addedToCart, setAddedToCart] = useState(false);
   useEffect(() => {
       axios.get("http://localhost:5000/api/dashboard/all-products",{
-          headers: {authorization: "jwt " + localStorage.getItem("token")}
+          headers: {authorization: "jwt " + sessionStorage.getItem("token")}
         })
       .then((response)=>{
           setData(response.data.products)
@@ -24,7 +24,7 @@ function Products() {
 async function addToCart(e, id){
   e.preventDefault()
   await axios.get("http://localhost:5000/api/dashboard/add-to-cart/"+id,{
-      headers: {authorization: "jwt " + localStorage.getItem("token")}
+      headers: {authorization: "jwt " + sessionStorage.getItem("token")}
     })
   .then((response)=>{
       setAddedToCart(true)

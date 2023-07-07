@@ -14,7 +14,7 @@ function DeleteStaff() {
      async function handleDelete(e){
         e.preventDefault()
         await axios.delete("http://localhost:5000/api/dashboard/delete_user/"+id,{
-            headers: {authorization: "jwt " + localStorage.getItem("token")}
+            headers: {authorization: "jwt " + sessionStorage.getItem("token")}
           }).then((res)=>{
             setUserDeleted(true)
           }).catch((error)=>{

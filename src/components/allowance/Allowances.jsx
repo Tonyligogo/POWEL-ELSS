@@ -33,7 +33,7 @@ function Allowances() {
     async function saveDetails(e){
         e.preventDefault()
         await axios.post("http://localhost:5000/api/dashboard/allowances-entry",data,{
-                headers: {authorization: "jwt " + localStorage.getItem("token")}
+                headers: {authorization: "jwt " + sessionStorage.getItem("token")}
               })
               .then((response)=>{
                   console.log(response)
