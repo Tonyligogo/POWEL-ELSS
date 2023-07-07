@@ -15,7 +15,7 @@ export default function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedAuthToken = localStorage.getItem("token");
+    const storedAuthToken = sessionStorage.getItem("token");
     if (storedAuthToken) {
       setAuthToken(storedAuthToken);
     } 
