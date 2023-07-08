@@ -40,9 +40,14 @@ async function addToCart(e, id){
       <div className="homeContainer productContainer">
         <div className="allProductsHeading">  
           <h3>Products</h3>
-          <Link to="/NewProduct">
-            <button>Add new Product</button>
-          </Link>
+          <div className="myLinks">
+            <Link to="/NewProduct">
+              <button>Add new Product</button>
+            </Link>
+            <Link to="/Cart">
+              <button>View Cart</button>
+            </Link>
+          </div>
         </div>
         <div className="allProducts">
           <div className="searchBarStaff">

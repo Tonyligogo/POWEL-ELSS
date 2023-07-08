@@ -21,7 +21,7 @@ const Table = ({ data, query, error }) => {
                 <tr key={item._id}>
                   <td>{idx}</td>
                   <td>{item.name}</td>
-                  <td>{item.address}</td>
+                  <td>{item.phone_number}</td>
                   <td>{item.date}</td>
                   <td>{item.cart?.totalQty}</td>
                   <td>{item.cart?.totalPrice}</td>

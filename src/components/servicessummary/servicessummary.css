@@ -2,13 +2,20 @@
     box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    padding: 10px;
+    padding: 20px 10px;
+    margin-inline: 20px;
+    font-weight: 600;
 }
 .servicesSummaryHeading{
     box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    padding-inline: 10px;
+    padding: 10px;
+    margin: 0 20px;
+    font-size: large;
+    color: #d74221;
+    display: flex;
+    justify-content: space-between;
 }
 .searchBar{
     display: inline-flex;

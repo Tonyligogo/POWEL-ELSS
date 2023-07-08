@@ -36,14 +36,14 @@ function Payslip() {
               headers: {authorization: "jwt " + sessionStorage.getItem("token")}
             }
             ),
-            axios.get("http://localhost:5000/api/dashboard/single-employee-data/"+idNo,
+            axios.get("http://localhost:5000/api/dashboard/single-employee/"+idNo,
             {
             headers: {authorization: "jwt " + sessionStorage.getItem("token")}
             }
             )
           ])
           .then(axios.spread((data1, data2, data3) => {
-              setDeduction(data1.data.deductions[0])
+              setDeduction(data1.data.allowances[0])
               setDeductionState(true)
               setAllowance(data2.data.allowances[0])
               setAllowanceState(true)
@@ -51,7 +51,7 @@ function Payslip() {
               setEmployeeState(true)
           }));
     }
-    
+         
   return (
     <div className="home">
         <Sidebar/>
@@ -173,7 +173,7 @@ function Payslip() {
             </div>
             <div className="netSalary">
                 <label htmlFor="">Net Salary</label>
-                <label className='outputField'></label>
+                <label className='outputField'>{basicPay + allowance.arrears + allowance.house+ allowance.imprest_amount+ allowance.transport - deduction.nhif  -deduction.nssf  -deduction.advances - deduction.taxes}</label>
             </div>
             </div>
             <div className='printButtonWrapper'><button className='printButton'>Print</button></div>

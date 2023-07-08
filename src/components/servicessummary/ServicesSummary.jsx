@@ -6,16 +6,23 @@ import axios from "axios";
 import Table from "./Table";
 
 function ServicesSummary() {
-    const [query, setQuery] = useState("");
-    const [data, setData] = useState([]);
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        const res = await axios.get(`http://localhost:5000?q=${query}`);
-        setData(res.data);
-      };
-      if (query.length === 0 || query.length > 2) fetchData();
-    }, [query]);
+  const [query, setQuery] = useState("");
+  const [error, setError] = useState("");
+  const [data, setData] = useState([]);
+
+  useEffect(()=>{
+    axios.get("http://localhost:5000/api/dashboard/service-form-data",{
+      headers: {authorization: "jwt " + sessionStorage.getItem("token")}
+    })
+  .then((response)=>{
+      setData(response.data.service_forms)
+  }).catch((error)=>{
+    console.log(error)
+      if(error.response.status === 401){
+        setError('It seems you are not authorized.Try logging in again')
+      }
+  })
+  },[])
 
   return (
     <div className="home">
@@ -25,7 +32,7 @@ function ServicesSummary() {
                 <h3>Services Summary</h3>
             </div>
             <div className="servicesSummary">
-                <div className="searchBar">
+                <div className="searchBarStaff">
                 <Icon icon="mdi:search" color="gray" width="20" />
                 <input
                     className="search"
@@ -33,7 +40,7 @@ function ServicesSummary() {
                     onChange={(e) => setQuery(e.target.value.toLowerCase())}
                 />
                 </div>
-                <Table data={data} />
+                <Table data={data} query={query} error={error}/>
             </div>
           </div>
       </div>

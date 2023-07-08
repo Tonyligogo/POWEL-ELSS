@@ -25,7 +25,12 @@
     height: 200px;
     border: 1px solid gray; 
     border-radius: 4px;
-  }
+}
+.saleDetails span{
+  display: block;
+  margin-block-end: 10px;
+}
+
   table {
     border-collapse: collapse;
     width: 100%;

@@ -8,7 +8,6 @@ import {FaCoins} from "react-icons/fa"
 import { Link } from 'react-router-dom'
 
 function widget({type}) {
-const amount = '20,000'
 let data;
 switch(type){
   case "sales":
@@ -16,7 +15,6 @@ switch(type){
       top:"Sales",
       leftIcon: <FaChartBar/> ,
       iconBg: 'salesIconBg',
-      isMoney: true,
       link: "SalesSummary",
       rightIcon: <BsGraphUp/>,
       iconColor: 'salesIconColor'
@@ -27,7 +25,6 @@ switch(type){
       top:"Expenses",
       leftIcon: <Icon icon="streamline:money-cash-bag-dollar-bag-payment-cash-money-finance" color="rgba(0, 0, 0, 0.60)" width="20" /> ,
       iconBg: 'expensesIconBg',
-      isMoney: true,
       link: "ExpensesSummary",
       rightIcon: <FaCoins/>,
       iconColor: 'expensesIconColor'
@@ -38,7 +35,6 @@ switch(type){
       top:"Services",
       leftIcon: <Icon icon="medical-icon:i-social-services" color="rgba(0, 0, 0, 0.60)" width="20" /> ,
       iconBg: 'servicesIconBg',
-      isMoney: false,
       link: "ServicesSummary",
       rightIcon: <BsGraphUp/>,
       iconColor: 'servicesIconColor'
@@ -49,7 +45,6 @@ switch(type){
       top:"Service Form",
       leftIcon: <Icon icon="ant-design:form-outlined" width="20" />,
       iconBg: 'addUserIconBg',
-      isMoney: false,
       link: "ServiceForm",
       rightIcon: <Icon icon="ant-design:form-outlined" width="26" />,
       iconColor: 'addUserIconColor'
@@ -63,12 +58,10 @@ switch(type){
     <div className='widget'>
         <div className="left">
             <p className='top'><span className={`leftIcon + ${data.iconBg}`}>{data.leftIcon}</span>{data.top}</p>
-            <span>{data.isMoney ? amount : "No money"}</span>
             <Link to= {`/${data.link}`} >{data.link}</Link>
         </div>
         <div className="right">
             <p className='percentage'><span className='upArrow'><MdKeyboardArrowUp/></span>20%</p>
-            <span className={`rightIcon + ${data.iconColor}`}>{data.rightIcon}</span>
         </div>
     </div>
   )

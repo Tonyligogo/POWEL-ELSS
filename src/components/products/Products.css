@@ -18,6 +18,9 @@
     justify-content: space-between;
     align-items: center;
 }
+.myLinks a{
+    margin-left: 10px;
+}
 .product button{
     width: max-content;
 }

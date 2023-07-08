@@ -57,8 +57,7 @@ function handleLogOut(e){
                   </ul>
               </div>
               <NavLink to='/ExpenseForm'className='nav'><Icon icon="streamline:money-cash-bag-dollar-bag-payment-cash-money-finance" width="20" />Expense Form</NavLink>
-              <NavLink to='/Products' className='nav'><Icon icon="fluent:form-24-regular" width="22" />Products</NavLink>
-              <NavLink to='/Cart' className='nav'><Icon icon="fluent:form-24-regular" width="22" />View cart</NavLink>
+              <NavLink to='/Products' className='nav'><Icon icon="fluent-mdl2:product-catalog" width="21" />Products</NavLink>
             </div>
             <button onClick={handleLogOut} className='logoutButton'><Icon icon="material-symbols:logout" />Log out</button>
         </aside>

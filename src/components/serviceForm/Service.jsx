@@ -45,7 +45,6 @@ function Service() {
         }
         setChecked(updatedList)
     }
-    console.log(checked)
     const data = {
         client_name:formData.name,
         work_location: formData.location,
@@ -76,6 +75,7 @@ function Service() {
                     scopeDesc:'',
                     cost:''
                 })
+                setChecked([])
               })
               .catch((error)=>{
                 if(error.response.status){
