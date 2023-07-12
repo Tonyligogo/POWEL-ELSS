@@ -16,6 +16,7 @@ function ServicesSummary() {
     })
   .then((response)=>{
       setData(response.data.service_forms)
+      console.log(response.data.service_forms)
   }).catch((error)=>{
     console.log(error)
       if(error.response.status === 401){

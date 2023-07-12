@@ -1,7 +1,19 @@
 import "./table.css"
 import { Icon } from '@iconify/react';
-import { Link } from "react-router-dom";
-const Table = ({ data, query }) => {
+import { useState } from "react";
+import DeleteStaff from "./DeleteStaff"
+const Table = ({ data, query, fetchEmployeeData }) => {
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [pid, setPid] = useState('');
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
+  function openDelete(Pid, firstName, lastName){
+    setModalOpen(true)
+    setPid(Pid)
+    setFirstName(firstName)
+    setLastName(lastName)
+  }
 
     return (
       <div className="recordsTableContainer">
@@ -30,12 +42,22 @@ const Table = ({ data, query }) => {
                   <td>{item.job_title}</td>
                   <td>{item.phone_no}</td>
                   <td className="clickable">  
-                    <Link to={'/StaffRecords/delete/'+item._id}> <Icon icon="fluent-mdl2:delete" color="#d74221" width="24"/> </Link> 
+                     <Icon icon="fluent-mdl2:delete" color="#d74221" width="24" onClick={()=>openDelete(item._id, item.first_name, item.last_name)} /> 
                   </td>
                 </tr>
             )) : null}
             </tbody>
         </table>
+        {modalOpen &&
+          <DeleteStaff 
+            pid={pid} 
+            firstName={firstname}
+            lastName={lastname}
+            closeModal={() => {
+              setModalOpen(false);
+            }}
+            fetchEmployeeData={fetchEmployeeData}
+          />}
       </div>
     );
   };

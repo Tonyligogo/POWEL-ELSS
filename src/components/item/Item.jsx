@@ -92,7 +92,7 @@ function Item() {
         //     sub_total:formData.price * formData.quantity,
         // }
         // await axios.post("http://localhost:5000/api/dashboard/new-sale", item,{
-        //     headers: {authorization: "jwt " + localStorage.getItem("token")}
+        //     headers: {authorization: "jwt " + sessionStorage.getItem("token")}
         //   })
         // .then((response)=>{
         //     setUserCreated(true)

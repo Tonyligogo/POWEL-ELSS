@@ -6,14 +6,14 @@ import axios from "axios";
 import { server } from "../server";
 import { useAuthContext} from "../context/AuthProvider";
 import { CircularProgress } from "@mui/material";
+import { Icon } from '@iconify/react';
 
 function Login() {
-  // const navigate = useNavigate();
   const userRef = useRef();
   const errRef = useRef();
   const [formValues, setFormValues] = useState({email:'',password:''});
   const [, setUserFocus] = useState(false);
-  const[errMsg, setErrMsg] = useState('') 
+  const[errMsg, setErrMsg] = useState(''); 
 
   useEffect(()=>{
     userRef.current.focus();
@@ -35,21 +35,23 @@ function Login() {
     .then((res) => {
       setToken(res.data.authorization)
       setFormValues({email:'',password:''})
-      setLoading(false)
       // navigate("/");
       window.location.href = "/"
     })
     .catch((err) => {
       if(err.response?.status === 403){
-        setErrMsg('Wrong email or password')
-        console.log(errMsg)
+          setErrMsg('Wrong email or password')
       }else{
-        setErrMsg('Login failed')
+        setErrMsg('Login failed. Try again!')
       }
     }) 
     .finally(() => {
       setLoading(false);
     });
+    setTimeout(() => {
+      setErrMsg("")
+      setFormValues({email:'',password:''})
+    }, 3000);
 
   }
 
@@ -60,7 +62,7 @@ function Login() {
               <img src={myImage} alt="logo" />
               <div className="form">    
                   <span className="title">Log in to powel-elss</span>
-                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
+                  {errMsg &&<p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}> <Icon icon="clarity:error-solid" color="red" width="22" /> {errMsg}</p>}
                   <form onSubmit={handleLogin}>
                     <input 
                       type="email" 

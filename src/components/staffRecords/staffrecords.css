@@ -1,11 +1,11 @@
 .staffRecords{
-    padding: 10px;
+    padding: 10px 0;
 }
 .staffRecordsHeading{
     box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.5);
     -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.5);
     -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.5);
-    padding-inline: 10px;
+    padding: 10px;
     font-size: large;
     color: #d74221;
 }

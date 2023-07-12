@@ -85,7 +85,7 @@ function NewUser() {
                     </div>
                     <div className="formInput">
                         <label>Phone Number</label>
-                        <input type="text" value={formData.phoneNumber} name='phoneNumber' required onChange={changeValue}/>
+                        <input type="text" value={formData.phoneNumber} max='10' min='10' name='phoneNumber' required onChange={changeValue}/>
                     </div>
                     <h3>Job Information</h3>
                     <div className="formInput">
@@ -98,7 +98,7 @@ function NewUser() {
                     </div>
                     <div className="formInput">
                         <label id='PNo'>P/No</label>
-                        <select id='PNo' name='option' value={formData.option} onChange={changeValue}>
+                        <select id='PNo' name='option' value={formData.option} required onChange={changeValue}>
                             <option >PE-01</option>
                             <option >PE-02</option>
                             <option >PE-03</option>

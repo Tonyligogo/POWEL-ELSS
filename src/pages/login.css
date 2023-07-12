@@ -93,3 +93,12 @@
     margin-inline: auto;
     color: #d74221 !important;
 }
+.errmsg{
+    display: inline-flex;
+    align-items: center;
+    color: rgb(248, 55, 55);
+    background: rgb(255, 183, 183);
+    padding: 4px 10px;
+    border-radius: 8px;
+    gap: 4px;
+}

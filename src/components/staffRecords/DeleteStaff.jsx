@@ -1,51 +1,79 @@
 import "./deletestaff.css"
-import Sidebar from "../sidebar/sidebar";
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Icon } from '@iconify/react';
+import { CircularProgress } from "@mui/material";
 
-function DeleteStaff() {
+function DeleteStaff({pid, firstName, lastName, closeModal, fetchEmployeeData}) {
     
-    const {id} = useParams()
-    const navigate = useNavigate()
-    const [userDeleted, setUserDeleted] = useState(false);
+  const [error, setError] = useState(false)
+  const [errMsg, setErrMsg] = useState('')
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
+  const [userDeleted, setUserDeleted] = useState(false);
 
      async function handleDelete(e){
         e.preventDefault()
-        await axios.delete("http://localhost:5000/api/dashboard/delete_user/"+id,{
+        setLoading(true)
+        await axios.delete("http://localhost:5000/api/dashboard/delete_user/"+pid,{
             headers: {authorization: "jwt " + sessionStorage.getItem("token")}
           }).then((res)=>{
             setUserDeleted(true)
+            fetchEmployeeData()
           }).catch((error)=>{
-                if(error.response){
-                    console.log(error.response);
+                if(error.response.status === 401){ 
+                  setError(true)
+                  setErrMsg('It seems you are not authorized.Try logging in again')
                 }else if(error.request){
-                    console.log('network error')
+                    setErrMsg('Network error. Check connection and try again.')
                 }else{
-                    console.log(error)
-                }})
+                  setErrMsg('An error occured. Refresh the page and try again.')
+                }
+          }).finally(() => {
+            setLoading(false);
+          });
           setTimeout(() => {
             setUserDeleted(false);
-            navigate("/StaffRecords")
-          }, 2000);
-          
+            closeModal()
+          }, 2000);  
      }
+     useEffect(() => {
+      if (error) {
+        const timeoutId = setTimeout(() => {
+          navigate("/LoginPage")
+        }, 3000); 
+  
+        return () => {
+          clearTimeout(timeoutId);
+        };
+      }
+    }, [error, navigate]);
 
   return (
-    <div className="home">
-        <Sidebar/>
-          <div className="homeContainer delete">
-           <div className="deleteContainer">
-            <p>Are you sure you want to delete this employee?</p>
-            <div className="btns">
-                <button onClick={handleDelete} >YES</button>
-                <Link to='/StaffRecords'><button>NO</button></Link>
-            </div>
-            { userDeleted && <p className='successMessage'> <Icon icon="mdi:success-circle" color="green" /> Record deleted successfully</p>}
-           </div>
-          </div>
-      </div>
+          <div
+            className="modal-container"
+            onClick={(e) => {
+            if (e.target.className === "modal-container") closeModal();
+            }}
+          >
+        <div className="modal">
+            <h3>Delete</h3>
+                <div>
+                    <p>Are you sure you want to delete {firstName} {lastName}</p>
+                    {loading ? 
+                      <CircularProgress size="24px" className="progress"/> 
+                      :
+                      <div className="btns">
+                          <button onClick={handleDelete} >YES</button>
+                          <button onClick={closeModal} >No</button>
+                      </div>
+                    }
+                    { userDeleted && <p className='deleteSuccessMessage'> <Icon icon="mdi:success-circle" color="green" /> Record deleted successfully</p>}
+                    {errMsg && <p className="deleteError"> <Icon icon="clarity:error-solid" color="red" width="22" /> {errMsg}</p> }
+                </div>
+        </div>
+    </div>
   )
 }
 

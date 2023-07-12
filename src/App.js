@@ -22,6 +22,8 @@ import NewProduct from "./components/products/NewProduct";
 import Checkout from "./components/products/Checkout";
 import Invoice from "./components/products/Invoice";
 import { useAuthContext} from "./context/AuthProvider";
+import PrivateRoute from "./RequireAuth/PrivateRoute";
+import ServiceInvoice from "./components/servicessummary/ServiceInvoice";
 
 function App() {
   const [loading, setLoading] = React.useState(true);
@@ -55,8 +57,9 @@ function App() {
               </ProtectedRoute>
             }
             />
+            <Route path="DeductionForm" element={ <PrivateRoute> <DeductionForm /> </PrivateRoute>} />
             <Route path="LoginPage" element={<LoginPage />} />
-            <Route path="DeductionForm" element={<DeductionForm />} />
+            {/* <Route path="DeductionForm" element={<DeductionForm />} /> */}
             <Route path="AllowancesForm" element={<AllowancesForm />} />
             <Route path="PaySlipForm" element={<PaySlipForm />} />
             <Route path="ItemForm" element={<ItemForm />} />
@@ -64,16 +67,18 @@ function App() {
             <Route path="Sidebar" element={<Sidebar />} />
             <Route path="NewUser" element={<NewUser />} />
             <Route path="StaffRecords" element={<StaffRecords />} /> 
-              <Route path="StaffRecords/delete/:id" element={<DeleteStaff />} />
+            <Route path="StaffRecords/delete/:id" element={<DeleteStaff />} />
             <Route path="ExpenseForm" element={<ExpenseForm />} />
             <Route path="SalesSummary" element={<SalesSummary />} />
             <Route path="ExpensesSummary" element={<ExpensesSummary />} />
             <Route path="ServicesSummary" element={<ServicesSummary />} />
             <Route path="Products" element={<Products />} />
-              <Route path="/Cart" element={<Cart />} />
-              <Route path="/NewProduct" element={<NewProduct />} />
-              <Route path="/Checkout" element={<Checkout />} />
-              <Route path="/Invoice" element={<Invoice />} />
+            <Route path="/Cart" element={<Cart />} />
+            <Route path="/NewProduct" element={<NewProduct />} />
+            <Route path="/Checkout" element={<Checkout />} />
+            <Route path="/Invoice" element={<Invoice />} />
+            <Route path="/service-invoice/:id" element={<ServiceInvoice/>} />
+
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>

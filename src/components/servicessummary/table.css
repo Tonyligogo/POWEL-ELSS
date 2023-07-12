@@ -4,4 +4,5 @@
 }
 tbody tr:hover{
     background-color: rgb(241, 240, 255);
+    cursor: pointer;
 }

@@ -1,12 +1,15 @@
 import "./deduction.css"
 import Sidebar from "../sidebar/sidebar"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from "react-router-dom"
+import { Icon } from '@iconify/react';
 
 axios.defaults.withCredentials = true
 
 function Deduction() {
 
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         idNo:'',
         month: '',
@@ -30,6 +33,7 @@ function Deduction() {
         taxes: formData.taxes
     }
     const [error, setError] = useState(false)
+    const [errMsg, setErrMsg] = useState('')
     async function saveDetails(e){
         e.preventDefault()
         await axios.post("http://localhost:5000/api/dashboard/deduction-entry",data,{
@@ -48,13 +52,26 @@ function Deduction() {
                 })
               })
               .catch((error)=>{
-                console.log(error.response.message)
-                if(error.response.status){
-                  setError(true)
+                if(error.response.status === 401){
+                    setError(true)
+                    setErrMsg('It seems you are not authorized. Try logging in again!')
+                }else{
+                    setErrMsg('An error occured. Refresh the page and try again.')
                 }
               })
+              
       }
-
+      useEffect(() => {
+        if (error) {
+          const timeoutId = setTimeout(() => {
+            navigate("/LoginPage")
+          }, 3000); // Redirect to login after 3 seconds
+    
+          return () => {
+            clearTimeout(timeoutId);
+          };
+        }
+      }, [error, navigate]);
   return (
     <div className="deduction home">
         <Sidebar/>
@@ -108,7 +125,7 @@ function Deduction() {
                 </div>
                 <button>Save</button>
             </form>
-            {error && <p>Some error occured</p> }
+            {errMsg && <p className="deductionError"> <Icon icon="clarity:error-solid" color="red" width="22" /> {errMsg}</p> }
             </div>
         </div>
 
