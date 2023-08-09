@@ -1,11 +1,12 @@
 import React from 'react'
 import './widget.css'
 import { Icon } from '@iconify/react';
-import {BsGraphUp} from "react-icons/bs"
-import {MdKeyboardArrowUp} from "react-icons/md"
 import {FaChartBar} from "react-icons/fa"
-import {FaCoins} from "react-icons/fa"
 import { Link } from 'react-router-dom'
+import SalesImg from "../../images/sales.jpg"
+import ExpenseImg from "../../images/expenses.jpg"
+import FormImg from "../../images/form.jpg"
+import ServiceImg from "../../images/services.jpg"
 
 function widget({type}) {
 let data;
@@ -16,7 +17,7 @@ switch(type){
       leftIcon: <FaChartBar/> ,
       iconBg: 'salesIconBg',
       link: "SalesSummary",
-      rightIcon: <BsGraphUp/>,
+      rightIcon: SalesImg,
       iconColor: 'salesIconColor'
     };
     break;
@@ -26,7 +27,7 @@ switch(type){
       leftIcon: <Icon icon="streamline:money-cash-bag-dollar-bag-payment-cash-money-finance" color="rgba(0, 0, 0, 0.60)" width="20" /> ,
       iconBg: 'expensesIconBg',
       link: "ExpensesSummary",
-      rightIcon: <FaCoins/>,
+      rightIcon: ExpenseImg,
       iconColor: 'expensesIconColor'
     };
     break;
@@ -36,7 +37,7 @@ switch(type){
       leftIcon: <Icon icon="medical-icon:i-social-services" color="rgba(0, 0, 0, 0.60)" width="20" /> ,
       iconBg: 'servicesIconBg',
       link: "ServicesSummary",
-      rightIcon: <BsGraphUp/>,
+      rightIcon: ServiceImg,
       iconColor: 'servicesIconColor'
     };
     break;
@@ -46,7 +47,7 @@ switch(type){
       leftIcon: <Icon icon="ant-design:form-outlined" width="20" />,
       iconBg: 'addUserIconBg',
       link: "ServiceForm",
-      rightIcon: <Icon icon="ant-design:form-outlined" width="26" />,
+      rightIcon: FormImg,
       iconColor: 'addUserIconColor'
     };
     break;
@@ -61,7 +62,7 @@ switch(type){
             <Link to= {`/${data.link}`} >{data.link}</Link>
         </div>
         <div className="right">
-            <p className='percentage'><span className='upArrow'><MdKeyboardArrowUp/></span>20%</p>
+            <img src={data.rightIcon} alt="" />
         </div>
     </div>
   )

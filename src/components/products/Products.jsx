@@ -50,13 +50,16 @@ async function addToCart(e, id){
           </div>
         </div>
         <div className="allProducts">
-          <div className="searchBarStaff">
-              <Icon icon="mdi:search" color="gray" width="20" />
-              <input
-                  className="search"
-                  placeholder="Search..."
-                  onChange={(e) => setQuery(e.target.value.toLowerCase())}
-              />
+          <div className='messageAndSearchBar'>
+            <div className="searchBarStaff">
+                <Icon icon="mdi:search" color="gray" width="20" />
+                <input
+                    className="search"
+                    placeholder="Search..."
+                    onChange={(e) => setQuery(e.target.value.toLowerCase())}
+                />
+            </div>
+            { addedToCart && <p className='successMessage'> <Icon icon="mdi:success-circle" color="green" /> Item added to cart successfully</p>}
           </div>
           <div className="recordsTableContainer">
                 <table className="staffRecordsTable">
@@ -84,7 +87,6 @@ async function addToCart(e, id){
                           <td>{item.price}</td>
                           <td>
                             <button onClick={(e) => addToCart(e,item._id)}>Add to cart</button>
-                            { addedToCart && <Icon icon="mdi:success-circle" color="green" />}
                           </td>
                           <td className="clickable">  
                             <Link to={'/StaffRecords/delete/'+item._id}> <Icon icon="fluent-mdl2:delete" color="#d74221" width="24"/> </Link> 

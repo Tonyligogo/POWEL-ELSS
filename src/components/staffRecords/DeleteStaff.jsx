@@ -60,14 +60,17 @@ function DeleteStaff({pid, firstName, lastName, closeModal, fetchEmployeeData}) 
         <div className="modal">
             <h3>Delete</h3>
                 <div>
-                    <p>Are you sure you want to delete {firstName} {lastName}</p>
+                    
                     {loading ? 
                       <CircularProgress size="24px" className="progress"/> 
                       :
+                      <>
+                      <p>Are you sure you want to delete {firstName} {lastName}?</p>
                       <div className="btns">
                           <button onClick={handleDelete} >YES</button>
                           <button onClick={closeModal} >No</button>
                       </div>
+                      </>
                     }
                     { userDeleted && <p className='deleteSuccessMessage'> <Icon icon="mdi:success-circle" color="green" /> Record deleted successfully</p>}
                     {errMsg && <p className="deleteError"> <Icon icon="clarity:error-solid" color="red" width="22" /> {errMsg}</p> }

@@ -1,13 +1,17 @@
 import './recents.css'
 
-function recents() {
+function Recents({services}) {
   return (
-    <div className='recents'>
-        <span>Anthony</span>
-        <span>Ksh 2,000</span>
-        <span>23-12-23</span>
+    <>
+    {services.map((service)=>(
+      <div className='recents' key={service._id}>
+        <span>{service.client_name}</span>
+        <span>{service.requested_by}</span>
+        <span>{service.work_location}</span>
     </div>
+    ))}
+    </>
   )
 }
 
-export default recents
+export default Recents

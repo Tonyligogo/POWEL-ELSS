@@ -23,6 +23,7 @@
     gap: 20px;
     padding-inline-end: 10px;
     margin-block-start: 10px;
+    align-items: center;
 }
 .barChart{
     flex: 3;
@@ -38,6 +39,9 @@
     display: flex;
     flex-direction: row;
     gap: 20px;
+}
+.middleContainer{
+    margin-block: 20px;
 }
 .middleContainer h3{
     margin: 0;

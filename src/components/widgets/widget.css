@@ -46,28 +46,10 @@
     text-decoration: underline;
     color: #d74221;
 }
-.widget .right{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-.widget .right p{
-    display: flex;
-    align-items: center;
-
-}
-.widget .right .percentage{
-    color: green;
-}
-.widget .right p span.upArrow{
-    font-size: 24px;
-}
-
-.widget .right span.rightIcon{
-    color:rgb(255, 193, 68) ;
-    font-size: 24px;
-
+.widget .right>img{
+    display: block;
+    width: 100%;
+  object-fit: cover;
 }
 .negative{
     color: red;

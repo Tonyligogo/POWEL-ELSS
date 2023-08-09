@@ -35,6 +35,9 @@ function Cart() {
               <Link to="/Checkout">
                 <button>Checkout</button>
               </Link>
+              <Link to="/Quotation">
+                <button>Quotation</button>
+              </Link>
         </div>
           <div className='allProducts'>
           {data ? 
@@ -58,7 +61,12 @@ function Cart() {
                           <td>{item.item.name}</td>
                           <td>{item.item.category}</td>
                           <td>{item.item.desc}</td>
-                          <td>{item.qty}</td>
+                          <td className='qtyControl'>
+                            {item.qty}
+                            <span className='qtyButtons'>
+                              +-
+                            </span>
+                          </td>
                           <td>{item.price}</td>
                         </tr>
                     ))}

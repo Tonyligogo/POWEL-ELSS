@@ -24,6 +24,10 @@ import Invoice from "./components/products/Invoice";
 import { useAuthContext} from "./context/AuthProvider";
 import PrivateRoute from "./RequireAuth/PrivateRoute";
 import ServiceInvoice from "./components/servicessummary/ServiceInvoice";
+import NewCustomer from "./components/customers/NewCustomer";
+import CustomerRecords from "./components/customers/CustomerRecords";
+import Quotation from "./components/quotation/Quotation";
+import QuotationData from "./components/quotation/QuotationData";
 
 function App() {
   const [loading, setLoading] = React.useState(true);
@@ -78,6 +82,11 @@ function App() {
             <Route path="/Checkout" element={<Checkout />} />
             <Route path="/Invoice" element={<Invoice />} />
             <Route path="/service-invoice/:id" element={<ServiceInvoice/>} />
+            <Route path="/NewCustomer" element={<NewCustomer />} />
+            <Route path="/CustomerRecords" element={<CustomerRecords />} />
+            <Route path="/Quotation" element={<Quotation />} />
+            <Route path="/QuotationData/:id" element={<QuotationData />} />
+
 
             <Route path="*" element={<ErrorPage />} />
           </Route>

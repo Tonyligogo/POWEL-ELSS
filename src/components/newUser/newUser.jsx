@@ -4,10 +4,12 @@ import './newUser.css'
 import axios from 'axios'
 import { Icon } from '@iconify/react';
 import { useNavigate } from 'react-router-dom';
+import { CircularProgress } from "@mui/material";
 
 
 function NewUser() {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
         firstName:'',
         lastName:'',
@@ -23,6 +25,7 @@ function NewUser() {
     };
     async function addStaff(e){
         e.preventDefault();
+        setLoading(true)
         const userData = {
             first_name:formData.firstName,
             last_name:formData.lastName,
@@ -46,7 +49,9 @@ function NewUser() {
             }else{
                 console.log(error)
             }
-        })  
+        }).finally(() => {
+            setLoading(false);
+          });  
         setTimeout(() => {
             setUserCreated(false);
             setFormData({
@@ -81,7 +86,7 @@ function NewUser() {
                     </div>
                     <div className="formInput">
                         <label>ID number</label>
-                        <input type="text" value={formData.idNo} name='idNo' required onChange={changeValue}/>
+                        <input type="number" value={formData.idNo} name='idNo' required onChange={changeValue}/>
                     </div>
                     <div className="formInput">
                         <label>Phone Number</label>
@@ -90,7 +95,7 @@ function NewUser() {
                     <h3>Job Information</h3>
                     <div className="formInput">
                         <label>Basic Salary</label>
-                        <input type="text" value={formData.basicSalary} name='basicSalary' required onChange={changeValue}/>
+                        <input type="number" value={formData.basicSalary} name='basicSalary' required onChange={changeValue}/>
                     </div>
                     <div className="formInput">
                         <label>Job Title</label>
@@ -99,6 +104,7 @@ function NewUser() {
                     <div className="formInput">
                         <label id='PNo'>P/No</label>
                         <select id='PNo' name='option' value={formData.option} required onChange={changeValue}>
+                            <option >-- Select P/No --</option>
                             <option >PE-01</option>
                             <option >PE-02</option>
                             <option >PE-03</option>
@@ -111,7 +117,11 @@ function NewUser() {
                             <option >PE-10</option>
                         </select> 
                     </div>
-                    <button type='submit'>Save</button>
+                    {loading ? 
+                      <CircularProgress size="24px" className="progress"/> 
+                      :
+                      <button type='submit'>Save</button>
+                    }
                 </form>
                 { userCreated && <p className='successMessage'> <Icon icon="mdi:success-circle" color="green" /> New staff added successfully</p>}
             </div>

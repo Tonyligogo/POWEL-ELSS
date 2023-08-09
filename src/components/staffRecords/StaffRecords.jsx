@@ -17,9 +17,9 @@ export default function StaffRecords() {
       fetchEmployeeData()   
    },[]);
 
-    function fetchEmployeeData(){
+    async function fetchEmployeeData(){
       setLoading(true)
-      axios.get("http://localhost:5000/api/dashboard/employee-data",
+      await axios.get("http://localhost:5000/api/dashboard/employee-data",
       {
         headers: {authorization: "jwt " + sessionStorage.getItem("token")}
       }

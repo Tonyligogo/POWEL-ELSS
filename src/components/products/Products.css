@@ -31,3 +31,14 @@
     scrollbar-color: lightgray transparent;
     scrollbar-width: thin;
 }
+.messageAndSearchBar{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline-end: 10px;
+}
+.messageAndSearchBar p{
+    margin: 0;
+}

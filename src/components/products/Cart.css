@@ -31,4 +31,19 @@
     scrollbar-color: lightgray transparent;
     scrollbar-width: thin;
 }
-    
+.qtyControl{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}    
+.qtyButtons{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.qtyButtons small{
+    background-color: #d74221;
+    color: white;
+    padding: 0px 4px;
+    border-radius: 3px;
+}

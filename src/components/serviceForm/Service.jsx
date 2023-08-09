@@ -65,7 +65,6 @@ function Service() {
                 headers: {authorization: "jwt " + sessionStorage.getItem("token")}
               })
               .then((response)=>{
-                  console.log(response)
                   setFormData({
                     name:'',
                     location:'',
