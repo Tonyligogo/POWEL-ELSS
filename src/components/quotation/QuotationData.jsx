@@ -44,13 +44,12 @@ function QuotationData() {
                     <thead className="staffTHead">
                         <tr>
                             <th>ID</th>
-                            <th>Product name</th>
                             <th>Product description</th>
                             <th>Price</th>
                         </tr>
                     </thead>
                     <tbody className="staffTBody">
-                        
+                    
                     </tbody>
                 </table>
             </div>

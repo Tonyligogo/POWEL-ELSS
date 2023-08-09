@@ -12,7 +12,10 @@ function Quotation() {
         due_date:"",
         terms:'',
         discount:'',
-        tax:''
+        tax:'',
+        description:'',
+        quantity:'',
+        unitPrice:''
     })
     const navigate = useNavigate()
     const [error, setError] = useState(false)
@@ -22,7 +25,17 @@ function Quotation() {
     function changeValue(e){
         setFormData({...formData, [e.target.name]:e.target.value})
     };
-    const data = {invoice_code:formData.invoice_code, due_date:formData.due_date, terms:formData.terms, discount:formData.discount, tax:formData.tax, date:currentDate};
+    const data = {
+      invoice_code:formData.invoice_code,
+      due_date:formData.due_date,
+      terms:formData.terms,
+      discount:formData.discount,
+      tax:formData.tax, 
+      date:currentDate,
+      description:formData.description,
+      quantity:formData.quantity,
+      unitPrice:formData.unitPrice
+    };
     async function checkout(e){
         e.preventDefault()
 

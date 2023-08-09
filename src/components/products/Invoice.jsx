@@ -18,14 +18,11 @@ function Invoice() {
           .then((response)=>{
               setData(response.data.orders.at(-1))
               setOrder(Object.entries(response.data.orders.at(-1).cart?.items))
-              console.log(Object.entries(response.data.orders.at(-1).cart?.items))
-              console.log(Object.entries(response.data.orders.at(-1).cart?.items)[0][1].item)
           }).catch((error)=>{
               console.log(error)
           })
           },[])
           if(order){
-            console.log(order,'this is me')
             var eachOrder = order.map((item)=>(
               item[1].item
             ))
