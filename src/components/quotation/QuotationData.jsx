@@ -15,15 +15,11 @@ function QuotationData() {
         })
       .then((response)=>{
         setData(response.data.allowances[0])
-          console.log(response.data.allowances[0])
-          setProducts(response.data.allowances[0].quotations_details.items)
-          console.log(response.data.allowances[0].quotations_details.items)
-
+        setProducts(response.data.allowances[0].quotations_details.items)
       }).catch((error)=>{
           console.log(error)
       })
       },[id])
-
   return (
     <div className='home'>
     <Sidebar/>
@@ -43,13 +39,25 @@ function QuotationData() {
                 <table className="staffRecordsTable">
                     <thead className="staffTHead">
                         <tr>
-                            <th>ID</th>
                             <th>Product description</th>
+                            <th>Quantity</th>
                             <th>Price</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
                     <tbody className="staffTBody">
-                    
+                        {products && 
+                            Object.keys(products).map((key)=>{
+                                const item = products[key];
+                                return (
+                                <tr>
+                                  <td>{item.item.desc}</td>
+                                  <td>{item.qty}</td>
+                                  <td>{item.price}</td>
+                                  <td>{item.qty * item.price}</td>
+                                </tr> )  
+                            }) 
+                        }
                     </tbody>
                 </table>
             </div>
