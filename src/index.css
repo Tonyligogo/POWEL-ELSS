@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* font-family: 'Inter', sans-serif; */
 }
 input[type=number] {
   -moz-appearance: textfield;
@@ -14,4 +15,8 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+a{
+  text-decoration: none;
+  color: inherit;
 }

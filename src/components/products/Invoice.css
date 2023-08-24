@@ -57,4 +57,27 @@
     padding: 9px 4px;
     text-align: center;
   }
+  .invoiceDetails{
+    display: flex;
+    justify-content: space-between;
+  }
+  .invoiceTable{
+    height: calc(100vh - 30vh) !important;
+  }
+  button.print{
+    width: max-content;
+    margin-bottom: 10px;
+  }
+  .invoiceButtons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .invoiceToPrint{
+    padding: 0;
+  }
+  .emailBtn{
+    pointer-events: none;
+    background-color: #ffb6a5;
+  }
   

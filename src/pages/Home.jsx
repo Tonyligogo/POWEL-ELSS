@@ -37,6 +37,7 @@ function Home() {
       setExpenses(data1.data.expenses);
       setSales(data2.data.orders);
       setData(data2.data.orders.slice(-3))
+      console.log(data2.data.orders.slice(-3))
       // setServices(data3.data.service_forms)
   })).catch((error)=>{
     console.log(error)

@@ -2,7 +2,7 @@ import axios from "axios";
 import "./Table.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const Table = ({ data, query, fetchCustomerData }) => {
+const Table = ({ data, query, fetchCustomerData, path }) => {
     const navigate = useNavigate()
   const [pid, setPid] = useState('');
   const [isComplete, setIsComplete] = useState(false);
@@ -17,7 +17,7 @@ const Table = ({ data, query, fetchCustomerData }) => {
         setIsComplete(true)
     })
     if(isComplete){
-      navigate("/Products")
+      navigate("/Products", { state: { path } })
     }
   }
 

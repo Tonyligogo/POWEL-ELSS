@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Sidebar from '../sidebar/sidebar'
 import './Cart.css'
 import axios from 'axios'
@@ -8,6 +8,8 @@ axios.defaults.withCredentials = true
 function Cart() {
    const [data, setData] = useState([])
    const [error, setError] = useState(false)
+   const location = useLocation();
+  const path = location.state.path;
    useEffect(() => {
       fetchCart()
   },[]);
@@ -32,11 +34,8 @@ function Cart() {
       <div className="homeContainer">
         <div className="allProductsHeading">  
           <h3>Cart</h3>
-              <Link to="/Checkout">
-                <button>Checkout</button>
-              </Link>
-              <Link to="/Quotation">
-                <button>Quotation</button>
+              <Link to={path === 'quotation' ? "/Quotation": "/Checkout"}>
+                <button>{path === 'quotation' ? 'Quotation': 'Checkout'}</button>
               </Link>
         </div>
           <div className='allProducts'>

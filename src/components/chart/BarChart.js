@@ -50,7 +50,7 @@ function BarChart() {
   ]
   };
   var options = {
-    aspectRatio: 2,
+    aspectRatio: 1/0.4,
     scales:{
       Sales:{
         beginAtZero: true,

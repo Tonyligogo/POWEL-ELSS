@@ -11,8 +11,8 @@ function RecentService({data, error, loading}) {
     :
     data.map((item)=>(
       <div className='recentService' key={item._id}>
-        <span>{item.name}</span>
-        <span>Ksh {item.cart?.totalPrice}</span>
+        <span>{item.customer.name}</span>
+        <span>Ksh {item.product_details?.totalPrice}</span>
         <span>{item.date}</span>
     </div>
     )) 

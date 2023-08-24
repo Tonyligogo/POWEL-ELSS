@@ -28,6 +28,8 @@ import NewCustomer from "./components/customers/NewCustomer";
 import CustomerRecords from "./components/customers/CustomerRecords";
 import Quotation from "./components/quotation/Quotation";
 import QuotationData from "./components/quotation/QuotationData";
+import MakeSale from "./components/makeSale/MakeSale";
+import CreateQuotation from "./components/quotation/CreateQuotation";
 
 function App() {
   const [loading, setLoading] = React.useState(true);
@@ -76,18 +78,19 @@ function App() {
             <Route path="SalesSummary" element={<SalesSummary />} />
             <Route path="ExpensesSummary" element={<ExpensesSummary />} />
             <Route path="ServicesSummary" element={<ServicesSummary />} />
+            <Route path="NewProduct" element={<NewProduct />} />
+            <Route path="Invoice" element={<Invoice />} />
+            <Route path="service-invoice/:id" element={<ServiceInvoice/>} />
+            <Route path="NewCustomer" element={<NewCustomer />} />
+            <Route path="CustomerRecords" element={<CustomerRecords />} />
+            <Route path="Quotation" element={<Quotation />} />
+            <Route path="CreateQuotation" element={<CreateQuotation />} />
+            <Route path="QuotationData/:id" element={<QuotationData />} />
+            <Route path="MakeSale" element={<MakeSale />} />
             <Route path="Products" element={<Products />} />
-            <Route path="/Cart" element={<Cart />} />
-            <Route path="/NewProduct" element={<NewProduct />} />
-            <Route path="/Checkout" element={<Checkout />} />
-            <Route path="/Invoice" element={<Invoice />} />
-            <Route path="/service-invoice/:id" element={<ServiceInvoice/>} />
-            <Route path="/NewCustomer" element={<NewCustomer />} />
-            <Route path="/CustomerRecords" element={<CustomerRecords />} />
-            <Route path="/Quotation" element={<Quotation />} />
-            <Route path="/QuotationData/:id" element={<QuotationData />} />
-
-
+            <Route path="Checkout" element={<Checkout />} />
+            <Route path="Cart" element={<Cart />} />
+      
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
