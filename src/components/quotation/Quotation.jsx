@@ -2,21 +2,22 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Sidebar from '../sidebar/sidebar'
 import { Link, useNavigate } from 'react-router-dom'
+import "./Quotation.css"
 axios.defaults.withCredentials = true
 
 function Quotation() {
 
     const [formData, setFormData] = useState({
-        invoice_code:'',
-        date:'',
+        ref_code:'',
         due_date:"",
         terms:'',
         discount:'',
-        tax:'',
-        description:'',
-        quantity:'',
-        unitPrice:''
+        tax:''
     })
+    const [selectedData, setSelectedData] = useState('')
+    function handleSelect(e){
+      setSelectedData(e.target.value)
+  };
     const navigate = useNavigate()
     const [error, setError] = useState(false)
     const [invoice, setInvoice] = useState('')
@@ -26,16 +27,15 @@ function Quotation() {
         setFormData({...formData, [e.target.name]:e.target.value})
     };
     const data = {
-      invoice_code:formData.invoice_code,
+      ref_code:formData.ref_code,
       due_date:formData.due_date,
       terms:formData.terms,
       discount:formData.discount,
-      tax:formData.tax, 
+      tax:formData.tax,
       date:currentDate,
-      description:formData.description,
-      quantity:formData.quantity,
-      unitPrice:formData.unitPrice
+      quotation_type:selectedData
     };
+
     async function checkout(e){
         e.preventDefault()
 
@@ -45,7 +45,7 @@ function Quotation() {
               .then((response)=>{
                   console.log(response)
                   setIsComplete(true)
-                  setInvoice(response.data.result.invoice_code)
+                  setInvoice(response.data.result.ref_code)
               })
               .catch((error)=>{
                 if(error.response.status){
@@ -65,43 +65,54 @@ function Quotation() {
         <div className="checkoutHeading">  
           <h3>Quotation</h3>
         </div>
-        <div className="checkout">
-          <div className='checkoutWrapper'>
-            <form>
+          <div className="checkout">
+            <div className='checkoutWrapper'>
+            <div className="select">
+              <label htmlFor="select">Select quotation type</label>
+              <select name="option" id="select" required onChange={handleSelect}>
+                <option value=''>--Select type--</option>
+                <option value={selectedData.option}>Service</option>
+                <option value={selectedData.option}>Supply</option>
+                <option value={selectedData.option}>Service and Supply</option>
+              </select>
+            </div>
+        {selectedData !== "" && 
+              <form>
+                  <div>
+                      <label htmlFor="refCode">Ref code</label>
+                      <input type="text" id='refCode' name='ref_code' required value={formData.ref_code} onChange={changeValue}/>
+                  </div>
+                  <div>
+                      <label htmlFor="date">Current date</label>
+                      <label className='outputField dateField' >{currentDate}</label>
+                  </div>
+                  <div>
+                      <label htmlFor="address">Due date</label>
+                      <input type="date" id='address' name='due_date' required value={formData.due_date} onChange={changeValue} />
+                  </div>
+                  <div>
+                      <label htmlFor="name">Terms</label>
+                      <input type="text" id='name' name='terms' required value={formData.terms} onChange={changeValue}/>
+                  </div>
+                  <div>
+                      <label htmlFor="discount">Discount</label>
+                      <input type="number" id='discount' name='discount' required value={formData.discount} onChange={changeValue} />
+                  </div>
+                  <div>
+                      <label htmlFor="tax">Tax</label>
+                      <input type="number" id='tax' name='tax' required value={formData.tax} onChange={changeValue} />
+                  </div>
+              </form>
+              }
+              {error && 
                 <div>
-                    <label htmlFor="name">Invoice code</label>
-                    <input type="text" id='name' name='invoice_code' required value={formData.invoice_code} onChange={changeValue}/>
+                  <p>Failed! There is nothing in the cart</p>
+                  <Link to="/Products"> <button>Go to Products</button> </Link>
                 </div>
-                <div>
-                    <label htmlFor="address">Due date</label>
-                    <input type="text" id='address' name='due_date' required value={formData.due_date} onChange={changeValue} />
-                </div>
-                <div>
-                    <label htmlFor="date">Date</label>
-                    <label className='outputField dateField' >{currentDate}</label>
-                </div>
-                <div>
-                    <label htmlFor="name">Terms</label>
-                    <input type="text" id='name' name='terms' required value={formData.terms} onChange={changeValue}/>
-                </div>
-                <div>
-                    <label htmlFor="address">Discount</label>
-                    <input type="number" id='address' name='discount' required value={formData.discount} onChange={changeValue} />
-                </div>
-                <div>
-                    <label htmlFor="date">Tax</label>
-                    <input type="number" id='date' name='tax' required value={formData.tax} onChange={changeValue} />
-                </div>
-            </form>
-            {error && 
-              <div>
-                <p>Failed! There is nothing in the cart</p>
-                <Link to="/Products"> <button>Go to Products</button> </Link>
-              </div>
-             }
+              }
+            </div>
+            {selectedData !== "" && <button onClick={checkout}>Save</button>}
           </div>
-          <button onClick={checkout}>Save</button>
-        </div>
       </div>
     </div>
   )

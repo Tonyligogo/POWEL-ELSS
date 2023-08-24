@@ -26,6 +26,7 @@
 }
 .searchBarStaff input{
     border: none;
+    outline: none;
 }
 .recordsTableContainer{
     scrollbar-color: lightgray transparent;

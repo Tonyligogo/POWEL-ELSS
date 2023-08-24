@@ -1,7 +1,8 @@
 .aside{
     min-height: 100vh;
     flex: 1;
-    /* background-color: #041737; */
+    /* background-color: #191f2f; */
+    /* background-color: #0a0f17; */
 }
 aside{
     padding-inline: 12px 8px;
@@ -31,6 +32,15 @@ aside span.heading{
     display: flex;
     place-items: center;
     padding-left: 14px;
+    transition: all 300ms ease;
+}
+.homeButton:hover{
+    color: #d74221;
+    margin-left: 8px;
+}
+.homeButton.active:hover{
+    color: white;
+    margin: 0;
 }
 .nav{
     display: flex;
@@ -49,12 +59,14 @@ aside span.heading{
 }
 .nav.active:hover{
     color: white;
+    margin-left: 0;
 }
 .linksWrapper p{
     display: flex;
     place-items: center;
     margin-block: 14px;
     transition: all 300ms ease;
+    color: rgb(44, 44, 44);
 }
 .linksWrapper p:hover{
     color: #d74221;
@@ -78,7 +90,8 @@ aside span.heading{
 }
 aside a{
     text-decoration: none;
-    color: black;
+    color: rgb(44, 44, 44);
+    /* color: rgb(82, 82, 82); */
 }
 aside button{
     position: absolute;

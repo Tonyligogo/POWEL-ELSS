@@ -1,0 +1,14 @@
+.select{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.select>label{
+    width: fit-content;
+}
+.select select{
+    display: block;
+}
+label.outputField{
+    font-weight: 500;
+    font-size: small;
+}

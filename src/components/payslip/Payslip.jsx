@@ -98,46 +98,46 @@ function Payslip() {
             <div className='employeeDetailsWrapper'>
             <div className="employeeDetails">
                 <div>
-                <label htmlFor="">Employee Name</label>
+                <label>Employee Name</label>
                 {employeestate ?
                     <label className='outputField'>{`${employee.first_name} ${employee.last_name}`}</label>
                 : <label className='outputField'></label>}
                 </div>
                 <div>
-                <label htmlFor="">Job Title</label>
+                <label>Job Title</label>
                 {employeestate ?
                     <label className='outputField'>{employee.job_title}</label>
                 : <label className='outputField'></label>}
                 </div>
                 <div>
-                <label htmlFor="">Date</label>
+                <label>Date</label>
                 <label className='outputField'>{currentDate}</label>
                 </div>
                 <div>
-                <label htmlFor="">Basic Pay</label>
+                <label>Basic Pay</label>
                 <label className='outputField'>{basicPay}</label>
                 </div>
             </div>
                 <h3 className='allowanceHeading'>Allowances</h3>
             <div className="allowanceDetails">
                 <div>
-                <label htmlFor="">Arrears</label>
+                <label>Arrears</label>
                 <label className='outputField'>{allowance.arrears}</label>
                 </div>
                 <div>
-                <label htmlFor="">House</label>
+                <label>House</label>
                 <label className='outputField'>{allowance.house}</label>
                 </div>
                 <div>
-                <label htmlFor="">Imprest Amount</label>
+                <label>Imprest Amount</label>
                 <label className='outputField'>{allowance.imprest_amount}</label>
                 </div>
                 <div>
-                <label htmlFor="">Transport</label>
+                <label>Transport</label>
                 <label className='outputField'>{allowance.transport}</label>
                 </div>
                 <div>
-                <label htmlFor="">Gross Pay</label>
+                <label>Gross Pay</label>
                 {allowancestate ? 
                 <label className='outputField'>{allowance.arrears + allowance.house+ allowance.imprest_amount+ allowance.transport}</label>
                 : <label className='outputField'></label>}
@@ -146,23 +146,23 @@ function Payslip() {
                 <h3 className='deductionHeading'>Deductions</h3>
             <div className="deductionDetails">
                 <div>
-                <label htmlFor="">NHIF</label>
+                <label>NHIF</label>
                 <label className='outputField'>{deduction.nhif}</label>
                 </div>
                 <div>
-                <label htmlFor="">NSSF</label>
+                <label>NSSF</label>
                 <label className='outputField'>{deduction.nssf}</label>
                 </div>
                 <div>
-                <label htmlFor="">Advances</label>
+                <label>Advances</label>
                 <label className='outputField'>{deduction.advances}</label>
                 </div>
                 <div>
-                <label htmlFor="">Taxes</label>
+                <label>Taxes</label>
                 <label className='outputField'>{deduction.taxes}</label>
                 </div>
                 <div>
-                <label htmlFor="">Total Deductions</label>
+                <label>Total Deductions</label>
                 {deductionstate ? 
                     <label className='outputField'>{deduction.nhif + deduction.nssf + deduction.advances + deduction.taxes}</label>
                 :
@@ -172,8 +172,11 @@ function Payslip() {
             </div>
             </div>
             <div className="netSalary">
-                <label htmlFor="">Net Salary</label>
-                <label className='outputField'>{basicPay + allowance.arrears + allowance.house+ allowance.imprest_amount+ allowance.transport - deduction.nhif  -deduction.nssf  -deduction.advances - deduction.taxes}</label>
+                <label>Net Salary</label>
+                {allowancestate && deductionstate 
+                ? <label className='outputField'>{basicPay + allowance.arrears + allowance.house+ allowance.imprest_amount+ allowance.transport - deduction.nhif  -deduction.nssf  -deduction.advances - deduction.taxes}</label>
+                : <label className='outputField'></label>
+                }
             </div>
             </div>
             <div className='printButtonWrapper'><button className='printButton'>Print</button></div>

@@ -7,10 +7,11 @@ const Table = ({ data, query, error }) => {
                 <tr>
                     <th></th>
                     <th>Client name</th>
-                    <th>Phone number</th>
+                    <th>Address</th>
                     <th>Date</th>
                     <th>No. of Items</th>
                     <th>Price</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody className="staffTBody">
@@ -20,11 +21,12 @@ const Table = ({ data, query, error }) => {
                 .map((item,idx) => (
                 <tr key={item._id}>
                   <td>{idx}</td>
-                  <td>{item.name}</td>
-                  <td>{item.phone_number}</td>
+                  <td>{item.customer.name}</td>
+                  <td>{item.customer.address}</td>
                   <td>{item.date}</td>
-                  <td>{item.cart?.totalQty}</td>
-                  <td>{item.cart?.totalPrice}</td>
+                  <td>{item.product_details?.totalQty}</td>
+                  <td>{item.product_details?.totalPrice}</td>
+                  <td>{item.purchase_status}</td>
                 </tr>
             ))}
             </tbody> 

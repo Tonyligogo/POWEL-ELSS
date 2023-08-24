@@ -79,3 +79,18 @@
     margin-block-end: 10px;
     width: max-content;
 }
+/* .checkoutWrapper form{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+}
+.checkoutWrapper form>div{
+    width: auto;
+}
+form input{
+    height: 25px;
+}
+.checkoutWrapper form>div label.outputField{
+    width: auto;
+    height: 25px;
+} */
