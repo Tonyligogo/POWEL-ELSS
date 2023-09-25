@@ -1,29 +1,37 @@
-.allowancesWrapper{
-    margin-inline: 20px;
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+.allowance{
+    display: flex;
+    justify-content: center;
 }
-.allowancesFormTitle{
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    padding: 10px;
-    margin: 0 20px;
-    font-size: large;
+.allowanceContainer{
+    width: max-content;
+    outline: 1px solid lightgrey;
+    border-radius: 10px;
+    padding: 40px 80px;
+}
+.allowancesFormTitle h3{
+    font-size: 24px;
     color: #d74221;
+    margin: 0;
+    margin-bottom: 20px;
 }
-.allowancesWrapper h2{
-    text-align: center;
-    text-decoration: underline;
-}
-.allowancesForm{
-    padding: 40px 80px 20px 80px;
-}
-.allowancesForm label{
+.allowancesForm > label{
     width: 130px;
     display: inline-block;
 }
 .allowancesForm >div{
     margin-bottom: 20px;
+}
+.allowancesForm > div > input{
+    padding: 0;
+}
+.allowancesForm > div > input,
+.allowancesForm > div > select
+{
+    height: 22px;
+    width: 200px;
+}
+.allowancesForm > div > select
+{
+    width: 202px;
+    height: 24px;
 }

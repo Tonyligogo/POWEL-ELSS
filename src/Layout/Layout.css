@@ -1,0 +1,24 @@
+.mainLayout{
+    display: flex;
+}
+.mainSidebar{
+    flex: 1;
+    background-color: rgba(255, 140, 0, 0.048);
+}
+.content{
+    flex: 4;
+}
+.mainContent{
+    margin-top: 10px;
+    padding-top: 10px;
+    margin-left: 10px;
+    padding-inline: 10px;
+    height: calc(100svh - 81px);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75); 
+    border-top-left-radius: 10px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #fc6a49 rgb(210,210,210);
+}

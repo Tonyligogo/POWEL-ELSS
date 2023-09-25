@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./staffrecords.css";
 import Table from "./Table";
-import Sidebar from "../sidebar/sidebar";
 import axios from "axios";
 import { Icon } from '@iconify/react';
 import { CircularProgress } from "@mui/material";
@@ -32,17 +31,11 @@ export default function StaffRecords() {
     }  
   
     return (
-        <div className="home">
-        <Sidebar/>
-          <div className="homeContainer">
+        <div>
+          <div>
             <div className="staffRecordsHeading">  
                 <h3>Staff Records</h3>
-            </div>
-            {!loading ? 
-            <div>
-            {data.length && finished ?
-                <div className="staffRecords">
-                  <div className="searchBarStaff">
+                <div className="searchBarStaff">
                     <Icon icon="mdi:search" color="gray" width="20" />
                     <input
                         className="search"
@@ -50,6 +43,12 @@ export default function StaffRecords() {
                         onChange={(e) => setQuery(e.target.value.toLowerCase())}
                     />
                   </div>
+            </div>
+            {!loading ? 
+            <div>
+            {data.length && finished ?
+                <div className="staffRecords">
+                  
                   <Table data={data} query={query} fetchEmployeeData={fetchEmployeeData}/>
                 </div>
              : <p>There is no staff record.</p>}

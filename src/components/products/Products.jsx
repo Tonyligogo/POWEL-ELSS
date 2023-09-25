@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import './Products.css'
 import axios from 'axios'
-import Sidebar from '../sidebar/sidebar'
 import { Link, useLocation } from 'react-router-dom'
 import { Icon } from '@iconify/react';
 
@@ -10,7 +9,7 @@ axios.defaults.withCredentials = true
 function Products() {
 
   const location = useLocation();
-  const path = location.state.path;
+  // const path = location.state.path;
   const [data, setData] = useState([])
   const [query, setQuery] = useState("");
   const [addedToCart, setAddedToCart] = useState(false);
@@ -45,16 +44,16 @@ async function addToCart(e, id, idx){
 }
 
   return (
-    <div className='home'>
-      <Sidebar/>
-      <div className="homeContainer productContainer">
+    <div>
+      <div className="productContainer">
         <div className="allProductsHeading">  
           <h3>Products</h3>
           <div className="myLinks">
             <Link to="/NewProduct">
               <button>Add new Product</button>
             </Link>
-            <Link to= '/Cart' state={{path:path}}>
+            <Link to= '/Cart' >
+            {/* state={{path:path}} */}
               <button>View Products</button>
             </Link>
           </div>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import "./payslip.css"
-import Sidebar from "../sidebar/sidebar"
 import axios from 'axios'
 
 axios.defaults.withCredentials = true
@@ -53,9 +52,8 @@ function Payslip() {
     }
          
   return (
-    <div className="home">
-        <Sidebar/>
-        <div className="homeContainer">
+    <div>
+        <div>
         <div className='payslipTitle'>
             <h3>Payslip</h3>
         </div>

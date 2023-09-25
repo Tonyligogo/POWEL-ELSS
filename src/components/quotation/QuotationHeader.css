@@ -1,0 +1,34 @@
+.QuotationHeader{
+    margin-bottom: 20px;
+}
+.topOfQuotation{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.topOfQuotation .left span{
+    display: block;
+}
+.topOfQuotation .right{
+    background-color: #d74221;
+    color: white;
+}
+.topOfQuotation .right span.line{
+    padding: 0;
+    border-bottom: 2px solid white;
+}
+.topOfQuotation .right span{
+    display: block;
+    padding: 4px;
+}
+.topOfQuotation .right>:first-child{
+    font-size: 30px;
+    font-weight: 600;
+}
+.topOfQuotation .right>:first-child sup{
+    font-size: 14px;
+}
+.topOfQuotation .right>:last-child{
+    font-size: 14px;
+}
+

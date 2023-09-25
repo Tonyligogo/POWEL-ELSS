@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Sidebar from '../sidebar/sidebar'
 import './Checkout.css'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
@@ -47,9 +46,8 @@ function Checkout() {
               })
       }
   return (
-    <div className='home'>
-      <Sidebar/>
-      <div className="homeContainer">
+    <div>
+      <div>
         <div className="checkoutHeading">  
           <h3>Checkout</h3>
         </div>

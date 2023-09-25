@@ -1,5 +1,4 @@
 import "./servicessummary.css"
-import Sidebar from "../sidebar/sidebar"
 import { Icon } from '@iconify/react';
 import {useState, useEffect} from "react"
 import axios from "axios";
@@ -25,9 +24,8 @@ function ServicesSummary() {
   },[])
 
   return (
-    <div className="home">
-        <Sidebar/>
-          <div className="homeContainer">
+    <div>
+          <div>
             <div className="servicesSummaryHeading">  
                 <h3>Services Summary</h3>
             </div>

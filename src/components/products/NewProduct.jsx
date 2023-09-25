@@ -3,7 +3,6 @@ import './NewProduct.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import Sidebar from '../sidebar/sidebar';
 
 function NewProduct() {
     const navigate = useNavigate();
@@ -53,9 +52,8 @@ function NewProduct() {
     }
 
   return (
-    <div className='home'>
-        <Sidebar/>
-        <div className="homeContainer">
+    <div>
+        <div>
             <div className="productHeading">  
                 <h3>New Product</h3>
             </div>

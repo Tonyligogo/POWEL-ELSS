@@ -26,7 +26,7 @@ const Table = ({ data, query, error }) => {
                   <td>{item.date}</td>
                   <td>{item.product_details?.totalQty}</td>
                   <td>{item.product_details?.totalPrice}</td>
-                  <td>{item.purchase_status}</td>
+                  <td> <span className="statusBtn">{item.purchase_status}</span></td>
                 </tr>
             ))}
             </tbody> 

@@ -1,6 +1,7 @@
 import React from 'react'
 import {Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, PointElement, LineElement, Legend} from "chart.js"
 import {Bar} from "react-chartjs-2"
+import './BarChart.css'
 
 ChartJS.register(
     CategoryScale,
@@ -15,7 +16,7 @@ ChartJS.register(
 function BarChart() {
 
   var data = {
-    labels: ['Monday','Tuesday','Wednesday','Thursday','Friday'],
+    labels: ['Mon','Tue','Wed','Thu','Fri'],
     datasets: [{
       label: 'Sales',
       data: [650, 590, 800, 810, 560],
@@ -71,7 +72,7 @@ function BarChart() {
   }
 
   return (
-    <div>
+    <div className='chartBox'>
       <Bar
         data={data}
         options={options}

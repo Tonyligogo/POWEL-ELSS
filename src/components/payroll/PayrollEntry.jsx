@@ -1,6 +1,5 @@
 import './PayrollEntry.css'
 import { useState } from 'react'
-import Sidebar from '../sidebar/sidebar'
 import axios from 'axios'
 import { Icon } from '@iconify/react';
 import { useNavigate } from 'react-router-dom';
@@ -56,9 +55,8 @@ function PayrollEntry() {
           }, 2000);
     }
   return (
-    <div className='newUser home'>
-        <Sidebar/>
-        <div className="newUserContainer homeContainer">
+    <div className='newUser'>
+        <div className="newUserContainer">
             <div className="newUserTitle">
                 <h3>Add New Payroll</h3>
             </div>

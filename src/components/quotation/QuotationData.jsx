@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import './QuotationData.css'
 import axios from "axios";
 import {  Link, useParams } from "react-router-dom";
-import Sidebar from "../sidebar/sidebar"
 import ReactToPrint from "react-to-print"
+import QuotationHeader from "./QuotationHeader";
+
 axios.defaults.withCredentials = true
 
 function QuotationData() {
@@ -27,33 +29,28 @@ function QuotationData() {
       },[id])
 
   return (
-    <div className='home'>
-    <Sidebar/>
-    <div className="homeContainer">
-      <div className="allProductsHeading">  
-        <h3>Quotation</h3>
-      </div>
+    <div>
+    <div>
         <div className='allProducts invoiceToPrint'>
-        <ReactToPrint
-            trigger={() => <button className="print">Print/Download</button>}
-            content={() => componentRef.current}
-            onAfterPrint={()=> setDisabled(false)}
-          />
-            <div ref={componentRef}>
-            <div className="recordsTableContainer invoiceTable">
+            <div ref={componentRef} >
+            <div className="recordsTableContainer invoiceTable" style={{padding: '4px'}}>
+              <QuotationHeader/>
             <div className="invoiceDetails">
-              {data ? <div className="saleDetails">
+              {data ? <div className="saleDetails customerInformation">
                               <span>Bill To</span>
-                              <span>{data.customer?.name}</span>
+                              {/* <span>{data.customer?.name}</span>
                               <span>{data.customer?.address}</span>
-                              <span>{data.customer?.email}</span>
+                              <span>{data.customer?.email}</span> */}
+                              <small>{data.customer?.name}</small>
+                              <small>{data.customer?.address}</small>
+                              <small>{data.customer?.email}</small>
                       </div>
                 : null}
               {data ? <div className="saleDetails">
-                              <span>Invoice no. {data.ref_code}</span>
-                              <span>Date {data.date}</span>
-                              <span>Due date {data.due_date}</span>
-                              <span>Terms {data.terms}</span>
+                              <span>Quotation no.: <small>{data.ref_code}</small></span>
+                              <span>Date: <small>{data.date}</small></span>
+                              <span>Due date: <small>{data.due_date}</small></span>
+                              <span>Terms: <small>{data.terms}</small></span>
                       </div>
                 : null}
             </div>
@@ -84,8 +81,13 @@ function QuotationData() {
             </div>
             </div>
             <div className="invoiceButtons">
-            <button className={`print ${disabled && 'emailBtn'}`} ><a href={`mailto:${data.customer?.email}`}>Email Invoice to {data.customer?.email}</a></button>
-            <button className="print"> <Link to='/'>Go To Home</Link> </button>
+              <button className={`print ${disabled && 'emailBtn'}`} ><a href={`mailto:${data.customer?.email}`}>Email Invoice to {data.customer?.email}</a></button>
+              <ReactToPrint
+              trigger={() => <button className="print">Print/Download</button>}
+              content={() => componentRef.current}
+              onAfterPrint={()=> setDisabled(false)}
+            />
+              <button className="print"> <Link to='/'>Go To Home</Link> </button>
           </div>
       </div>
     </div>

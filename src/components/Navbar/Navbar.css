@@ -1,0 +1,28 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding-inline: 10px;
+}
+.greeting{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.greeting p{
+    margin: 0;
+}
+.dateTime{
+    color: grey;
+}
+.dateTime > :first-child{
+    margin-right: 4px;
+}
+nav>.right{
+    display: flex;
+    flex-direction: column;
+}
+.right small{
+    color: grey;
+}

@@ -1,34 +1,10 @@
-.homeContainer .deductionWrapper{
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    margin-inline: 20px;
-}
-.deductionFormTitle{
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    padding: 10px;
-    margin: 0 20px;
-    font-size: large;
-    color: #d74221;
-}
-.deductionForm{
-    padding: 40px 80px 20px 80px;
-}
-.deductionForm label{
-    width: 80px;
-    display: inline-block;
-}
-.deductionForm >div{
-    margin-bottom: 20px;
- }
+
  button{
     background: transparent;
     border: none;
     background-color: #d74221;
     color: white;
-    padding: 5px 12px;
+    padding: 5px 18px;
     border-radius: 4px;
     cursor: pointer;
  }

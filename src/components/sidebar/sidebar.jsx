@@ -19,11 +19,11 @@ function openDropdown2(){
   setDropdown2((prev)=> !prev);
   setDropdown(false);
 } 
-const {removeToken} = useAuthContext();
+const {currentUser, removeToken} = useAuthContext();
 const navigate = useNavigate();
 function handleLogOut(e){
   e.preventDefault()
-  const data = {email:"tonyligogo@gmail.com", password:"tonyliboso"}
+  const data = {email:currentUser, password:"tonyliboso"}
   axios.post("http://localhost:5000/api/auth/logout",data,{
     headers: {authorization: "jwt " + sessionStorage.getItem("token")}
   })

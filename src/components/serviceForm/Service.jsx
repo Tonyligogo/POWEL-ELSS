@@ -1,6 +1,5 @@
 import './service.css';
 import React, { useEffect, useState } from 'react';
-import Sidebar from '../sidebar/sidebar';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
 
@@ -84,9 +83,8 @@ function Service() {
       }
 
   return (
-    <div className="home">
-        <Sidebar/>
-        <div className="homeContainer">
+    <div>
+        <div>
             <div className='serviceFormTitle'>
                 <h3>Service Form</h3>
             </div>

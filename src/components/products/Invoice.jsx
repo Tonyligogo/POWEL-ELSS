@@ -1,5 +1,4 @@
 import axios from "axios"
-import Sidebar from "../sidebar/sidebar"
 import './Invoice.css'
 import { useEffect, useRef, useState } from "react"
 import ReactToPrint from "react-to-print"
@@ -37,9 +36,8 @@ function Invoice() {
           }
          
   return (
-    <div className='home'>
-    <Sidebar/>
-    <div className="homeContainer">
+    <div>
+    <div>
       <div className="allProductsHeading">  
         <h3>Invoice</h3>
       </div>

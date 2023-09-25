@@ -1,5 +1,4 @@
 import "./table.css"
-import { Icon } from '@iconify/react';
 import { useState } from "react";
 import DeleteStaff from "./DeleteStaff"
 const Table = ({ data, query, fetchEmployeeData }) => {
@@ -20,7 +19,6 @@ const Table = ({ data, query, fetchEmployeeData }) => {
         <table className="staffRecordsTable">
             <thead className="staffTHead">
                 <tr>
-                    <th></th>
                     <th>P_No</th>
                     <th>Name</th>
                     <th>ID_No</th>
@@ -35,15 +33,13 @@ const Table = ({ data, query, fetchEmployeeData }) => {
                 })
                 .map((item,idx) => (
                 <tr key={item._id}>
-                  <td>{idx}</td>
                   <td>{item.P_no}</td>
                   <td>{`${item.first_name} ${item.last_name}`}</td>
                   <td>{item.id_no}</td>
                   <td>{item.job_title}</td>
                   <td>{item.phone_no}</td>
                   <td className="clickable">  
-                     <Icon icon="fluent-mdl2:delete" color="#d74221" width="24" onClick={()=>openDelete(item._id, item.first_name, item.last_name)} /> 
-                  </td>
+                    <button className="deleteBtn" onClick={()=>openDelete(item._id, item.first_name, item.last_name)}>Delete</button>                  </td>
                 </tr>
             )) : null}
             </tbody>

@@ -65,7 +65,7 @@ function DeleteStaff({pid, firstName, lastName, closeModal, fetchEmployeeData}) 
                       <CircularProgress size="24px" className="progress"/> 
                       :
                       <>
-                      <p>Are you sure you want to delete {firstName} {lastName}?</p>
+                      <p>Are you sure you want to delete <span className="staffName">{firstName} {lastName}</span> from the records?</p>
                       <div className="btns">
                           <button onClick={handleDelete} >YES</button>
                           <button onClick={closeModal} >No</button>

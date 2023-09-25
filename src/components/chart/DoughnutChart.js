@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {Chart as ChartJS, ArcElement,Tooltip, Legend} from "chart.js"
 import {Doughnut} from "react-chartjs-2"
+import './DoughnutChart.css'
 
 ChartJS.register(
     ArcElement,
@@ -42,7 +43,7 @@ function DoughnutChart({sales, expenses}) {
     cutout: 80
   };
   return (
-    <div>
+    <div className='doughnutBox'>
       <Doughnut
         data={data}
         options={options}

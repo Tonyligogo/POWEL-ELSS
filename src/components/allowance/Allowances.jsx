@@ -1,6 +1,5 @@
 import './allowances.css'
 import { useState } from 'react'
-import Sidebar from '../sidebar/sidebar'
 import axios from 'axios'
 
 axios.defaults.withCredentials = true
@@ -55,9 +54,8 @@ function Allowances() {
       }
 
   return (
-    <div className="allowance home">
-        <Sidebar/>
-        <div className='allowanceContainer homeContainer'>
+    <div className="allowance">
+        <div className='allowanceContainer'>
             <div className='allowancesFormTitle'><h3>Allowances Form</h3></div>
             <div className="allowancesWrapper">
                 <form className="allowancesForm" onSubmit={saveDetails}>

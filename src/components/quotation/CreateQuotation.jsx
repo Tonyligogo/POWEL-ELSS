@@ -1,13 +1,10 @@
 import CustomerRecsTemplate from "../customers/CustomerRecsTemplate"
-import Sidebar from "../sidebar/sidebar"
-
 
 function CreateQuotation() {
     const path = 'quotation'
   return (
-    <div className='newUser home'>
-        <Sidebar/>
-        <div className="newUserContainer homeContainer">
+    <div className='newUser'>
+        <div className="newUserContainer">
             <div className="newUserTitle">
                 <h3>Generate quotation</h3>
             </div>

@@ -1,33 +1,39 @@
-.expenseContainer .expenseTitle{
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    padding: 10px;
-    margin: 0 20px;
-    font-size: large;
-    color: #d74221;
+.expense{
+    display: flex;
+    justify-content: center;
 }
-.expenseForm{
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    padding: 20px 10px;
-    margin-inline: 20px;
-    font-weight: 600;
+.expenseContainer{
+    width: max-content;
+    outline: 1px solid lightgrey;
+    border-radius: 10px;
+    padding: 40px 60px;
+    /* padding: 40px; */
+}
+.expenseTitle h3{
+    font-size: 24px;
+    color: #d74221;
+    margin: 0;
+    margin-bottom: 30px;   
 }
 .expenseForm form{
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
+.expenseForm form .formInput{
+    align-items: center;
+}
 .expenseForm form .formInput input{
     font-size: 14px;
+    width: 200px;
+    height: 22px;
+    padding: 0;
 }
 .expenseForm form .formInput label{
     width: 160px;
 }
 .expenseForm form .formInput .outputField{
-    width: 184px;
+    width: 200px;
     height: 22px;
     margin: 0;
 }

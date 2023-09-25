@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState} from "react";
 import './login.css';
 import myImage from '../images/powelElssLogo.jpg';
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
 import { server } from "../server";
 import { useAuthContext} from "../context/AuthProvider";
 import { CircularProgress } from "@mui/material";
 import { Icon } from '@iconify/react';
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const userRef = useRef();
@@ -14,19 +14,31 @@ function Login() {
   const [formValues, setFormValues] = useState({email:'',password:''});
   const [, setUserFocus] = useState(false);
   const[errMsg, setErrMsg] = useState(''); 
+  const[passwordType, setPasswordType] = useState(true); 
+  const {setToken, setLoading, setUser, authenticated, loading} = useAuthContext();
+  const navigate = useNavigate();
 
   useEffect(()=>{
     userRef.current.focus();
   },[]);
-
   useEffect(()=>{
     setErrMsg('');
   },[formValues])
+  useEffect(()=>{
+    if(authenticated){
+      navigate('/')
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
+  
 
   function handleChange(e){
     setFormValues({...formValues, [e.target.name]:e.target.value})
   }
-  const {setToken, setLoading, loading} = useAuthContext();
+  function showPassword(e){
+    e.preventDefault()
+    setPasswordType((prev)=>!prev)
+  }
   async function handleLogin(e){
     e.preventDefault();
     setLoading(true)
@@ -34,6 +46,7 @@ function Login() {
     await axios.post(`${server}/api/auth/login`, data)
     .then((res) => {
       setToken(res.data.authorization)
+      setUser(res.data.user)
       setFormValues({email:'',password:''})
       // navigate("/");
       window.location.href = "/"
@@ -64,25 +77,36 @@ function Login() {
                   <span className="title">Log in to powel-elss</span>
                   {errMsg &&<p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}> <Icon icon="clarity:error-solid" color="red" width="22" /> {errMsg}</p>}
                   <form onSubmit={handleLogin}>
-                    <input 
-                      type="email" 
-                      value={formValues.email} 
-                      ref={userRef} 
-                      name="email"
-                      placeholder='Your email'  
-                      autoComplete="off" 
-                      onFocus={()=>setUserFocus(true)}
-                      required 
-                      onChange={handleChange}
-                    />
-                    <input 
-                      type="password" 
-                      value={formValues.password}
-                      name="password" 
-                      placeholder='password'
-                      required 
-                      onChange={handleChange}
-                    />
+                    <div className="inputBox">
+                      <input 
+                        type="email" 
+                        value={formValues.email} 
+                        ref={userRef} 
+                        name="email"
+                        autoComplete="off" 
+                        onFocus={()=>setUserFocus(true)}
+                        required 
+                        onChange={handleChange}
+                      />
+                      <span className="placeHolder">Email</span>
+                    </div>
+                    <div className="passwordWrapper">
+                      <div className="inputBox">
+                        <input 
+                          type={passwordType ? 'password' : 'text'} 
+                          value={formValues.password}
+                          name="password" 
+                          required 
+                          onChange={handleChange}
+                        />
+                        <span className="placeHolder">Password</span>
+                      </div>
+                      <div className="passIcon">
+                      {passwordType ?
+                       <Icon icon="basil:eye-closed-outline" width="28" color="rgb(109, 109, 109)" onClick={showPassword}/>
+                      : <Icon icon="basil:eye-outline" width="28" color="rgb(109, 109, 109)" onClick={showPassword}/>}
+                      </div>
+                    </div>
                     {loading ? <CircularProgress size="24px" className="progress"/>
                     :<button>Sign in</button>}
                   </form> 

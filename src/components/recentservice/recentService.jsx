@@ -2,14 +2,17 @@ import './recentservice.css';
 import { CircularProgress } from "@mui/material";
 
 
-function RecentService({data, error, loading}) {
+function RecentService({data, error, isError, loading}) {
+  if(isError){
+    return <p>{error.message}</p>
+  }
 
   return (
     <>
     {loading ? 
     <CircularProgress size="24px" className="progress"/>
     :
-    data.map((item)=>(
+    data?.data.orders.slice(-3).map((item)=>(
       <div className='recentService' key={item._id}>
         <span>{item.customer.name}</span>
         <span>Ksh {item.product_details?.totalPrice}</span>

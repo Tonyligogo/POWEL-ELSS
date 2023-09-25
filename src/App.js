@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
+import { createBrowserRouter, Route, RouterProvider, createRoutesFromElements} from "react-router-dom";
 import LoginPage from "./pages/Login";
 import HomePage from "./pages/Home";
 import DeductionForm from "./components/deduction/deduction";
@@ -21,7 +21,7 @@ import Products from "./components/products/Products";
 import NewProduct from "./components/products/NewProduct";
 import Checkout from "./components/products/Checkout";
 import Invoice from "./components/products/Invoice";
-import { useAuthContext} from "./context/AuthProvider";
+// import { useAuthContext} from "./context/AuthProvider";
 import PrivateRoute from "./RequireAuth/PrivateRoute";
 import ServiceInvoice from "./components/servicessummary/ServiceInvoice";
 import NewCustomer from "./components/customers/NewCustomer";
@@ -30,11 +30,53 @@ import Quotation from "./components/quotation/Quotation";
 import QuotationData from "./components/quotation/QuotationData";
 import MakeSale from "./components/makeSale/MakeSale";
 import CreateQuotation from "./components/quotation/CreateQuotation";
+import Layout from "./Layout/Layout";
+import {QueryClient, QueryClientProvider } from "react-query";
+
+
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route>
+      <Route path="LoginPage" element={<LoginPage />} />
+    <Route path="/" element={<Layout/>}>
+      <Route index element={<PrivateRoute> <HomePage /> </PrivateRoute>} />
+      <Route path="DeductionForm" element={<DeductionForm />} />
+      <Route path="AllowancesForm" element={<AllowancesForm />} />
+      <Route path="PaySlipForm" element={<PaySlipForm />} />
+      <Route path="ItemForm" element={<ItemForm />} />
+      <Route path="ServiceForm" element={<ServiceForm />} />
+      <Route path="Sidebar" element={<Sidebar />} />
+      <Route path="NewUser" element={<NewUser />} />
+      <Route path="StaffRecords" element={<StaffRecords />} /> 
+      <Route path="StaffRecords/delete/:id" element={<DeleteStaff />} />
+      <Route path="ExpenseForm" element={<ExpenseForm />} />
+      <Route path="SalesSummary" element={<SalesSummary />} />
+      <Route path="ExpensesSummary" element={<ExpensesSummary />} />
+      <Route path="ServicesSummary" element={<ServicesSummary />} />
+      <Route path="NewProduct" element={<NewProduct />} />
+      <Route path="Invoice" element={<Invoice />} />
+      <Route path="service-invoice/:id" element={<ServiceInvoice/>} />
+      <Route path="NewCustomer" element={<NewCustomer />} />
+      <Route path="CustomerRecords" element={<CustomerRecords />} />
+      <Route path="Quotation" element={<Quotation />} />
+      <Route path="CreateQuotation" element={<CreateQuotation />} />
+      <Route path="QuotationData/:id" element={<QuotationData />} />
+      <Route path="MakeSale" element={<MakeSale />} />
+      <Route path="Products" element={<Products />} />
+      <Route path="Checkout" element={<Checkout />} />
+      <Route path="Cart" element={<Cart />} />
+      
+      <Route path="*" element={<ErrorPage />} />
+    </Route>
+    </Route>
+  )
+);
 
 function App() {
   const [loading, setLoading] = React.useState(true);
   const preLoader = document.getElementById("preLoader");
-
+  const queryClient = new QueryClient();
   if (preLoader) {
     setTimeout(() => {
       preLoader.style.display = "none";
@@ -42,59 +84,12 @@ function App() {
     }, 3000);
   }
 
-  const {authToken} = useAuthContext();
-
-  const ProtectedRoute = ({ children }) => {
-    if (!authToken) {
-      return <Navigate to="/LoginPage" replace/>;
-    }
-    return children
-  };
 
   return (
     !loading && (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/">
-            <Route
-              index
-              element={<ProtectedRoute>
-                <HomePage />
-              </ProtectedRoute>
-            }
-            />
-            <Route path="DeductionForm" element={ <PrivateRoute> <DeductionForm /> </PrivateRoute>} />
-            <Route path="LoginPage" element={<LoginPage />} />
-            {/* <Route path="DeductionForm" element={<DeductionForm />} /> */}
-            <Route path="AllowancesForm" element={<AllowancesForm />} />
-            <Route path="PaySlipForm" element={<PaySlipForm />} />
-            <Route path="ItemForm" element={<ItemForm />} />
-            <Route path="ServiceForm" element={<ServiceForm />} />
-            <Route path="Sidebar" element={<Sidebar />} />
-            <Route path="NewUser" element={<NewUser />} />
-            <Route path="StaffRecords" element={<StaffRecords />} /> 
-            <Route path="StaffRecords/delete/:id" element={<DeleteStaff />} />
-            <Route path="ExpenseForm" element={<ExpenseForm />} />
-            <Route path="SalesSummary" element={<SalesSummary />} />
-            <Route path="ExpensesSummary" element={<ExpensesSummary />} />
-            <Route path="ServicesSummary" element={<ServicesSummary />} />
-            <Route path="NewProduct" element={<NewProduct />} />
-            <Route path="Invoice" element={<Invoice />} />
-            <Route path="service-invoice/:id" element={<ServiceInvoice/>} />
-            <Route path="NewCustomer" element={<NewCustomer />} />
-            <Route path="CustomerRecords" element={<CustomerRecords />} />
-            <Route path="Quotation" element={<Quotation />} />
-            <Route path="CreateQuotation" element={<CreateQuotation />} />
-            <Route path="QuotationData/:id" element={<QuotationData />} />
-            <Route path="MakeSale" element={<MakeSale />} />
-            <Route path="Products" element={<Products />} />
-            <Route path="Checkout" element={<Checkout />} />
-            <Route path="Cart" element={<Cart />} />
-      
-            <Route path="*" element={<ErrorPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     )
   );
 }

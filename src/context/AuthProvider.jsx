@@ -4,20 +4,26 @@ import React, {useContext, useState, useEffect } from "react";
 export const AuthContext = React.createContext({
     authToken: null,
     setToken: () => {},
+    setUser: () => {},
     removeToken: () => {},
-    isAuthenticated: () => false,
-    loading: true
-  
+    loading: true,
+    authenticated: false,
+    currentUser: null
 });
 
 export default function AuthProvider({ children }) {
   const [authToken, setAuthToken] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const [currentUser, setCurrentUser] = useState(null);
+  const [authenticated, setAuthenticated] = useState(false);
+ 
   useEffect(() => {
     const storedAuthToken = sessionStorage.getItem("token");
+    const storedUser = sessionStorage.getItem("user");
     if (storedAuthToken) {
       setAuthToken(storedAuthToken);
+      setCurrentUser(storedUser);
+      setAuthenticated(true)
     } 
     setLoading(false);
   }, []);
@@ -25,21 +31,21 @@ export default function AuthProvider({ children }) {
   const setToken = (token) => {
     setAuthToken(token);
     sessionStorage.setItem("token", token);
+    setAuthenticated(true)
+  };
+  const setUser = (user) => {
+    setCurrentUser(user)
+    sessionStorage.setItem("user", user);
   };
 
   const removeToken = () => {
     setAuthToken(null);
     sessionStorage.removeItem("token");
+    setAuthenticated(false)
   };
-
-
-  const isAuthenticated = () => {
-    return authToken !== null;
-  };
-
   return (
     <AuthContext.Provider
-      value={{  authToken, setToken, removeToken, isAuthenticated, loading, setLoading }}
+      value={{setToken, setUser, currentUser, authToken, removeToken, authenticated, loading, setLoading }}
     >
       {children}
     </AuthContext.Provider>

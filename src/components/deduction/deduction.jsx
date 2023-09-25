@@ -1,5 +1,4 @@
 import "./deduction.css"
-import Sidebar from "../sidebar/sidebar"
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
@@ -73,14 +72,13 @@ function Deduction() {
         }
       }, [error, navigate]);
   return (
-    <div className="deduction home">
-        <Sidebar/>
-        <div className="deductionContainer homeContainer">
-            <div className="deductionFormTitle">
+    <div className="allowance"> {/*uses classes from allowance component because they have same structure*/}
+        <div className="allowanceContainer">
+            <div className="allowancesFormTitle">
                 <h3>Deduction Form</h3>
             </div>
-            <div className="deductionWrapper">
-            <form className="deductionForm" onSubmit={saveDetails}>
+            <div className="allowancesWrapper">
+            <form className="allowancesForm" onSubmit={saveDetails}>
                 <div>
                 <label htmlFor="idNumber">ID No</label>
                         <input type="text" id="idNumber" name="idNo" value={formData.idNo} onChange = {changeValue} />

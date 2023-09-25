@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import Sidebar from '../sidebar/sidebar'
 import { Link, useNavigate } from 'react-router-dom'
 import "./Quotation.css"
 axios.defaults.withCredentials = true
@@ -59,9 +58,8 @@ function Quotation() {
       }
      },[navigate, isComplete, invoice])
   return (
-    <div className='home'>
-      <Sidebar/>
-      <div className="homeContainer">
+    <div>
+      <div>
         <div className="checkoutHeading">  
           <h3>Quotation</h3>
         </div>

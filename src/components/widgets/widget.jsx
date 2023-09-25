@@ -59,7 +59,7 @@ switch(type){
     <div className='widget'>
         <div className="left">
             <p className='top'><span className={`leftIcon + ${data.iconBg}`}>{data.leftIcon}</span>{data.top}</p>
-            <Link to= {`/${data.link}`} >{data.link}</Link>
+            <Link to= {`/${data.link}`} >View Summary</Link>
         </div>
         <div className="right">
             <img src={data.rightIcon} alt="" />

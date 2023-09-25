@@ -1,8 +1,0 @@
-.recordsTableContainer{
-    overflow-y: auto;
-    height: calc(100vh - 35vh);
-}
-tbody tr:hover{
-    background-color: rgb(241, 240, 255);
-    cursor: pointer;
-}

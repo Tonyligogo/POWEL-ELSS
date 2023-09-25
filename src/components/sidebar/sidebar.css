@@ -1,16 +1,13 @@
 .aside{
     min-height: 100vh;
-    flex: 1;
-    /* background-color: #191f2f; */
-    /* background-color: #0a0f17; */
 }
 aside{
     padding-inline: 12px 8px;
     position: relative;
     min-height: 100vh;
-    box-shadow: 4px 0px 8px 0px rgba(201,201,201,0.47);
+    /* box-shadow: 4px 0px 8px 0px rgba(201,201,201,0.47);
     -webkit-box-shadow: 4px 0px 8px 0px rgba(201,201,201,0.47);
-    -moz-box-shadow: 4px 0px 8px 0px rgba(201,201,201,0.47);
+    -moz-box-shadow: 4px 0px 8px 0px rgba(201,201,201,0.47); */
 }
 aside p{
     margin: 0;
@@ -33,26 +30,32 @@ aside span.heading{
     place-items: center;
     padding-left: 14px;
     transition: all 300ms ease;
+    padding-block: 4px;
 }
 .homeButton:hover{
-    color: #d74221;
-    margin-left: 8px;
+    color: white;
+    background-color: #d74221;
+    /* padding-block: 4px; */
+    border-radius: 4px;
+    /* margin-left: 8px; */
 }
 .homeButton.active:hover{
     color: white;
-    margin: 0;
+    margin: 10px 0;
 }
 .nav{
     display: flex;
     place-items: center;
     padding-left: 14px;
     margin: 18px 0;
-    transition: all 300ms ease;
+    transition: all 0.5s ease;
     gap: 8px;
 }
 .nav:hover{
-    color: #d74221;
-    margin-left: 8px;
+    color: white;
+    background-color: #d74221;
+    border-radius: 4px;
+    padding-block: 5px;
 }
 .icon{
     margin-right: 8px;
@@ -71,7 +74,7 @@ aside span.heading{
 .linksWrapper p:hover{
     color: #d74221;
     cursor: pointer;
-    margin-left: 8px;
+    /* margin-left: 8px; */
 }
 .linksWrapper ul{
     display: none;

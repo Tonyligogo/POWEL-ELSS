@@ -1,5 +1,4 @@
 import { Link, useLocation } from 'react-router-dom'
-import Sidebar from '../sidebar/sidebar'
 import './Cart.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
@@ -29,9 +28,8 @@ function Cart() {
   }
 
   return (
-    <div className='home'>
-      <Sidebar/>
-      <div className="homeContainer">
+    <div>
+      <div>
         <div className="allProductsHeading">  
           <h3>Cart</h3>
               <Link to={path === 'quotation' ? "/Quotation": "/Checkout"}>

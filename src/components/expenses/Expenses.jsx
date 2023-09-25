@@ -1,8 +1,7 @@
 import './expenses.css'
-import Sidebar from "../sidebar/sidebar"
 import axios from 'axios'
 import { useState } from 'react'
-
+import { nanoid } from 'nanoid';
 axios.defaults.withCredentials = true
 
 function Expenses() {
@@ -16,9 +15,10 @@ function Expenses() {
     function changeValue(e){
         setFormData({...formData, [e.target.name]:e.target.value})
     }
+    const invCode = nanoid(10)
     const currentDate = new Date().toLocaleDateString();
     const data = {
-        code:1234,
+        code:invCode,
         service_item_name:formData.service,
         total_cost: formData.cost,
         recorded_by: formData.recordedBy,
@@ -49,33 +49,32 @@ function Expenses() {
 
 
   return (
-    <div className='expense home'>
-        <Sidebar/>
-        <div className="expenseContainer homeContainer">
+    <div className='expense'>
+        <div className="expenseContainer">
             <div className="expenseTitle">
                 <h3>Expenses Form</h3>
             </div>
             <div className="expenseForm">
                 <form onSubmit={saveDetails}>
                     <div className="formInput">
-                        <label>Code</label>
-                        <label className='outputField'>1234</label>
-                    </div>
-                    <div className="formInput">
                         <label>Service/ Item name</label>
-                        <input type="text" placeholder='Service or Item name' name='service' value={formData.service} onChange = {changeValue}/>
+                        <input type="text" name='service' value={formData.service} onChange = {changeValue}/>
                     </div>
                     <div className="formInput">
                         <label>Total Cost</label>
-                        <input type="text" placeholder='Total cost' name='cost' value={formData.cost} onChange = {changeValue}/>
+                        <input type="text" name='cost' value={formData.cost} onChange = {changeValue}/>
                     </div>
                     <div className="formInput">
                         <label>Recorded by</label>
-                        <input type="text" placeholder='Recorded by' name='recordedBy' value={formData.recordedBy} onChange = {changeValue}/>
+                        <input type="text" name='recordedBy' value={formData.recordedBy} onChange = {changeValue}/>
                     </div>
                     <div className="formInput">
                         <label>Date</label>
                         <label className='outputField'>{currentDate}</label>
+                    </div>
+                    <div className="formInput">
+                        <label>Code</label>
+                        <label className='outputField'>{invCode}</label>
                     </div>
                     <button>Save</button>
                 </form>
