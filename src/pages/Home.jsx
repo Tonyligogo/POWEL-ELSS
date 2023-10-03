@@ -4,11 +4,11 @@ import Recents from '../components/recents/recents';
 import RecentService from '../components/recentservice/recentService'
 import BarChart from '../components/chart/BarChart';
 import axios from 'axios';
-import { useAuthContext} from "../context/AuthProvider";
+// import { useAuthContext} from "../context/AuthProvider";
 import { useQuery } from 'react-query';
 
 function Home() {
-  const {authToken, authenticated} = useAuthContext();
+  // const {authToken, authenticated} = useAuthContext();
 
   const {isLoading: ordersLoading, data:orders, isError:isOrdersError, error:ordersError} = useQuery('orders', ()=>{
     return axios.get("http://localhost:5000/api/dashboard/all-orders",
@@ -47,7 +47,7 @@ function Home() {
           </div>
         <div className="bottomContainer">
           <div className="left">
-            <BarChart/>
+            <BarChart expenses={expenses} sales={orders} salesLoading={ordersLoading} loading={expensesLoading}/>
           </div>
           <div className="right">
             <h3>Recent Services</h3>

@@ -3,26 +3,29 @@ import './Products.css'
 import axios from 'axios'
 import { Link, useLocation } from 'react-router-dom'
 import { Icon } from '@iconify/react';
+import { ThreeDots } from 'react-loader-spinner';
+import { useQuery } from 'react-query';
+import { CircularProgress } from "@mui/material";
+import toast from 'react-hot-toast';
 
 axios.defaults.withCredentials = true
 
 function Products() {
 
   const location = useLocation();
-  // const path = location.state.path;
-  const [data, setData] = useState([])
+  const path = location.state?.path;
   const [query, setQuery] = useState("");
   const [addedToCart, setAddedToCart] = useState(false);
   const [loading, setLoading] = useState(false);
   const [rowId, setRowId] = useState('');
-  useEffect(() => {
-      axios.get("http://localhost:5000/api/dashboard/all-products",{
-          headers: {authorization: "jwt " + sessionStorage.getItem("token")}
-        })
-      .then((response)=>{
-          setData(response.data.products)
-      })
-},[]);
+
+  const products = ()=>{
+    return axios.get("http://localhost:5000/api/dashboard/all-products",
+    {
+      headers: {authorization: "jwt " + sessionStorage.getItem("token")}
+    }) 
+  }
+  const {isLoading, data} =useQuery('products',products)
   
 async function addToCart(e, id, idx){
   e.preventDefault()
@@ -42,25 +45,20 @@ async function addToCart(e, id, idx){
     setAddedToCart(false);
   }, 2000);
 }
-
+useEffect(()=>{
+  if(addedToCart){
+    toast.success('Added to cart successfully', {
+        id:'addedToCart'
+    })
+  }
+},[addedToCart])
   return (
     <div>
       <div className="productContainer">
         <div className="allProductsHeading">  
           <h3>Products</h3>
           <div className="myLinks">
-            <Link to="/NewProduct">
-              <button>Add new Product</button>
-            </Link>
-            <Link to= '/Cart' >
-            {/* state={{path:path}} */}
-              <button>View Products</button>
-            </Link>
-          </div>
-        </div>
-        <div className="allProducts">
-          <div className='messageAndSearchBar'>
-            <div className="searchBarStaff">
+          <div className="searchBarStaff">
                 <Icon icon="mdi:search" color="gray" width="20" />
                 <input
                     className="search"
@@ -68,8 +66,27 @@ async function addToCart(e, id, idx){
                     onChange={(e) => setQuery(e.target.value.toLowerCase())}
                 />
             </div>
-            { addedToCart && <p className='successMessage'> <Icon icon="mdi:success-circle" color="green" /> Item added to cart successfully</p>}
+            <Link to="/NewProduct">
+              <button>Add new Product</button>
+            </Link>
+            <Link to= '/Cart' state={{path}}>
+              <button>View Cart</button>
+            </Link>
           </div>
+        </div>
+        {isLoading ? 
+            <div className="loader">
+              <ThreeDots 
+              height="80" 
+              width="80" 
+              radius="9"
+              color="#d74221" 
+              ariaLabel="three-dots-loading"
+              visible={true}
+              />
+            </div>
+            : 
+        <div className="allProducts">
           <div className="recordsTableContainer">
                 <table className="staffRecordsTable">
                     <thead className="staffTHead">
@@ -84,7 +101,7 @@ async function addToCart(e, id, idx){
                         </tr>
                     </thead>
                     <tbody className="staffTBody">
-                        {data.length ? data.filter((name)=>{
+                        {data?.data?.products?.length ? data?.data?.products?.filter((name)=>{
                           return query === '' ? name : name.name.toLowerCase().includes(query) || name.category.toLowerCase().includes(query);
                         })
                         .map((item,idx) => (
@@ -96,7 +113,7 @@ async function addToCart(e, id, idx){
                           <td>{item.price}</td>
                           <td>
                             {loading && rowId === idx? 
-                              <button>...</button> 
+                              <button><CircularProgress size="14px" className="progress"/>Adding...</button> 
                             :
                               <button onClick={(e) => addToCart(e,item._id, idx)}>Add to cart</button>}
                           </td>
@@ -108,7 +125,7 @@ async function addToCart(e, id, idx){
                     </tbody>
                 </table>
           </div>
-        </div> 
+        </div> }
       </div>
     </div>
   )

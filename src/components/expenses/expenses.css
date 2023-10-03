@@ -1,13 +1,14 @@
 .expense{
+    height: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .expenseContainer{
     width: max-content;
     outline: 1px solid lightgrey;
     border-radius: 10px;
     padding: 40px 60px;
-    /* padding: 40px; */
 }
 .expenseTitle h3{
     font-size: 24px;
@@ -39,4 +40,8 @@
 }
 .expenseForm form button{
     width: max-content;
+}
+.expenseForm form button > .progress{
+    color: white !important;
+    margin-right: 8px;
 }

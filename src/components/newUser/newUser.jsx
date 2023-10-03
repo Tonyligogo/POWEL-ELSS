@@ -1,11 +1,9 @@
-import { useState } from 'react'
-// import Sidebar from '../sidebar/sidebar'
+import { useEffect, useState } from 'react'
 import './newUser.css'
 import axios from 'axios'
-import { Icon } from '@iconify/react';
 import { useNavigate } from 'react-router-dom';
 import { CircularProgress } from "@mui/material";
-
+import toast from 'react-hot-toast';
 
 function NewUser() {
     const navigate = useNavigate();
@@ -66,6 +64,14 @@ function NewUser() {
             navigate("/StaffRecords")
           }, 2000);
     }
+    useEffect(()=>{
+        if(userCreated){
+            toast.success('Saved successfully', {
+                id:'userCreated'
+            })
+        }
+    },[userCreated])
+    
   return (
     <div className='newUser'>
         <div className="newUserContainer">
@@ -73,7 +79,7 @@ function NewUser() {
                 <h3>New Staff</h3>
             </div>
             <div className="newUserDetails">
-                <form onSubmit={addStaff}>
+                <form onSubmit={addStaff} className='userInformation'>
                     <div className="personalInfo">
                         <h3>Personal Information</h3>
                         <div className="gridContent">
@@ -125,12 +131,11 @@ function NewUser() {
                         </div>
                     </div>
                     {loading ? 
-                      <CircularProgress size="24px" className="progress"/> 
+                    <button><CircularProgress size="14px" className="progress"/>Saving...</button>
                       :
                       <button type='submit'>Save</button>
                     }
                 </form>
-                { userCreated && <p className='successMessage'> <Icon icon="mdi:success-circle" color="green" /> New staff added successfully</p>}
             </div>
         </div>
 

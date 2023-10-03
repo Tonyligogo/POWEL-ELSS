@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
 import { Icon } from '@iconify/react';
+import { CircularProgress } from "@mui/material";
+import toast from "react-hot-toast";
 
 axios.defaults.withCredentials = true
 
@@ -31,15 +33,18 @@ function Deduction() {
         advances: formData.advances,
         taxes: formData.taxes
     }
-    const [error, setError] = useState(false)
-    const [errMsg, setErrMsg] = useState('')
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [errMsg, setErrMsg] = useState('');
     async function saveDetails(e){
         e.preventDefault()
+        setLoading(true)
         await axios.post("http://localhost:5000/api/dashboard/deduction-entry",data,{
                 headers: {authorization: "jwt " + sessionStorage.getItem("token")}
               })
               .then((response)=>{
-                  console.log(response)
+                setSuccess(true)
                   setFormData({
                     idNo:'',
                     month: '',
@@ -57,9 +62,20 @@ function Deduction() {
                 }else{
                     setErrMsg('An error occured. Refresh the page and try again.')
                 }
-              })
-              
+              }).finally(() => {
+                setLoading(false);
+              });
+              setTimeout(()=>{
+                setSuccess(false)
+              },2000) 
       }
+      useEffect(()=>{
+        if(success){
+          toast.success('Saved successfully', {
+              id:'deductionSaved'
+          })
+        }
+    },[success])
       useEffect(() => {
         if (error) {
           const timeoutId = setTimeout(() => {
@@ -121,7 +137,11 @@ function Deduction() {
                 <label htmlFor="taxes">Taxes</label>
                 <input type="number" name="taxes" id="taxes" value={formData.taxes} onChange = {changeValue}/>
                 </div>
-                <button>Save</button>
+                {loading ? 
+                    <button><CircularProgress size="14px" className="progress"/>Saving...</button>
+                      :
+                      <button type='submit'>Save</button>
+                    }
             </form>
             {errMsg && <p className="deductionError"> <Icon icon="clarity:error-solid" color="red" width="22" /> {errMsg}</p> }
             </div>

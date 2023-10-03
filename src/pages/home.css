@@ -49,4 +49,8 @@
     -moz-box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
     padding: 10px;
     border-radius: 10px;
+    height: max-content;
+}
+.right > h3{
+    margin-block: 10px;
 }

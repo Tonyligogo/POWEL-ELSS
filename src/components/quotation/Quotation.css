@@ -1,14 +1,50 @@
-.select{
-    display: inline-block;
-    margin-bottom: 10px;
-}
 .select>label{
     width: fit-content;
-}
-.select select{
-    display: block;
+    color: black;
+    margin-right: 10px;
 }
 label.outputField{
     font-weight: 500;
     font-size: small;
+}
+.generateQuotationHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.quotationWrapper{
+    padding-inline: 20px;
+}
+.quotationGridContent{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-block:20px 20px;
+}
+
+.quotationGridContent  div > input,
+.quotationGridContent  div > label,
+.quotationGridContent  div > span
+{
+    display: block;
+}
+.quotationGridContent  div > input,
+.quotationGridContent  div > select
+{
+    width: 100%;
+    padding: 0;
+    height: 30px;
+    font-size: 15px;
+    border: 1px solid lightgrey;
+    padding-inline-start: 2px;
+}
+.quotationGridContent  div > span.datesField{
+    width: 100%;
+    padding: 0;
+    border-radius: 4px;
+    height: 24px;
+    font-size: 14px;
+    border: 1px solid lightgrey;
+    padding-inline-start: 4px;
+    padding-block:3px 2px;
 }

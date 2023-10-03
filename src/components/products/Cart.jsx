@@ -8,7 +8,7 @@ function Cart() {
    const [data, setData] = useState([])
    const [error, setError] = useState(false)
    const location = useLocation();
-  const path = location.state.path;
+  const path = location.state?.path;
    useEffect(() => {
       fetchCart()
   },[]);

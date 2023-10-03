@@ -1,7 +1,9 @@
 import './expenses.css'
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { nanoid } from 'nanoid';
+import { CircularProgress } from "@mui/material";
+import toast from 'react-hot-toast';
 axios.defaults.withCredentials = true
 
 function Expenses() {
@@ -24,14 +26,17 @@ function Expenses() {
         recorded_by: formData.recordedBy,
         date: currentDate,
     }
-    const [error, setError] = useState(false)
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
     async function saveDetails(e){
         e.preventDefault()
+        setLoading(true)
         await axios.post("http://localhost:5000/api/dashboard/expenses",data,{
                 headers: {authorization: "jwt " + sessionStorage.getItem("token")}
               })
               .then((response)=>{
-                  console.log(response)
+                setSuccess(true)
                   setFormData({
                     code:'',
                     service:'',
@@ -44,9 +49,20 @@ function Expenses() {
                 if(error.response.status){
                   setError(true)
                 }
-              })
+              }).finally(() => {
+                setLoading(false);
+              });
+              setTimeout(()=>{
+                setSuccess(false)
+              },2000)
       }
-
+      useEffect(()=>{
+        if(success){
+          toast.success('Saved successfully', {
+              id:'expenseSaved'
+          })
+        }
+    },[success])
 
   return (
     <div className='expense'>
@@ -76,7 +92,11 @@ function Expenses() {
                         <label>Code</label>
                         <label className='outputField'>{invCode}</label>
                     </div>
-                    <button>Save</button>
+                    {loading ? 
+                    <button><CircularProgress size="14px" className="progress"/>Saving...</button>
+                      :
+                      <button type='submit'>Save</button>
+                    }
                 </form>
                 {error && <p>Some error occured</p> }
             </div>

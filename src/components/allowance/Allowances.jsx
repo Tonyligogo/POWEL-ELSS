@@ -1,6 +1,8 @@
 import './allowances.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { CircularProgress } from "@mui/material";
+import toast from 'react-hot-toast';
 
 axios.defaults.withCredentials = true
 
@@ -18,6 +20,8 @@ function Allowances() {
     function changeValue(e){
         setFormData({...formData, [e.target.name]:e.target.value})
     }
+    const [loading, setLoading]= useState(false)
+    const [success, setSuccess]= useState(false)
       
     const data = {
         id_no:formData.idNo,
@@ -31,11 +35,12 @@ function Allowances() {
     const [error, setError] = useState(false)
     async function saveDetails(e){
         e.preventDefault()
+        setLoading(true)
         await axios.post("http://localhost:5000/api/dashboard/allowances-entry",data,{
                 headers: {authorization: "jwt " + sessionStorage.getItem("token")}
               })
-              .then((response)=>{
-                  console.log(response)
+              .then(()=>{
+                setSuccess(true)
                   setFormData({
                     idNo:'',
                     month: '',
@@ -51,7 +56,20 @@ function Allowances() {
                   setError(true)
                 }
               })
+              .finally(() => {
+                setLoading(false);
+              });
+              setTimeout(()=>{
+                setSuccess(false)
+              },2000)
       }
+      useEffect(()=>{
+          if(success){
+            toast.success('Saved successfully', {
+                id:'allowanceSaved'
+            })
+          }
+      },[success])
 
   return (
     <div className="allowance">
@@ -101,7 +119,11 @@ function Allowances() {
                     <label htmlFor="transport">Transport</label>
                     <input type="text" name="transport" id="transport" value={formData.transport} onChange = {changeValue}/>
                     </div>
-                    <button type='submit'>Save</button>
+                    {loading ? 
+                        <button><CircularProgress size="14px" className="progress"/>Saving...</button>
+                        :
+                        <button type='submit'>Save</button>
+                    }
                 </form>
                 {error && <p>Some error occured</p> }
             </div>

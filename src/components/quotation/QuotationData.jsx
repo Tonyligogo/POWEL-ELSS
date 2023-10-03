@@ -38,9 +38,6 @@ function QuotationData() {
             <div className="invoiceDetails">
               {data ? <div className="saleDetails customerInformation">
                               <span>Bill To</span>
-                              {/* <span>{data.customer?.name}</span>
-                              <span>{data.customer?.address}</span>
-                              <span>{data.customer?.email}</span> */}
                               <small>{data.customer?.name}</small>
                               <small>{data.customer?.address}</small>
                               <small>{data.customer?.email}</small>

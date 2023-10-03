@@ -4,7 +4,6 @@
     font-weight: 600;
 }
 .allProductsHeading{
-    padding: 10px;
     /* margin: 0 10px; */
     font-size: large;
     color: #d74221;
@@ -12,8 +11,10 @@
     justify-content: space-between;
     align-items: center;
 }
-.myLinks a{
-    margin-left: 10px;
+.myLinks{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 .product button{
     width: max-content;
@@ -36,4 +37,8 @@
 }
 .messageAndSearchBar p{
     margin: 0;
+}
+.staffTBody td button > .progress{
+    color: white !important;
+    margin-right: 8px;
 }

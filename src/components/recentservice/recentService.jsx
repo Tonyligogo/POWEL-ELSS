@@ -1,3 +1,4 @@
+import RecentSaleSkeleton from '../skeleton/RecentSaleSkeleton';
 import './recentservice.css';
 import { CircularProgress } from "@mui/material";
 
@@ -10,7 +11,7 @@ function RecentService({data, error, isError, loading}) {
   return (
     <>
     {loading ? 
-    <CircularProgress size="24px" className="progress"/>
+    <RecentSaleSkeleton />
     :
     data?.data.orders.slice(-3).map((item)=>(
       <div className='recentService' key={item._id}>

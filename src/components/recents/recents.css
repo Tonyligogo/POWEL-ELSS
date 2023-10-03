@@ -1,15 +1,3 @@
 .recentServicesContainer{
-   
-    border-radius: 8px;
-}
-recents{
-    flex: 1;
-    padding: 10px 5px;
-    
-    display: flex;
-    justify-content: space-between;
-    margin-block-end: 10px;
-}
-.recents span{
-    color: rgb(82, 82, 82);
+    height: max-content;
 }

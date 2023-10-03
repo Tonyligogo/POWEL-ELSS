@@ -39,3 +39,7 @@
     border-radius: 8px;
     gap: 4px;
 }
+.userInformation button > .progress{
+    color: white !important;
+    margin-right: 8px;
+}

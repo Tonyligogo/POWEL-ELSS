@@ -13,13 +13,46 @@ ChartJS.register(
     Tooltip
 )
 
-function BarChart() {
+function BarChart({expenses, sales, loading, salesLoading}) {
+  
+  function getDayOfWeek(dateString) {
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const date = new Date(dateString);
+    const dayOfWeek = daysOfWeek[date.getDay()];
+    return dayOfWeek;
+  }
+
+  const salesByDayOfWeek = {};
+  sales?.data?.orders?.forEach(order => {
+    const dayOfWeek = getDayOfWeek(order.createdAt);
+    const totalSales = order?.product_details?.totalPrice
+    if (!salesByDayOfWeek[dayOfWeek]) {
+      salesByDayOfWeek[dayOfWeek] = totalSales;
+    }else{
+      salesByDayOfWeek[dayOfWeek] += totalSales
+    }
+});
+
+  const expensesByDayOfWeek = {};
+  expenses?.data?.expenses?.forEach(expense => {
+  const dayOfWeek = getDayOfWeek(expense.createdAt);
+  const totalExpenses = expense?.total_cost
+  if (!expensesByDayOfWeek[dayOfWeek]) {
+    expensesByDayOfWeek[dayOfWeek] = totalExpenses;
+  }
+  expensesByDayOfWeek[dayOfWeek] += totalExpenses;
+});
+
+const predefinedDayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const salesData = predefinedDayNames.map(dayName => salesByDayOfWeek[dayName] || 0);
+const expensesData = predefinedDayNames.map(dayName => expensesByDayOfWeek[dayName] || 0);
+
 
   var data = {
-    labels: ['Mon','Tue','Wed','Thu','Fri'],
+    labels: predefinedDayNames,
     datasets: [{
       label: 'Sales',
-      data: [650, 590, 800, 810, 560],
+      data:salesData,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(255, 159, 64, 0.2)',
@@ -40,7 +73,7 @@ function BarChart() {
     },
     {
       label: 'Expense',
-      data: [75, 60, 85, 85, 50],
+      data:expensesData,
       backgroundColor: 'rgba(255, 99, 132, 0.2)',
       borderColor: 'rgb(255, 99, 132)',
       tension: 0.4,
@@ -51,17 +84,19 @@ function BarChart() {
   ]
   };
   var options = {
-    aspectRatio: 1/0.4,
+    maintainAspectRatio:false,
     scales:{
       Sales:{
         beginAtZero: true,
         type: 'linear',
-        position: 'right'
+        position: 'right',
+        grid:{display:false}
       },
       Expense:{
         beginAtZero: true,
         type: 'linear',
-        position: 'left'
+        position: 'left',
+        grid:{display:false}
       }
     },
     plugins: {

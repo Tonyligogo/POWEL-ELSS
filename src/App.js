@@ -32,6 +32,7 @@ import MakeSale from "./components/makeSale/MakeSale";
 import CreateQuotation from "./components/quotation/CreateQuotation";
 import Layout from "./Layout/Layout";
 import {QueryClient, QueryClientProvider } from "react-query";
+import { Toaster } from "react-hot-toast";
 
 
 
@@ -74,23 +75,12 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  const [loading, setLoading] = React.useState(true);
-  const preLoader = document.getElementById("preLoader");
   const queryClient = new QueryClient();
-  if (preLoader) {
-    setTimeout(() => {
-      preLoader.style.display = "none";
-      setLoading(false);
-    }, 3000);
-  }
-
-
-  return (
-    !loading && (
-      <QueryClientProvider client={queryClient}>
+  return(
+    <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-      </QueryClientProvider>
-    )
+        <Toaster position='top-right'/>
+    </QueryClientProvider>
   );
 }
 export default App;

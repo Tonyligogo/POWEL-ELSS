@@ -1,6 +1,8 @@
 .allowance{
+    height: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .allowanceContainer{
     width: max-content;
@@ -34,4 +36,8 @@
 {
     width: 202px;
     height: 24px;
+}
+.allowancesForm button > .progress{
+    color: white !important;
+    margin-right: 8px;
 }

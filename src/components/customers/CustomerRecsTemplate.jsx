@@ -2,12 +2,11 @@ import React from 'react'
 import { useEffect, useState } from "react";
 import Table from "./Table";
 import axios from "axios";
-import { Icon } from '@iconify/react';
 import { CircularProgress } from "@mui/material";
 
-function CustomerRecsTemplate({path}) {
+function CustomerRecsTemplate({path, query}) {
 
-    const [query, setQuery] = useState("");
+    // const [query, setQuery] = useState("");
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [finished, setFinished] = useState(false);
@@ -36,14 +35,6 @@ function CustomerRecsTemplate({path}) {
         <div>
         {data.length && finished ?
             <div className="staffRecords">
-              <div className="searchBarStaff">
-                <Icon icon="mdi:search" color="gray" width="20" />
-                <input
-                    className="search"
-                    placeholder="Search..."
-                    onChange={(e) => setQuery(e.target.value.toLowerCase())}
-                />
-              </div>
               <Table data={data} query={query} path={path} fetchCustomerData={fetchCustomerData}/>
             </div>
          : <p>There is no customer record.</p>}

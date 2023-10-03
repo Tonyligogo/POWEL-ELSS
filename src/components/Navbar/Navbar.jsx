@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 function Navbar() {
     const { currentUser} = useAuthContext();
-    const currentDate = new Date().toLocaleDateString();
+    const currentDate = new Date();
     
 const [time, setTime] = useState(new Date().toLocaleTimeString());
 
@@ -21,11 +21,11 @@ useEffect(() => {
     <nav>
         <div className="left">
             <div className="greeting">
-                <p>Hello there, Ligogo</p>
+                <p>Hello there, {currentUser}</p>
                 <Icon icon="noto:waving-hand" width="30" />
             </div>
             <div className="dateTime">
-                <small>{moment(currentDate).format("Do MMM YYYY")}</small>
+                <small>{moment(currentDate, moment.ISO_8601).format("MMM Do YY")}</small>
                 <small>{time}</small>
             </div>
         </div>

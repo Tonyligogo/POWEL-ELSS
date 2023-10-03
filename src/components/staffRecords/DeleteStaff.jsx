@@ -2,10 +2,10 @@ import "./deletestaff.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Icon } from '@iconify/react';
 import { CircularProgress } from "@mui/material";
+import toast from "react-hot-toast";
 
-function DeleteStaff({pid, firstName, lastName, closeModal, fetchEmployeeData}) {
+function DeleteStaff({pid, firstName, lastName, closeModal, refetchEmployeeData}) {
     
   const [error, setError] = useState(false)
   const [errMsg, setErrMsg] = useState('')
@@ -20,12 +20,15 @@ function DeleteStaff({pid, firstName, lastName, closeModal, fetchEmployeeData}) 
             headers: {authorization: "jwt " + sessionStorage.getItem("token")}
           }).then((res)=>{
             setUserDeleted(true)
-            fetchEmployeeData()
+            refetchEmployeeData()
           }).catch((error)=>{
                 if(error.response.status === 401){ 
                   setError(true)
                   setErrMsg('It seems you are not authorized.Try logging in again')
-                }else if(error.request){
+                }else if(error.response){
+                  setErrMsg('Network error. Check connection and try again.')
+                }
+                else if(error.request){
                     setErrMsg('Network error. Check connection and try again.')
                 }else{
                   setErrMsg('An error occured. Refresh the page and try again.')
@@ -33,10 +36,20 @@ function DeleteStaff({pid, firstName, lastName, closeModal, fetchEmployeeData}) 
           }).finally(() => {
             setLoading(false);
           });
-          setTimeout(() => {
+          setTimeout(()=>{
             setUserDeleted(false);
             closeModal()
-          }, 2000);  
+          }, 2000)  
+     }
+     if(userDeleted){
+      toast.success('Record deleted', {
+        id: 'success',
+    })
+     }
+     if(errMsg !== ''){
+      toast.error(errMsg, {
+        id: 'error',
+    })
      }
      useEffect(() => {
       if (error) {
@@ -60,20 +73,18 @@ function DeleteStaff({pid, firstName, lastName, closeModal, fetchEmployeeData}) 
         <div className="modal">
             <h3>Delete</h3>
                 <div>
-                    
-                    {loading ? 
-                      <CircularProgress size="24px" className="progress"/> 
-                      :
-                      <>
                       <p>Are you sure you want to delete <span className="staffName">{firstName} {lastName}</span> from the records?</p>
+                    {loading ? 
+                      <div className="deleteBox">
+                        <CircularProgress size="14px" className="progress"/>
+                        <span>Deleting...</span>
+                      </div> 
+                      :
                       <div className="btns">
                           <button onClick={handleDelete} >YES</button>
                           <button onClick={closeModal} >No</button>
                       </div>
-                      </>
                     }
-                    { userDeleted && <p className='deleteSuccessMessage'> <Icon icon="mdi:success-circle" color="green" /> Record deleted successfully</p>}
-                    {errMsg && <p className="deleteError"> <Icon icon="clarity:error-solid" color="red" width="22" /> {errMsg}</p> }
                 </div>
         </div>
     </div>

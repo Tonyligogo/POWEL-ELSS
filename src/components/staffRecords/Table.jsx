@@ -1,7 +1,7 @@
 import "./table.css"
 import { useState } from "react";
 import DeleteStaff from "./DeleteStaff"
-const Table = ({ data, query, fetchEmployeeData }) => {
+const Table = ({ data, query, refetchEmployeeData}) => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [pid, setPid] = useState('');
@@ -28,7 +28,7 @@ const Table = ({ data, query, fetchEmployeeData }) => {
                 </tr>
             </thead>
             <tbody className="staffTBody">
-                {data.length ? data.filter((name)=>{
+                {data.data.employees.length ? data.data.employees.filter((name)=>{
                   return query === '' ? name : name.first_name.toLowerCase().includes(query) || name.last_name.toLowerCase().includes(query);
                 })
                 .map((item,idx) => (
@@ -52,7 +52,7 @@ const Table = ({ data, query, fetchEmployeeData }) => {
             closeModal={() => {
               setModalOpen(false);
             }}
-            fetchEmployeeData={fetchEmployeeData}
+            refetchEmployeeData={refetchEmployeeData}
           />}
       </div>
     );

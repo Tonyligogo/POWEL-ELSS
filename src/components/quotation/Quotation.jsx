@@ -59,13 +59,9 @@ function Quotation() {
      },[navigate, isComplete, invoice])
   return (
     <div>
-      <div>
         <div className="checkoutHeading">  
           <h3>Quotation</h3>
-        </div>
-          <div className="checkout">
-            <div className='checkoutWrapper'>
-            <div className="select">
+          <div className="select">
               <label htmlFor="select">Select quotation type</label>
               <select name="option" id="select" required onChange={handleSelect}>
                 <option value=''>--Select type--</option>
@@ -74,15 +70,18 @@ function Quotation() {
                 <option value={selectedData.option}>Service and Supply</option>
               </select>
             </div>
+        </div>
+          <div className='quotationWrapper'>
+            <div>
         {selectedData !== "" && 
-              <form>
+              <form className='quotationGridContent'>
                   <div>
                       <label htmlFor="refCode">Ref code</label>
                       <input type="text" id='refCode' name='ref_code' required value={formData.ref_code} onChange={changeValue}/>
                   </div>
                   <div>
                       <label htmlFor="date">Current date</label>
-                      <label className='outputField dateField' >{currentDate}</label>
+                      <span className='datesField'>{currentDate}</span>
                   </div>
                   <div>
                       <label htmlFor="address">Due date</label>
@@ -112,7 +111,6 @@ function Quotation() {
             {selectedData !== "" && <button onClick={checkout}>Save</button>}
           </div>
       </div>
-    </div>
   )
 }
 
