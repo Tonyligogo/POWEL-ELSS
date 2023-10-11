@@ -33,6 +33,7 @@ import CreateQuotation from "./components/quotation/CreateQuotation";
 import Layout from "./Layout/Layout";
 import {QueryClient, QueryClientProvider } from "react-query";
 import { Toaster } from "react-hot-toast";
+import NewQuotation from "./components/newQuotation/NewQuotation";
 
 
 
@@ -67,6 +68,7 @@ const router = createBrowserRouter(
       <Route path="Products" element={<Products />} />
       <Route path="Checkout" element={<Checkout />} />
       <Route path="Cart" element={<Cart />} />
+      <Route path="NewQuotation" element={<NewQuotation />} />
       
       <Route path="*" element={<ErrorPage />} />
     </Route>

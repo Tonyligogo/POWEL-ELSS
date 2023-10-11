@@ -1,6 +1,5 @@
-import RecentSaleSkeleton from '../skeleton/RecentSaleSkeleton';
+import { ThreeDots } from 'react-loader-spinner';
 import './recentservice.css';
-import { CircularProgress } from "@mui/material";
 
 
 function RecentService({data, error, isError, loading}) {
@@ -11,7 +10,16 @@ function RecentService({data, error, isError, loading}) {
   return (
     <>
     {loading ? 
-    <RecentSaleSkeleton />
+    <ThreeDots 
+    height="80" 
+    width="80" 
+    radius="9"
+    color="#d74221" 
+    ariaLabel="three-dots-loading"
+    visible={true}
+    />
+  //   <div className="loader">
+  // </div>
     :
     data?.data.orders.slice(-3).map((item)=>(
       <div className='recentService' key={item._id}>

@@ -35,23 +35,21 @@
     position: sticky;
     top: 0;
     background-color: white;
-    box-shadow: 0px 1px 3px 0px rgba(80, 80, 80, 0.75);
-  -webkit-box-shadow: 0px 1px 3px 0px rgba(80, 80, 80, 0.75);
-  -moz-box-shadow: 0px 1px 3px 0px rgba(80, 80, 80, 0.75);
   }
   tbody tr{
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid lightgrey;
   }
   tbody tr:last-child{
     border-bottom: none;
   }
   th {
     padding: 9px 4px;
-    text-align: center;
+    text-align: left;
+    color: rgb(61, 61, 61);
   }
   td{
     padding: 9px 4px;
-    text-align: center;
+    /* text-align: center; */
   }
   .invoiceDetails{
     display: flex;
@@ -76,4 +74,7 @@
     pointer-events: none;
     background-color: #ffb6a5;
   }
-  
+  input:focus,
+  textarea:focus{
+    outline: none;
+  }

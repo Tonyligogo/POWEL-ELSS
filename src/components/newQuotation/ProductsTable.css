@@ -1,0 +1,51 @@
+.productsDefinitionWrapper{
+    border: 1px solid lightgrey;
+    border-radius: 8px;
+    padding-block: 20px;
+    padding-inline: 20px;
+}
+.productsDefinitionWrapper form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.productsDefinitionWrapper h3{
+    font-weight: 600;
+    margin-top: 0;
+}
+.productsDefinitionWrapper form.productsDefinitionForm > div > textarea,
+.productsDefinitionWrapper form.productsDefinitionForm > div > input
+{
+    border: none;
+    border: 1px solid lightgrey;
+    padding-inline-start: 4px;
+}
+.productsDefinitionWrapper form.productsDefinitionForm > div > input{
+    padding-block: 5px 6px;
+}
+.productsDefinitionWrapper form.productsDefinitionForm > div > label,
+.productsDefinitionWrapper form.productsDefinitionForm > div > input,
+.productsDefinitionWrapper form.productsDefinitionForm > div > textarea
+{
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 15px;
+}
+.tableWrapper{
+    overflow-y: auto;
+    height: 200px;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    padding: 4px;
+    margin-top: 20px;
+}
+.totalSpan{
+    border: 1px solid lightgrey;
+    display: block;
+    width: 100%;
+    padding-inline-start: 4px;
+    padding-block: 4px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}

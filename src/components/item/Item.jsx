@@ -1,8 +1,6 @@
 import React, {useState} from 'react'
 import './item.css';
-import Sidebar from "../sidebar/sidebar";
 import {Modal} from "../item/Modal"
-// import axios from 'axios';
 import { Icon } from '@iconify/react';
 import {nanoid} from "nanoid"
 
@@ -81,56 +79,21 @@ function Item() {
             total:'',
         })
       }
-      const [userCreated, setUserCreated] = useState(false);
       async function handleSaveItem(e){
         e.preventDefault();
-        // const item = {
-        //     invoice_code:newId,
-        //     item:formData.itemName,
-        //     quantity:formData.quantity,
-        //     unit_price:formData.price,
-        //     sub_total:formData.price * formData.quantity,
-        // }
-        // await axios.post("http://localhost:5000/api/dashboard/new-sale", item,{
-        //     headers: {authorization: "jwt " + sessionStorage.getItem("token")}
-        //   })
-        // .then((response)=>{
-        //     setUserCreated(true)
-        // })
-        // .catch((error)=>{
-        //     if(error.response){
-        //         console.log(error.response);
-        //     }else if(error.request){
-        //         console.log('network error')
-        //     }else{
-        //         console.log(error)
-        //     }
-        // })  
-        // setTimeout(() => {
-        //     setUserCreated(false);
-        //     setFormData({
-        //         clientName:'',
-        //         itemName:'',
-        //         price:'',
-        //         quantity:'',
-        //         total:''
-        //     })
-        //   }, 3000);
+      
     }
 
   return (
-    <div className="home">
-        <Sidebar/>
-        <div className='homeContainer'>
-            <div className="itemSaleTitle">
-                <h3>ITEM SALE</h3>
-            </div>
+    <div>
+        <div>
+            
             <div className='itemForm'>
                 <form>
                 <div className="item">
                 <div className="itemDetails">
                     <div>
-                        <label>Client Name</label>
+                        <label>Product description</label>
                         <input type="text" value={formData.clientName} name='clientName' required onChange={changeValue} />
                     </div>
                     <div>
@@ -175,7 +138,6 @@ function Item() {
                     <p className='cartHeading'>
                         Cart
                     </p>
-                    { userCreated && <p className='successMessage'> <Icon icon="mdi:success-circle" color="green" /> Sales information submitted successfully</p>}
                     <div className='tableContainer'>
                 <form>
                     <table>

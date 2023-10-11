@@ -23,7 +23,7 @@ const {currentUser, removeToken} = useAuthContext();
 const navigate = useNavigate();
 function handleLogOut(e){
   e.preventDefault()
-  const data = {email:currentUser, password:"tonyliboso"}
+  const data = {email:currentUser}
   axios.post("http://localhost:5000/api/auth/logout",data,{
     headers: {authorization: "jwt " + sessionStorage.getItem("token")}
   })
@@ -63,6 +63,7 @@ function handleLogOut(e){
               <NavLink to='/CustomerRecords' className='nav'><Icon icon="ion:people-outline" width="20" />Our Customers</NavLink>
               <NavLink to='/CreateQuotation' className='nav'><Icon icon="teenyicons:receipt-outline" width="18" />Generate Quotation</NavLink>
               <NavLink to='/MakeSale' className='nav'><Icon icon="fluent-mdl2:product-catalog" width="21" />Make sale</NavLink>
+              <NavLink to='/NewQuotation' className='nav'><Icon icon="fluent-mdl2:product-catalog" width="21" />New Quotation</NavLink>
             </div>
             <button onClick={handleLogOut} className='logoutButton'><Icon icon="material-symbols:logout" />Log out</button>
         </aside>

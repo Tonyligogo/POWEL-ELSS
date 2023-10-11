@@ -1,11 +1,8 @@
 import axios from "axios";
 import "./Table.css"
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-const Table = ({ data, query, fetchCustomerData, path }) => {
-    const navigate = useNavigate()
+const Table = ({ data, query, path }) => {
   const [pid, setPid] = useState('');
-  const [isComplete, setIsComplete] = useState(false);
   function singleCustomer(Pid){
     setPid(Pid)
     singleCustomerDetails()
@@ -14,11 +11,8 @@ const Table = ({ data, query, fetchCustomerData, path }) => {
     await axios.get("http://localhost:5000/api/dashboard/customer-details/"+pid,{
         headers: {authorization: "jwt " + sessionStorage.getItem("token")}
       }).then((response)=>{
-        setIsComplete(true)
+        console.log(response, 'this is response')
     })
-    if(isComplete){
-      navigate("/Products", { state: { path } })
-    }
   }
 
     return (
@@ -34,7 +28,7 @@ const Table = ({ data, query, fetchCustomerData, path }) => {
                 </tr>
             </thead>
             <tbody className="staffTBody">
-                {data.length ? data.filter((name)=>{
+                {data.data?.customers?.length ? data.data?.customers?.filter((name)=>{
                   return query === '' ? name : name.name.toLowerCase().includes(query) || name.contact_person.toLowerCase().includes(query);
                 })
                 .map((item,idx) => (

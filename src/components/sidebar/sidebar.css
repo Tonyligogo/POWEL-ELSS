@@ -35,9 +35,7 @@ aside span.heading{
 .homeButton:hover{
     color: white;
     background-color: #d74221;
-    /* padding-block: 4px; */
     border-radius: 4px;
-    /* margin-left: 8px; */
 }
 .homeButton.active:hover{
     color: white;
@@ -46,16 +44,15 @@ aside span.heading{
 .nav{
     display: flex;
     place-items: center;
-    padding-left: 14px;
-    margin: 18px 0;
-    transition: all 0.5s ease;
+    padding: 10px 0px 10px 14px;
+    /* transition: all 0.5s ease; */
     gap: 8px;
 }
 .nav:hover{
     color: white;
     background-color: #d74221;
     border-radius: 4px;
-    padding-block: 5px;
+    /* padding-block: 5px; */
 }
 .icon{
     margin-right: 8px;

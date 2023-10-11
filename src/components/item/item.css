@@ -2,9 +2,6 @@
     margin-inline: 20px;  
 }
 .itemSaleTitle{
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
     padding: 10px;
     margin: 0 20px;
     font-size: large;
@@ -14,9 +11,6 @@
     border-radius: 4px;
     padding: 8px;
     margin-block-end: 20px;
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
 }
 .itemDetails{
     display: grid;
@@ -66,7 +60,4 @@ input{
     border: none;
     border: 1px solid gray;
     border-radius: 4px;
-}
-textarea:focus, input:focus{
-    outline:1px solid #d74221;
 }

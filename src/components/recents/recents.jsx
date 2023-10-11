@@ -1,18 +1,20 @@
+import { ThreeDots } from 'react-loader-spinner'
 import './recents.css'
 
 function Recents({data, loading}) {
   return (
-    // <div className='recentServicesContainer'>
-    // {data?.data.service_forms.map((service)=>(
-    //   <div className='recents' key={service._id}>
-    //     <span>{service.client_name}</span>
-    //     <span>{service.work_location}</span>
-    // </div>
-    // ))}
-    // </div>
     <div className='recentServicesContainer'>
       {loading ? 
-      <p>Loading...</p>
+      <ThreeDots
+      height="80" 
+      width="80" 
+      radius="9"
+      color="#d74221" 
+      ariaLabel="three-dots-loading"
+      visible={true}
+      />
+    //   <div className="loader">
+    // </div>
       :
       <table className="staffRecordsTable">
             <thead className="staffTHead">

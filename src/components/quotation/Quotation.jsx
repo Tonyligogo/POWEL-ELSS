@@ -42,7 +42,6 @@ function Quotation() {
                 headers: {authorization: "jwt " + sessionStorage.getItem("token")}
               })
               .then((response)=>{
-                  console.log(response)
                   setIsComplete(true)
                   setInvoice(response.data.result.ref_code)
               })
@@ -59,8 +58,7 @@ function Quotation() {
      },[navigate, isComplete, invoice])
   return (
     <div>
-        <div className="checkoutHeading">  
-          <h3>Quotation</h3>
+        <div className="checkoutHeading"> 
           <div className="select">
               <label htmlFor="select">Select quotation type</label>
               <select name="option" id="select" required onChange={handleSelect}>
@@ -108,7 +106,7 @@ function Quotation() {
                 </div>
               }
             </div>
-            {selectedData !== "" && <button onClick={checkout}>Save</button>}
+            {selectedData !== "" && <div className='rightBtn'><button onClick={checkout}>Save</button></div> }
           </div>
       </div>
   )
