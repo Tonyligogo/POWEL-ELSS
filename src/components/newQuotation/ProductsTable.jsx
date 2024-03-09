@@ -4,15 +4,19 @@ import toast from 'react-hot-toast';
 import { ProductModal } from './ProductModal';
 import './ProductsTable.css'
 
-function ProductsTable() {
+function ProductsTable({quotationType}) {
+    console.log( {quotationType} )
 
     const [tableRow, setTableRow] = useState([])
     const [rowToEdit, setRowToEdit] = useState(null);
+    const quotation_Type = quotationType === "Supply" ? 'yeah' : 'noo';
     const [formData, setFormData] = useState({
         description:'',
         quantity:'',
         price:'',
+        units: quotation_Type
     })
+    console.log(formData)
     const [modalOpen, setModalOpen] = useState(false);
     const handleDeleteRow = (targetIndex) => {
         setTableRow(tableRow.filter((_, index) => index !== targetIndex));

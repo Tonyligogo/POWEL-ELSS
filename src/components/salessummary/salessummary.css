@@ -1,15 +1,9 @@
 .salesSummary{
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
     padding: 20px 10px;
     margin-inline: 20px;
     font-weight: 600;
 }
 .salesSummaryHeading{
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.75);
     padding: 10px;
     margin: 0 20px;
     font-size: large;
@@ -23,7 +17,6 @@
     border: 1px solid gray;
     margin-bottom: 8px;
     border-radius: 8px;
-    /* min-width: 200px; */
     width: 300px;
     padding: 8px 10px;
 }

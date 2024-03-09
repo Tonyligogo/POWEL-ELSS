@@ -1,19 +1,18 @@
 import React, { useEffect, useRef, useState} from "react";
 import './login.css';
-import myImage from '../images/powelElssLogo.jpg';
 import axios from "axios";
 import { server } from "../server";
 import { useAuthContext} from "../context/AuthProvider";
 import { CircularProgress } from "@mui/material";
 import { Icon } from '@iconify/react';
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function Login() {
   const userRef = useRef();
-  const errRef = useRef();
+  const passwordRef = useRef();
   const [formValues, setFormValues] = useState({email:'',password:''});
   const [, setUserFocus] = useState(false);
-  const[errMsg, setErrMsg] = useState(''); 
   const[passwordType, setPasswordType] = useState(true); 
   const {setToken, setLoading, setUser, authenticated, loading} = useAuthContext();
   const navigate = useNavigate();
@@ -21,9 +20,6 @@ function Login() {
   useEffect(()=>{
     userRef.current.focus();
   },[]);
-  useEffect(()=>{
-    setErrMsg('');
-  },[formValues])
   useEffect(()=>{
     if(authenticated){
       navigate('/')
@@ -53,32 +49,32 @@ function Login() {
     })
     .catch((err) => {
       if(err.response?.status === 403){
-          setErrMsg('Wrong email or password')
+          toast.error('Wrong email or password', {
+            id: 'error',
+        })
       }else{
-        setErrMsg('Login failed. Try again!')
+        toast.error('Login failed. Try again!', {
+          id: 'error',
+      })
       }
     }) 
     .finally(() => {
       setLoading(false);
     });
-    setTimeout(() => {
-      setErrMsg("")
-      setFormValues({email:'',password:''})
-    }, 3000);
-
   }
 
   return (
-    <div className="loginContainer">
-        <div className='formContainer'>
-          <div className="formWrapper">
-              <img src={myImage} alt="logo" />
-              <div className="form">    
-                  <span className="title">Log in to powel-elss</span>
-                  {errMsg &&<p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}> <Icon icon="clarity:error-solid" color="red" width="22" /> {errMsg}</p>}
+    <div className="loginPage">
+      <div className="form">    
+                  <h2 className="title">Sign in to powel-elss</h2>
+                  <span className="google"> <img className="googleLogo" src="https://freelogopng.com/images/all_img/1657955079google-icon-png.png" alt="google logo" /> Sign in with Google</span>
+                  <p className="line"> <small>or sign in with email</small> </p>
                   <form onSubmit={handleLogin}>
                     <div className="inputBox">
+                      <label htmlFor="email">Email</label>
                       <input 
+                        className="input"
+                        id="email"
                         type="email" 
                         value={formValues.email} 
                         ref={userRef} 
@@ -88,34 +84,29 @@ function Login() {
                         required 
                         onChange={handleChange}
                       />
-                      <span className="placeHolder">Email</span>
                     </div>
-                    <div className="passwordWrapper">
                       <div className="inputBox">
+                        <div className="passIcon">
+                        <label htmlFor="password">Password</label>
+                        {passwordType ?
+                        <Icon icon="basil:eye-closed-outline" width="28" color="rgb(109, 109, 109)" onClick={showPassword}/>
+                        : <Icon icon="basil:eye-outline" width="28" color="rgb(109, 109, 109)" onClick={showPassword}/>}
+                        </div>
                         <input 
+                          className="input"
+                          id="password"
                           type={passwordType ? 'password' : 'text'} 
                           value={formValues.password}
                           name="password" 
                           required 
                           onChange={handleChange}
+                          ref={passwordRef}
                         />
-                        <span className="placeHolder">Password</span>
                       </div>
-                      <div className="passIcon">
-                      {passwordType ?
-                       <Icon icon="basil:eye-closed-outline" width="28" color="rgb(109, 109, 109)" onClick={showPassword}/>
-                      : <Icon icon="basil:eye-outline" width="28" color="rgb(109, 109, 109)" onClick={showPassword}/>}
-                      </div>
-                    </div>
-                    {loading ? <CircularProgress size="24px" className="progress"/>
-                    :<button>Sign in</button>}
+                    {loading ? <button className="signIn"><CircularProgress size="14px" className="progress"/>Signing in...</button>
+                    :<button className="signIn">Sign in</button>}
                   </form> 
               </div>
-          </div>
-        </div>
-        <div className="footer">
-            <p>&copy;Powel-elss<sup>KE</sup>. Energy Efficiency Services</p>
-        </div>
     </div>
     
   )

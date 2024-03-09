@@ -5,7 +5,7 @@ const PrivateRoute = ({ children}) => {
     const {authToken} = useAuthContext();
 
     if (!authToken) {
-      return <Navigate to="/LoginPage" replace/>;
+      return <Navigate to="/LoginPage" replace={true}/>;
     }
     return children
 };

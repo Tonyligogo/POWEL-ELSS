@@ -11,3 +11,9 @@
 .recentService span{
     color: rgb(82, 82, 82);
 }
+.recentServicesContainer{
+    height: max-content !important;
+}
+.recentServicesWrapper{
+    position: relative;
+}

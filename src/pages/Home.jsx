@@ -6,6 +6,7 @@ import BarChart from '../components/chart/BarChart';
 import axios from 'axios';
 // import { useAuthContext} from "../context/AuthProvider";
 import { useQuery } from 'react-query';
+import DoughnutChart from '../components/chart/DoughnutChart';
 
 function Home() {
   // const {authToken, authenticated} = useAuthContext();
@@ -40,20 +41,25 @@ function Home() {
           <Widget type="serviceForm"/>
         </div>
         <div className="middleContainer">
+            <div className="left">
             <h3>Recent Sales</h3>
-            <div className="recentSalesContainer">
+              <div className="recentSalesContainer">
               <RecentService data={orders} error={ordersError} isError={isOrdersError} loading={ordersLoading}/>
+              </div>
             </div>
+              <div className="right">
+              <h3>Recent Services</h3>
+              <div className="recentServicesContainer">
+                <Recents data={services} loading={servicesLoading}/>
+              </div>
+              </div>
           </div>
         <div className="bottomContainer">
           <div className="left">
-            <BarChart expenses={expenses} sales={orders} salesLoading={ordersLoading} loading={expensesLoading}/>
+          <BarChart expenses={expenses} sales={orders} salesLoading={ordersLoading} loading={expensesLoading}/>
           </div>
           <div className="right">
-            <h3>Recent Services</h3>
-            <div className="recentServicesContainer">
-              <Recents data={services} loading={servicesLoading}/>
-            </div>
+          <DoughnutChart expenses={expenses} sales={orders}/>
           </div>
         </div>
         <div>

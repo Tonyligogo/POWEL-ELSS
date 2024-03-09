@@ -3,7 +3,8 @@
 }
 .mainSidebar{
     flex: 1;
-    background-color: rgba(255, 140, 0, 0.048);
+    border-right: 1px solid lightgrey;
+    background-color: #0d0c22;
 }
 .content{
     flex: 4;

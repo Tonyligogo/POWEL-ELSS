@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {Chart as ChartJS, ArcElement,Tooltip, Legend} from "chart.js"
-import {Doughnut} from "react-chartjs-2"
+import {Pie} from "react-chartjs-2"
 import './DoughnutChart.css'
 
 ChartJS.register(
@@ -14,39 +14,43 @@ function DoughnutChart({sales, expenses}) {
   const [totalSaleSum, setTotalSaleSum] = useState(0);
 
   useEffect(() => {
-      var totalExpense = expenses?.map(expense => expense.total_cost)
-      const expenseSum = totalExpense.reduce((acc, num) => acc + num, 0);
+      var totalExpense = expenses?.data?.expenses?.map(expense => expense?.total_cost)
+      const expenseSum = totalExpense?.reduce((acc, num) => acc + num, 0);
       setTotalExpenseSum(expenseSum);
-      var totalSale = sales?.map(sale => sale.product_details?.totalPrice)
-      const saleSum = totalSale.reduce((acc, num) => acc + num, 0);
+      var totalSale = sales?.data?.orders?.map(sale => sale?.product_details?.totalPrice)
+      const saleSum = totalSale?.reduce((acc, num) => acc + num, 0);
       setTotalSaleSum(saleSum);
  },[sales,expenses]);
   var data = {
-    labels: ['Sales','Expenses'],
+    labels: [`Sales Ksh ${totalSaleSum}`,`Expenses Ksh ${totalExpenseSum}`],
     datasets: [{
       label: 'Total',
       data: [ totalSaleSum, totalExpenseSum],
       backgroundColor: [
-        'rgba(255, 99, 132, 0.3)',
-        'rgba(54, 162, 235, 0.3)'
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 0.3)',
-        'rgba(54, 162, 235, 0.3)'
-      ],
-      hoverOffset: 0
-    }
+        '#2d95ec',
+        '#abd4f7'
+        // 'rgba(255, 99, 132, 0.3)',
+        // 'rgba(54, 162, 235, 0.3)'
+     ],
+     borderColor: [
+        // 'rgba(255, 99, 132, 0.3)',
+        //  'rgba(54, 162, 235, 0.3)'
+        'white',
+        'white'
+       ]
+    //   hoverOffset: 0
+     }
   ]
   };
-  var options = {
-    radius:100,
-    cutout: 80
-  };
+  // var options = {
+  //   radius:100,
+  //   cutout: 80
+  // };
   return (
     <div className='doughnutBox'>
-      <Doughnut
+      <Pie 
         data={data}
-        options={options}
+        // options={options}
       />
     </div>
   )

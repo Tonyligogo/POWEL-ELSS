@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './NewProduct.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-import { Icon } from '@iconify/react';
+import { CircularProgress } from '@mui/material';
+import toast from 'react-hot-toast';
 
 function NewProduct() {
     const navigate = useNavigate();
@@ -12,23 +13,26 @@ function NewProduct() {
         category:'',
         price:''
     })
-    const [userCreated, setUserCreated] = useState(false);
+    const [productCreated, setProductCreated] = useState(false);
+    const [loading, setLoading] = useState(false);
     function changeValue(e){
         setFormData({...formData, [e.target.name]:e.target.value})
     };
-    async function addStaff(e){
+    async function addProduct(e){
         e.preventDefault();
+        setLoading(true)
         const userData = {
             name:formData.name,
             desc:formData.desc,
             category:formData.category,
-            price:formData.price
+            price:formData.price,
+            purpose:'test'
         }
         await axios.post("http://localhost:5000/api/dashboard/new-item", userData,{
             headers: {authorization: "jwt " + sessionStorage.getItem("token")}
           })
         .then((response)=>{
-            setUserCreated(true)
+            setProductCreated(true)
         })
         .catch((error)=>{
             if(error.response){
@@ -38,9 +42,11 @@ function NewProduct() {
             }else{
                 console.log(error)
             }
-        })  
+        }).finally(() => {
+            setLoading(false);
+          });  
         setTimeout(() => {
-            setUserCreated(false);
+            setProductCreated(false);
             setFormData({
                 name:'',
                 desc:'',
@@ -50,6 +56,13 @@ function NewProduct() {
             navigate("/Products")
           }, 2000);
     }
+    useEffect(()=>{
+        if(productCreated){
+            toast.success('Saved successfully', {
+                id:'productCreated'
+            })
+        }
+    },[productCreated])
 
   return (
     <div>
@@ -58,27 +71,30 @@ function NewProduct() {
                 <h3>New Product</h3>
             </div>
             <div className="productWrapper">
-                 <form onSubmit={addStaff}>
                     <h3>Product Information</h3>
+                 <form className='productForm'>
                     <div className="formInput">
                         <label>Name</label>
-                        <input type="text" placeholder='Name' value={formData.name} name='name' required onChange={changeValue} />
+                        <input type="text" value={formData.name} name='name' required onChange={changeValue} />
                     </div>
                     <div className="formInput">
                         <label>Description</label>
-                        <input type="text" placeholder='Description' value={formData.desc} name='desc' required onChange={changeValue}/>
+                        <input type="text" value={formData.desc} name='desc' required onChange={changeValue}/>
                     </div>
                     <div className="formInput">
                         <label>Category</label>
-                        <input type="text" placeholder='Category' value={formData.category} name='category' required onChange={changeValue}/>
+                        <input type="text" value={formData.category} name='category' required onChange={changeValue}/>
                     </div>
                     <div className="formInput">
                         <label>Price</label>
-                        <input type="text" placeholder='Price' value={formData.price} name='price' required onChange={changeValue}/>
+                        <input type="text" value={formData.price} name='price' required onChange={changeValue}/>
                     </div>
-                    <button type='submit'>Save</button>
                 </form>
-                { userCreated && <p className='successMessage'> <Icon icon="mdi:success-circle" color="green" /> New item added successfully</p>}
+                {loading ? 
+                      <button><CircularProgress size="14px" className="progress"/>Saving...</button> 
+                      :
+                      <button onClick={addProduct} className="newCustomerSaveBtn">Save</button>
+                    }
             </div>
         </div>
        </div>

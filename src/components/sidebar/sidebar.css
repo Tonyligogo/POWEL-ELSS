@@ -5,16 +5,14 @@ aside{
     padding-inline: 12px 8px;
     position: relative;
     min-height: 100vh;
-    /* box-shadow: 4px 0px 8px 0px rgba(201,201,201,0.47);
-    -webkit-box-shadow: 4px 0px 8px 0px rgba(201,201,201,0.47);
-    -moz-box-shadow: 4px 0px 8px 0px rgba(201,201,201,0.47); */
 }
 aside p{
     margin: 0;
     padding-left: 14px;
 }
 aside h2.name{
-    color: #d74221;
+    /* color: #d74221; */
+    color: white;
     font-size: 32px;
     font-weight: bold;
     margin: 0;
@@ -66,7 +64,8 @@ aside span.heading{
     place-items: center;
     margin-block: 14px;
     transition: all 300ms ease;
-    color: rgb(44, 44, 44);
+    /* color: rgb(44, 44, 44); */
+    color: white;
 }
 .linksWrapper p:hover{
     color: #d74221;
@@ -90,7 +89,8 @@ aside span.heading{
 }
 aside a{
     text-decoration: none;
-    color: rgb(44, 44, 44);
+    /* color: rgb(44, 44, 44); */
+    color: whitesmoke;
     /* color: rgb(82, 82, 82); */
 }
 aside button{
@@ -98,8 +98,10 @@ aside button{
     bottom: 20px;
     background: transparent;
     border: none;
-    color: white;
-    background-color: #d74221;
+    color: black;
+    /* color: white; */
+    /* background-color: #d74221; */
+    background-color: gray;
     padding: 7px 14px;
     border-radius: 4px;
     font-size: 14px;

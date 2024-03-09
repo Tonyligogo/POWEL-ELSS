@@ -1,32 +1,42 @@
 .home{
-    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 .widgets{
     display: flex;
     gap: 20px;
 }
-.bottomContainer{
+.middleContainer{
     display: grid;
     gap: 20px;
-    margin-block-start: 10px;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
-.recentSalesContainer{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+.middleContainer>.left{
+    grid-column: 1/3;
+    box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+    -moz-box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+    /* padding: 2px; */
+    border-radius: 10px;
+    overflow: hidden;
 }
-.middleContainer{
-    margin-block: 20px;
+.middleContainer>.right{
+    grid-column: 3/4;
+    box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+    -moz-box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+    padding: 10px;
+    border-radius: 10px;
+    height: max-content;
 }
-.middleContainer h3{
+.middleContainer .left h3{
     margin: 0;
-    margin-bottom: 10px;
+    margin-block:20px 10px;
+    margin-left: 20px;
     font-weight: 600;
-}
-.rightContainer h3{
-    margin: 0;
-    font-weight: 600;
+    color: #030116;
 }
 .bottomContainer{
     display: grid;
@@ -53,4 +63,6 @@
 }
 .right > h3{
     margin-block: 10px;
+    color: #030116;
+    font-weight: 600;
 }

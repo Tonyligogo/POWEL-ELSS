@@ -7,6 +7,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import { useQuery } from 'react-query';
 import { CircularProgress } from "@mui/material";
 import toast from 'react-hot-toast';
+import DeleteProduct from './DeleteProduct';
 
 axios.defaults.withCredentials = true
 
@@ -18,6 +19,9 @@ function Products() {
   const [addedToCart, setAddedToCart] = useState(false);
   const [loading, setLoading] = useState(false);
   const [rowId, setRowId] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [productName, setProductName] = useState('');
+  const [productID, setProductID] = useState('');
 
   const products = ()=>{
     return axios.get("http://localhost:5000/api/dashboard/all-products",
@@ -25,7 +29,7 @@ function Products() {
       headers: {authorization: "jwt " + sessionStorage.getItem("token")}
     }) 
   }
-  const {isLoading, data} =useQuery('products',products)
+  const {isLoading, data, refetch} =useQuery('products',products)
   
 async function addToCart(e, id, idx){
   e.preventDefault()
@@ -52,6 +56,11 @@ useEffect(()=>{
     })
   }
 },[addedToCart])
+function openDelete(productname, product_id){
+  setModalOpen(true)
+  setProductID(product_id)
+  setProductName(productname)
+}
   return (
     <div>
       <div className="productContainer">
@@ -118,12 +127,21 @@ useEffect(()=>{
                               <button onClick={(e) => addToCart(e,item._id, idx)}>Add to cart</button>}
                           </td>
                           <td className="clickable">  
-                            <Link to={'/StaffRecords/delete/'+item._id}> <Icon icon="fluent-mdl2:delete" color="#d74221" width="24"/> </Link> 
+                            <Icon icon="fluent-mdl2:delete" color="#d74221" width="24" onClick={()=>openDelete(item.name, item._id)} /> 
                           </td>
                         </tr>
                     )) : null}
                     </tbody>
                 </table>
+                {modalOpen &&
+                <DeleteProduct 
+                  product_id={productID}
+                  productName={productName}
+                  closeModal={() => {
+                    setModalOpen(false);
+                  }}
+                  refetchProducts={refetch}
+                />}
           </div>
         </div> }
       </div>

@@ -11,12 +11,17 @@ function NewQuotation() {
     const handleCustomerSelect = (item) => {
         setCustomer(item);
       };
+    const [quotationType, setQuotationType] = useState(null);
+
+    const receiveDataFromChild = (data) => {
+        setQuotationType(data);
+    }
 
   return (
     <main>
         <h2 className='newQuotationHeading'>Quotation</h2>
         <div className="quotationDetails">
-            <Quotation/>
+            <Quotation sendDataToParent={receiveDataFromChild}/>
         </div>
         <div className="customerDetailsWrapper">
             <p> <span className='linkSpan' onClick={()=>setModalOpen(true)}>Click here</span> to select the customer</p>
@@ -50,7 +55,7 @@ function NewQuotation() {
             )}
         </div>
             <div className="productDescription">
-               <ProductsTable/> 
+               <ProductsTable quotationType={quotationType}/> 
             </div>
     </main>
   )

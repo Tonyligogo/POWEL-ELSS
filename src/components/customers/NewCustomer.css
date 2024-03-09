@@ -1,0 +1,20 @@
+.newCustomer .formInput label,
+.newCustomer .formInput input{
+    display: block;
+    width: 100%;
+}
+.newCustomer .formInput input{
+    padding: 5px 0px 5px 4px;
+}
+
+.newCustomer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-block-end: 20px;
+
+}
+.newUserDetails button > .progress{
+    color: white !important;
+    margin-right: 8px;
+}

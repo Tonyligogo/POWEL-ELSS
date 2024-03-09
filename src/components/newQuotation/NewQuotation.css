@@ -30,6 +30,7 @@
     background-color: white;
     width: 50%; 
     position: relative;
+    min-height: 100px;
 }
 .customerTableWrapper{
     overflow-y: auto;

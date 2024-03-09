@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import "./Quotation.css"
 axios.defaults.withCredentials = true
 
-function Quotation() {
+function Quotation({sendDataToParent}) {
 
     const [formData, setFormData] = useState({
         ref_code:'',
@@ -15,8 +15,13 @@ function Quotation() {
     })
     const [selectedData, setSelectedData] = useState('')
     function handleSelect(e){
-      setSelectedData(e.target.value)
-  };
+      setSelectedData(e.target.value);
+    };
+    useEffect(()=>{
+      if(selectedData !== ''){
+        sendDataToParent(selectedData);
+      };
+    },[selectedData, sendDataToParent])
     const navigate = useNavigate()
     const [error, setError] = useState(false)
     const [invoice, setInvoice] = useState('')
@@ -74,7 +79,7 @@ function Quotation() {
         {selectedData !== "" && 
               <form className='quotationGridContent'>
                   <div>
-                      <label htmlFor="refCode">Ref code</label>
+                      <label htmlFor="refCode">Quotation code</label>
                       <input type="text" id='refCode' name='ref_code' required value={formData.ref_code} onChange={changeValue}/>
                   </div>
                   <div>
